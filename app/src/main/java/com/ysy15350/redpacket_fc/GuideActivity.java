@@ -65,7 +65,7 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
                 //MessageBox.show("跳转");
 
             }
-        }, 4 * 1000);//3秒后执行
+        }, 4 * 1000);//4秒后执行
 
         tv_time = this.findViewById(R.id.tv_time);
 
