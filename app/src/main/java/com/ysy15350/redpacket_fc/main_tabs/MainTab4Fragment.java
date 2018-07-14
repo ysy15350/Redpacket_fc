@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
-import com.ysy15350.redpacket_fc.mine.UserCenterActivity;
+import com.ysy15350.redpacket_fc.mine.usercenter.UserCenterActivity;
 import com.ysy15350.redpacket_fc.others.SettingActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
