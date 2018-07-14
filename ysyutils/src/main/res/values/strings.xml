@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">YSYUtils</string>
+
+    <string name="default_text">-</string>
+    <string name="default_number">0</string>
+    <string name="default_money">0.00</string>
+    <string name="default_pwd">******</string>
+    <string name="edit_hint">请输入</string>
+
+    <!-- 按钮文本 -->
+    <string name="btn_get_code">获取验证码</string>
+    <string name="btn_register">立即注册</string>
+    <string name="btn_register_underline"><u>立即注册</u></string>
+    <string name="btn_login">立即登录</string>
+    <string name="btn_login_underline"><u>立即登录</u></string>
+    <string name="btn_ok">确定</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_save">保存</string>
+
+    <string name="setting1">清除缓存</string>
+    <string name="setting2">检测更新</string>
+    <string name="setting3">注销账号</string>
+    <string name="setting4">退出系统</string>
+
+
+    <string name="title_phone">手机号</string>
+    <string name="title_code">验证码</string>
+    <string name="title_pwd_new">新密码</string>
+    <string name="title_pwd_new_ok">确认新密码</string>
+
+
+    <!--文本框提示-->
+    <string name="hint_edit">请输入</string>
+    <string name="hint_login_username">用户名</string>
+    <string name="hint_login_password">密码</string>
+    <string name="forgot_pwd_underline"><u>忘记密码？</u></string>
+
+
+
+
+    <!-- 下拉刷新 -->
+    <string name="header_hint_refresh_normal">下拉刷新</string>
+    <string name="header_hint_refresh_ready">松开刷新数据</string>
+    <string name="header_hint_refresh_loading">正在加载...</string>
+    <string name="header_hint_refresh_time">上次更新时间：</string>
+    <string name="footer_hint_load_normal">查看更多</string>
+    <string name="footer_hint_load_ready">松开载入更多</string>
+
+
+    <!--权限-->
+    <string name="permission_title_rationale">Permission needed</string>
+    <string name="permission_read_storage_rationale">Storage read permission is needed to pick files.</string>
+    <string name="permission_write_storage_rationale">Storage write permission is needed to save the image.</string>
+
+
+</resources>

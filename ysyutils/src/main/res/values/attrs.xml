@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!--******************圆角、圆形图片(本地图片可显示圆形)******************-->
+    <!--自定义view :RoundImageView  -->
+
+    <!-- 圆角、圆形图片 -->
+    <attr name="borderRadius" format="dimension" />
+    <attr name="rtype">
+        <enum name="circle" value="0" /><!--圆形-->
+        <enum name="round" value="1" /><!--圆角-->
+    </attr>
+
+    <!-- 圆角、圆形图片 -->
+    <declare-styleable name="RoundImageView">
+        <attr name="borderRadius" />
+        <attr name="rtype" />
+    </declare-styleable>
+
+    <!--******************圆角、圆形图片end******************-->
+
+
+    <!--******************二维码******************-->
+    <!--自定义view :CanvasRQ  -->
+    <declare-styleable name="QrCode">
+        <attr name="iconWidth" format="dimension" />
+        <attr name="iconHeight" format="dimension" />
+        <attr name="qrCodeWidth" format="dimension" />
+        <attr name="qrCodeHeight" format="dimension" />
+        <attr name="url" format="string" />
+    </declare-styleable>
+    <!--******************二维码end******************-->
+
+</resources>
