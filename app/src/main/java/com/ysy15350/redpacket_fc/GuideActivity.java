@@ -70,7 +70,7 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
         tv_time = this.findViewById(R.id.tv_time);
 
 
-        YSYApplication.getContext();
+        YSYApplication.getContext();//初始化上下文
     }
 
     @Override
