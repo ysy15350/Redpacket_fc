@@ -31,6 +31,8 @@
 
     <!--文本框提示-->
     <string name="hint_edit">请输入</string>
+    <string name="hint_login_mobile">输入手机号码获取验证码</string>
+    <string name="hint_code">输入验证码</string>
     <string name="hint_login_username">用户名</string>
     <string name="hint_login_password">密码</string>
     <string name="forgot_pwd_underline"><u>忘记密码？</u></string>

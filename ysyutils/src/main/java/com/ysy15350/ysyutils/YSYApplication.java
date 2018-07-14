@@ -87,6 +87,9 @@ public class YSYApplication extends Application {
 
         //----------------------闪退错误捕获end----------------------
 
+        String device_id = CommFunAndroid.getDeviceId(getApplicationContext());
+        CommFunAndroid.setSharedPreferences("device_id", device_id);
+
     }
 
 }

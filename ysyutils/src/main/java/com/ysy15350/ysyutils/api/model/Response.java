@@ -47,7 +47,7 @@ public class Response {
             if (this.body != null) {
                 String dataJson = JsonConvertor.toJson(this.body);
 
-                //dataJson = dataJson.replace("\n", "");
+                dataJson = dataJson.replace("\n", "");
 
                 T t = JsonConvertor.fromJson(dataJson, type);
 

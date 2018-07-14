@@ -1,9 +1,12 @@
 package com.ysy15350.ysyutils.api.model;
 
+import com.ysy15350.ysyutils.BuildConfig;
+
 public class Config {
 
     static {
-        setDebug(false);
+        //是否是调试模式
+        setDebug(BuildConfig.DEBUG);
     }
 
     // http://101.201.238.253:8080/yljy/sys/sysuser/login?phone=admin&password=123456
@@ -38,28 +41,29 @@ public class Config {
 
         if (isDebug) {// 如果是调试
 
-            Config.server_url = "192.168.1.12";
+            Config.server_url = "192.168.31.176";
 
             Config.server_port = 8080;
 
-            Config.projectName = "fishing";
+            Config.projectName = "fchb1";
 
         } else {// 正式
 
-            Config.server_url = "www.17diaoyu.com";
+            Config.server_url = "39.108.90.201";
 
             Config.server_port = 80;
 
-            Config.projectName = "fishing";
+            Config.projectName = "fchb";
 
         }
     }
 
     /**
      * 获取服务器地址
+     *
      * @return
      */
-    public static String getUri(){
+    public static String getUri() {
         return String.format("http://%s:%d/%s/", server_url, server_port, projectName);
     }
 
@@ -73,7 +77,6 @@ public class Config {
     // token密码
 
     private static final String AUTHORIZATION_PRE = "Qidian_";// 前缀
-
 
 
     /**

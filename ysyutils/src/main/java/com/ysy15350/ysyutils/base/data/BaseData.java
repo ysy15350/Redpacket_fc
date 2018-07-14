@@ -5,8 +5,9 @@ import android.util.Log;
 
 import com.ysy15350.ysyutils.YSYApplication;
 import com.ysy15350.ysyutils.common.CommFun;
+import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.common.cache.ACache;
-import com.ysy15350.ysyutils.model.UserInfo;
+import com.ysy15350.ysyutils.model.SysUser;
 
 import java.io.ObjectStreamException;
 
@@ -103,7 +104,7 @@ public class BaseData {
     /**
      * 用户信息
      */
-    private static UserInfo mUserInfo;
+    private static SysUser mSysUser;
     /**
      * 用户uid
      */
@@ -116,7 +117,7 @@ public class BaseData {
 
     public static void setToken(String token) {
         try {
-            setCache("token", token);
+            CommFunAndroid.setSharedPreferences("token", token);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,10 +125,8 @@ public class BaseData {
 
 
     public static String getToken() {
-
-
         try {
-            return getCache("token");
+            return CommFunAndroid.getSharedPreferences("token");
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -169,10 +168,10 @@ public class BaseData {
     /**
      * 更新用户信息
      *
-     * @param userInfo
+     * @param sysUser
      */
-    public static void setUserInfo(UserInfo userInfo) {
-        mUserInfo = userInfo;
+    public static void setSysUser(SysUser sysUser) {
+        mSysUser = sysUser;
     }
 
     /**
@@ -180,11 +179,14 @@ public class BaseData {
      *
      * @return
      */
-    public static UserInfo getUserInfo() {
-        return mUserInfo;
+    public static SysUser getSysUser() {
+        return mSysUser;
     }
 
-
+    public static void loginout() {
+        setSysUser(null);
+        setToken("");
+    }
 
 
 }

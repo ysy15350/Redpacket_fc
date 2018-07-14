@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 
 import com.ysy15350.ysyutils.BuildConfig;
 import com.ysy15350.ysyutils.R;
+import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.common.RequestPermissionType;
 import com.ysy15350.ysyutils.common.ViewHolder;
@@ -221,9 +222,8 @@ public class BaseFragment extends Fragment implements IView {
 
 
     protected boolean isLogin() {
-
-
-        return false;
+        boolean isLogin = BaseData.isLogin();
+        return isLogin;
     }
 
     @Override
