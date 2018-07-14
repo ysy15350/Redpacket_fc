@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.view.View;
 
 import com.ysy15350.redpacket_fc.R;
+import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
+import com.ysy15350.redpacket_fc.mine.UserCenterActivity;
 import com.ysy15350.redpacket_fc.others.SettingActivity;
+import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
-import com.ysy15350.ysyutils.common.message.MessageBox;
+import com.ysy15350.ysyutils.common.CommFun;
+import com.ysy15350.ysyutils.model.SysUser;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -29,10 +33,24 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
         return new MainTab4Presenter(getActivity());
     }
 
+    @Override
+    public void bindData() {
+        super.bindData();
+
+        SysUser sysUser = BaseData.getSysUser();
+        if (null != sysUser) {
+
+            String nickName = CommFun.isNullOrEmpty(sysUser.getUsername()) ? CommFun.getPhone(sysUser.getMobile()) : sysUser.getUsername();
+            mHolder.setText(R.id.tv_nickname, nickName);
+        }
+    }
+
     @Event(value = R.id.ll_menu_1)
     private void ll_menu_1Click(View view) {
-        //startActivity(new Intent(getActivity(), MyNoteInfoListActivity.class));
-        MessageBox.show("菜单1");
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getActivity(), UserCenterActivity.class));
+        else
+            startActivity(new Intent(getActivity(), LoginActivity.class));
     }
 
     @Event(value = R.id.ll_menu_6)

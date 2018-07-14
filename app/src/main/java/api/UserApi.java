@@ -40,6 +40,15 @@ public interface UserApi {
     public void login(String mobile, String password, ApiCallBack callBack);
 
     /**
+     * 手机验证码登录
+     *
+     * @param mobile
+     * @param code
+     * @param callBack
+     */
+    public void loginByCode(String mobile, String code, ApiCallBack callBack);
+
+    /**
      * 激活账户
      *
      * @param callBack
@@ -48,6 +57,7 @@ public interface UserApi {
 
     /**
      * 获取用户信息
+     *
      * @param callBack
      */
     public void userInfo(ApiCallBack callBack);

@@ -99,12 +99,34 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <!-- 设置界面 -->
+        <!-- 用户登录 -->
+        <activity
+            android:name=".authentication.login.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 设置 -->
         <activity
             android:name=".others.SettingActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <!-- 个人中心 -->
+        <activity
+            android:name=".mine.UserCenterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+
+        <!-- 高德地图定位 -->
+        <service android:name="com.amap.api.location.APSService" />
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="29b136d19ed5fe058ceab855b60a2e42" />
 
     </application>
 

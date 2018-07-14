@@ -15,7 +15,7 @@ import api.UserApi;
 
 public class UserApiImpl implements UserApi {
 
-    private static final String moduleName = "api/test/";
+    private static final String moduleName = "api/user/";
 
     @Override
     public void getDynCode(String mobile, int type, ApiCallBack callBack) {
@@ -77,11 +77,23 @@ public class UserApiImpl implements UserApi {
 
     }
 
+    @Override
+    public void loginByCode(String mobile, String code, ApiCallBack callBack) {
+
+        RequestOptions requestOptions = new RequestOptions.Builder()
+                .setRequestMapping(moduleName + "loginByCode")
+                .addBodyParameter("mobile", mobile)
+                .addBodyParameter("code", code)//验证码
+                .addBodyParameter("platform", "1")//1:Android；2:ios
+                .addBodyParameter("deviceId", CommFunAndroid.getSharedPreferences("device_id"))//设备唯一编码
+                .build();
+
+        Ysy.http().requestPost(requestOptions, callBack);
+    }
 
     @Override
     public void activate(ApiCallBack callBack) {
 
-        //String token = BaseData.getToken();
 
         String token = BaseData.getToken();
         String deviceInfo = CommFunAndroid.getDeviceInfoStr();
