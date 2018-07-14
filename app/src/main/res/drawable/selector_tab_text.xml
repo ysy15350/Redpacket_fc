@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--底部tab选中未选中颜色-->
+
+    <item android:color="@color/main_bottom_menu_1" android:state_enabled="false" />
+    <item android:color="@color/main_bottom_menu_1" android:state_pressed="true" />
+    <item android:color="@color/main_bottom_menu" />
+
+</selector>

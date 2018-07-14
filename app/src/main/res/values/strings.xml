@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Redpacket_fc</string>
+
+    <!-- 首页选项卡文本 -->
+    <string name="tab1name">红包</string>
+    <string name="tab2name">广告</string>
+    <string name="tab3name">交易</string>
+    <string name="tab4name">我的</string>
+
+    <string name="main_tab4_menu1">个人主页</string>
+    <string name="main_tab4_menu2">钱包</string>
+    <string name="main_tab4_menu3">城主</string>
+    <string name="main_tab4_menu4">关注</string>
+    <string name="main_tab4_menu5">分享</string>
+    <string name="main_tab4_menu6">设置</string>
+
+</resources>

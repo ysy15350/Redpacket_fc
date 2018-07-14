@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp60"
+    android:layout_alignParentBottom="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+
+    <!-- 第一部分 -->
+
+    <LinearLayout
+        android:id="@+id/ll_tab1"
+        style="@style/main_bottom_item"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_tab1"
+            style="@style/main_bottom_item_img"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/selector_tab1"
+            android:tag="tab_img" />
+
+        <TextView
+            android:id="@+id/tv_tab1"
+            style="@style/main_bottom_item_text"
+            android:tag="tab_txt"
+            android:text="@string/tab1name" />
+    </LinearLayout>
+
+    <!-- 第二部分图片和文字 -->
+
+    <LinearLayout
+        android:id="@+id/ll_tab2"
+        style="@style/main_bottom_item"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_tab2"
+            style="@style/main_bottom_item_img"
+            android:layout_marginTop="@dimen/dp2"
+            android:src="@drawable/selector_tab2"
+            android:tag="tab_img" />
+
+        <TextView
+            android:id="@+id/tv_tab2"
+            style="@style/main_bottom_item_text"
+            android:tag="tab_txt"
+            android:text="@string/tab2name" />
+    </LinearLayout>
+
+    <!-- 第三部分 -->
+
+    <LinearLayout
+        android:id="@+id/ll_tab3"
+        style="@style/main_bottom_item"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_tab3"
+            style="@style/main_bottom_item_img"
+            android:src="@drawable/selector_tab3"
+            android:tag="tab_img" />
+
+        <TextView
+            android:id="@+id/tv_tab3"
+            style="@style/main_bottom_item_text"
+            android:tag="tab_txt"
+            android:text="@string/tab3name" />
+    </LinearLayout>
+
+
+    <!-- 第四部分 -->
+
+    <LinearLayout
+        android:id="@+id/ll_tab4"
+        style="@style/main_bottom_item"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_tab4"
+            style="@style/main_bottom_item_img"
+            android:src="@drawable/selector_tab4"
+            android:tag="tab_img" />
+
+        <TextView
+            android:id="@+id/tv_tab4"
+            style="@style/main_bottom_item_text"
+            android:tag="tab_txt"
+            android:text="@string/tab4name" />
+    </LinearLayout>
+
+</LinearLayout>
