@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dp93"
+            android:layout_height="@dimen/dp93"
+            android:src="@mipmap/ic_launcher" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginStart="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp290"
+
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            style="@style/base_edit_layout"
+
+            android:layout_margin="@dimen/dp30">
+
+
+            <EditText
+                android:id="@+id/et_mobile"
+                style="@style/base_edit"
+                android:hint="@string/hint_login_mobile" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/base_edit_layout"
+            android:layout_marginEnd="@dimen/dp30"
+            android:layout_marginStart="@dimen/dp30">
+
+
+            <EditText
+                android:id="@+id/et_code"
+                style="@style/base_edit"
+                android:hint="@string/hint_code" />
+
+            <Button
+                android:id="@+id/btn_get_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_get_code" />
+
+
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/btn_ok"
+            android:layout_marginBottom="@dimen/dp40"
+            android:layout_marginEnd="@dimen/dp30"
+            android:layout_marginStart="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp13" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp100"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="微信登录"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp22" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
