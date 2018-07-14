@@ -17,6 +17,9 @@ import org.xutils.view.annotation.Event;
 import api.UserApi;
 import api.impl.UserApiImpl;
 
+/**
+ * 设置
+ */
 @ContentView(com.ysy15350.ysyutils.R.layout.activity_setting)
 public class SettingActivity extends BaseActivity {
 

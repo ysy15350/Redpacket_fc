@@ -15,6 +15,9 @@ import java.util.List;
 
 import model.AdsCard;
 
+/**
+ * 个人中心
+ */
 @ContentView(R.layout.activity_usercenter)
 public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewInterface, UserCenterPresenter>
         implements UserCenterViewInterface {

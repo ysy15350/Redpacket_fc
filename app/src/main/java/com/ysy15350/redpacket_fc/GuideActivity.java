@@ -16,6 +16,9 @@ import com.ysy15350.ysyutils.common.AppStatusManager;
 import com.ysy15350.ysyutils.model.SysUser;
 
 
+/**
+ * 启动页
+ */
 //@ContentView(R.layout.activity_guide)
 public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePresenter>
         implements GuideViewInterface {

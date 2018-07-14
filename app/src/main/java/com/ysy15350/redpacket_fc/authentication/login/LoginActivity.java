@@ -20,6 +20,9 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 
 
+/**
+ * 登录页面
+ */
 @ContentView(R.layout.activity_login)
 public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPresenter> implements LoginViewInterface {
 
@@ -51,9 +54,9 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
     protected void onResume() {
         super.onResume();
 
-        String mobile=CommFunAndroid.getSharedPreferences("mobile");
-        if(!CommFun.isNullOrEmpty(mobile)){
-            mHolder.setText(R.id.et_mobile,mobile);
+        String mobile = CommFunAndroid.getSharedPreferences("mobile");
+        if (!CommFun.isNullOrEmpty(mobile)) {
+            mHolder.setText(R.id.et_mobile, mobile);
         }
     }
 
@@ -191,8 +194,8 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
 
                         SysUser sysUser = response.getData(SysUser.class);
                         if (sysUser != null) {
-                            String mobile=sysUser.getMobile();
-                            CommFunAndroid.setSharedPreferences("mobile",mobile);
+                            String mobile = sysUser.getMobile();
+                            CommFunAndroid.setSharedPreferences("mobile", mobile);
 
                             BaseData.setSysUser(sysUser);
                         }
