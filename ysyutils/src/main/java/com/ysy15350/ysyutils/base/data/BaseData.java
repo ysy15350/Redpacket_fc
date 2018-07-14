@@ -12,6 +12,7 @@ import com.ysy15350.ysyutils.model.SysUser;
 import java.io.ObjectStreamException;
 
 /**
+ * 基础数据
  * Created by yangshiyou on 2017/12/22.
  */
 
