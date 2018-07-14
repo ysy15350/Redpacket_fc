@@ -20,6 +20,9 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
         implements UserCenterViewInterface {
 
 
+    /**
+     * adapter
+     */
     ListViewAdapter_AdsCard mAdapter;
 
     List<AdsCard> mList = new ArrayList<>();
