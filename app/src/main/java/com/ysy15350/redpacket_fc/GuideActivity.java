@@ -7,8 +7,13 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.ysy15350.ysyutils.YSYApplication;
+import com.ysy15350.ysyutils.api.model.Response;
+import com.ysy15350.ysyutils.api.model.ResponseHead;
+import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
 import com.ysy15350.ysyutils.common.AppStatusManager;
+import com.ysy15350.ysyutils.model.SysUser;
 
 
 //@ContentView(R.layout.activity_guide)
@@ -65,13 +70,47 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
         tv_time = this.findViewById(R.id.tv_time);
 
 
+        YSYApplication.getContext();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
+        mPresenter.activate();
+
         handler.postDelayed(runnable, 1000);//每两秒执行一次runnable.
+    }
+
+    @Override
+    public void activateCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+
+                        SysUser sysUser = response.getData(SysUser.class);
+                        if (sysUser != null) {
+
+                            BaseData.setSysUser(sysUser);
+                        }
+                    }
+
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static int time = 3;
