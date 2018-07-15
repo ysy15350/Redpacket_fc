@@ -42,6 +42,7 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
 
         page = 1;//从第一页开始
         initData(page, pageSize);
+
     }
 
     @Override
