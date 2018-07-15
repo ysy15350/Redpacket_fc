@@ -7,6 +7,7 @@ import com.ysy15350.redpacket_fc.adapters.ListViewAdapter_AdsCard;
 import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseListViewActivity;
 import com.ysy15350.ysyutils.common.message.MessageBox;
+import com.ysy15350.ysyutils.model.PageData;
 
 import org.xutils.view.annotation.ContentView;
 
@@ -42,6 +43,8 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
 
         page = 1;//从第一页开始
         initData(page, pageSize);
+
+
     }
 
     @Override

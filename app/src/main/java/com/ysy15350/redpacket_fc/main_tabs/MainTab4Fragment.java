@@ -7,6 +7,7 @@ import android.view.View;
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.mine.usercenter.UserCenterActivity;
+import com.ysy15350.redpacket_fc.mine.userinfo.UserInfoActivity;
 import com.ysy15350.redpacket_fc.others.SettingActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
@@ -40,9 +41,23 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
         SysUser sysUser = BaseData.getSysUser();
         if (null != sysUser) {
 
-            String nickName = CommFun.isNullOrEmpty(sysUser.getUsername()) ? CommFun.getPhone(sysUser.getMobile()) : sysUser.getUsername();
+            String nickName = CommFun.isNullOrEmpty(sysUser.getNickname()) ? CommFun.getPhone(sysUser.getMobile()) : sysUser.getNickname();
             mHolder.setText(R.id.tv_nickname, nickName);
         }
+    }
+
+    /**
+     * 个人资料
+     * @param view
+     */
+    @Event(value = R.id.ll_userinfo)
+    private void ll_userinfoClick(View view) {
+
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getActivity(), UserInfoActivity.class));
+        else
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+
     }
 
     @Event(value = R.id.ll_menu_1)

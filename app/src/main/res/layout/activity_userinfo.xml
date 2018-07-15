@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    style="@style/base_form">
+
+    <include layout="@layout/form_head" />
+
+    <!--个人资料-->
+
+    <Button
+        android:id="@+id/btn_setalipay"
+        android:layout_width="match_parent"
+        android:text="设置支付宝"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

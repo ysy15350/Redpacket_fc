@@ -13,4 +13,11 @@ public interface CommonApi {
      * @param callBack
      */
     public void getProtocol(ApiCallBack callBack);
+
+    /**
+     * 版本更新
+     * @param versionCode
+     * @param callBack
+     */
+    public void checkVersion(int versionCode,ApiCallBack callBack);
 }
