@@ -33,7 +33,8 @@
     <style name="form_title_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp80</item>
-        <item name="android:background">@color/bg_form_head</item>
+
+        <item name="android:background">@color/white</item>
     </style>
 
     <!-- 标题文本 -->
@@ -43,7 +44,7 @@
         <item name="android:layout_marginTop">@dimen/dp40</item>
         <item name="android:gravity">center</item>
         <item name="android:text">@string/app_name</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/text_content</item>
         <item name="android:textSize">@dimen/sp22</item>
         <!-- <item name="android:textStyle">bold</item> -->
 

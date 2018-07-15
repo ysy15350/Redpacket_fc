@@ -136,6 +136,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <!-- 19.关注 -->
+        <activity
+            android:name=".mine.follow.FollowListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
 
         <!-- 高德地图定位 -->
         <service android:name="com.amap.api.location.APSService" />
