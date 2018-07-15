@@ -1,13 +1,11 @@
 package com.ysy15350.ysyutils.api.model;
 
-import com.ysy15350.ysyutils.BuildConfig;
-
 public class Config {
 
-    static {
-        //是否是调试模式
-        setDebug(BuildConfig.DEBUG);
-    }
+//    static {
+//        //是否是调试模式
+//        setDebug(BuildConfig.DEBUG);
+//    }
 
     // http://101.201.238.253:8080/yljy/sys/sysuser/login?phone=admin&password=123456
     /**
