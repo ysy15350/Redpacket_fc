@@ -84,6 +84,6 @@
 
     <!-- 底部tabBar -->
     <color name="main_bottom_menu">#666666</color>
-    <color name="main_bottom_menu_1">#f66e44</color>
+    <color name="main_bottom_menu_1">#d60000</color>
 
 </resources>

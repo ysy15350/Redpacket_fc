@@ -183,7 +183,7 @@
     <style name="view_line_menu">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp1</item>
-        <item name="android:layout_marginStart">@dimen/dp12</item>
+        <item name="android:layout_marginStart">@dimen/dp15</item>
         <item name="android:background">@color/devider_color</item>
     </style>
 

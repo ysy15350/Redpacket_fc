@@ -53,7 +53,7 @@
     <!-- 我的_菜单_项 -->
     <style name="tab3_menu_item">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/dp62</item>
+        <item name="android:layout_height">@dimen/dp74</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -63,6 +63,13 @@
         <item name="android:layout_width">@dimen/dp30</item>
         <item name="android:layout_height">@dimen/dp30</item>
         <item name="android:layout_margin">@dimen/dp12</item>
+    </style>
+
+    <!-- 菜单图标 -->
+    <style name="tab4_menu_item_icon">
+        <item name="android:layout_width">@dimen/dp22</item>
+        <item name="android:layout_height">@dimen/dp22</item>
+        <item name="android:layout_margin">@dimen/dp15</item>
     </style>
 
     <!-- 菜单内容 -->
@@ -79,6 +86,22 @@
     <style name="tab3_menu_item_right">
         <item name="android:layout_width">@dimen/dp16</item>
         <item name="android:layout_height">@dimen/dp16</item>
+        <item name="android:layout_marginEnd">@dimen/dp21</item>
+        <item name="android:src">@mipmap/icon_right</item>
+    </style>
+
+    <!-- 菜单右边箭头 -->
+    <style name="icon_right">
+        <item name="android:layout_width">@dimen/dp16</item>
+        <item name="android:layout_height">@dimen/dp16</item>
+        <item name="android:layout_marginEnd">@dimen/dp21</item>
+        <item name="android:src">@mipmap/icon_right</item>
+    </style>
+
+    <!-- 菜单左边箭头 -->
+    <style name="icon_left">
+        <item name="android:layout_width">@dimen/dp20</item>
+        <item name="android:layout_height">@dimen/dp20</item>
         <item name="android:layout_marginEnd">@dimen/dp21</item>
         <item name="android:src">@mipmap/icon_right</item>
     </style>
