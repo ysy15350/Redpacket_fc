@@ -4,6 +4,7 @@ import com.ysy15350.ysyutils.api.ApiCallBack;
 import com.ysy15350.ysyutils.model.UserInfo;
 
 /**
+ * 用户相关接口
  * Created by yangshiyou on 2017/12/15.
  */
 
