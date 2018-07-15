@@ -113,16 +113,25 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <!-- 个人中心 -->
+
+
+        <!-- 08.个人资料 -->
         <activity
-            android:name=".mine.usercenter.UserCenterActivity"
+            android:name=".mine.userinfo.UserInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
-        <!-- 个人资料 -->
+        <!-- 09.设置支付宝 -->
         <activity
-            android:name=".mine.userinfo.UserInfoActivity"
+            android:name=".mine.setalipay.SetAlipayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 10.个人中心 -->
+        <activity
+            android:name=".mine.usercenter.UserCenterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

@@ -25,4 +25,22 @@ public class CommonApiImpl implements CommonApi {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void checkVersion(int versionCode, ApiCallBack callBack) {
+        try {
+
+            RequestOptions requestOptions = new RequestOptions.Builder()
+                    .setRequestMapping(moduleName + "checkVersion")
+                    .addBodyParameter("versionCode",versionCode) // 当前版本号
+                    .addBodyParameter("platform", "1") // 注册平台；0:web;1:Android ;2:IOS;3:wap
+                    .build();
+
+
+            Ysy.http().requestPost(requestOptions, callBack);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

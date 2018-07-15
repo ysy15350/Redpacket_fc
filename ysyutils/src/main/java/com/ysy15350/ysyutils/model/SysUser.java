@@ -11,26 +11,53 @@ public class SysUser {
 
     private String token;
 
+    /**
+     * 头像
+     */
     private String avatar;
 
+    /**
+     * 手机号
+     */
     private String mobile;
 
+    /**
+     * 昵称
+     */
     private String nickname;
 
+    /**
+     * 真实姓名
+     */
     private String realname;
 
+    /**
+     * 个性签名
+     */
     private String personalitySignature;
 
+    /**
+     * 支付宝账户
+     */
     private String alipayAccount;
 
+    /**
+     * 性别
+     */
     private int sex;
 
+    /**
+     * 出身年月日
+     */
     private int birthdayYear;
 
     private int birthdayMonth;
 
     private int birthdayDay;
 
+    /**
+     * 常住地区
+     */
     private String habitualResidence;
 
     private String ip;
