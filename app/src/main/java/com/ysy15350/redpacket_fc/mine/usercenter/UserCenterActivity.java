@@ -40,7 +40,7 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
     protected void onResume() {
         super.onResume();
 
-        page = 1;
+        page = 1;//从第一页开始
         initData(page, pageSize);
     }
 

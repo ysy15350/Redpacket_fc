@@ -23,8 +23,8 @@ public class UserApiImpl implements UserApi {
 
             RequestOptions requestOptions = new RequestOptions.Builder()
                     .setRequestMapping(moduleName + "getDynCode")
-                    .addBodyParameter("mobile", mobile)
-                    .addBodyParameter("type", type + "")
+                    .addBodyParameter("mobile", mobile)//手机号
+                    .addBodyParameter("type", type + "")//类型
                     .build();
 
 
