@@ -5,7 +5,7 @@ import com.ysy15350.ysyutils.api.ApiCallBack;
 import com.ysy15350.ysyutils.api.model.RequestOptions;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
-import com.ysy15350.ysyutils.model.UserInfo;
+import com.ysy15350.ysyutils.model.SysUser;
 
 import api.UserApi;
 
@@ -123,16 +123,16 @@ public class UserApiImpl implements UserApi {
     }
 
     @Override
-    public void saveUserInfo(UserInfo userInfo, ApiCallBack callBack) {
+    public void saveUserInfo(SysUser sysUser, ApiCallBack callBack) {
         try {
-            if (userInfo == null)
+            if (sysUser == null)
                 return;
 
             RequestOptions requestOptions = new RequestOptions.Builder()
                     .setRequestMapping(moduleName + "saveUserInfo")
-                    .addBodyParameter("nickName", userInfo.getNickname())
-                    .addBodyParameter("realName", userInfo.getRealname())
-                    .addBodyParameter("headimg", userInfo.getHeadimg() + "")
+                    .addBodyParameter("nickName", sysUser.getNickname())//昵称
+                    .addBodyParameter("realName", sysUser.getRealname())//真实姓名
+                    .addBodyParameter("avatar", sysUser.getAvatar())//头像地址
                     .build();
 
             Ysy.http().requestPost(requestOptions, callBack);

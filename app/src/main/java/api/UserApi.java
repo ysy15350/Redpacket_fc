@@ -1,7 +1,7 @@
 package api;
 
 import com.ysy15350.ysyutils.api.ApiCallBack;
-import com.ysy15350.ysyutils.model.UserInfo;
+import com.ysy15350.ysyutils.model.SysUser;
 
 /**
  * 用户相关接口
@@ -43,8 +43,8 @@ public interface UserApi {
     /**
      * 手机验证码登录
      *
-     * @param mobile
-     * @param code
+     * @param mobile   手机号
+     * @param code     验证码
      * @param callBack
      */
     public void loginByCode(String mobile, String code, ApiCallBack callBack);
@@ -66,10 +66,10 @@ public interface UserApi {
     /**
      * 修改用户信息
      *
-     * @param userInfo
+     * @param sysUser
      * @param callBack
      */
-    public void saveUserInfo(UserInfo userInfo, ApiCallBack callBack);
+    public void saveUserInfo(SysUser sysUser, ApiCallBack callBack);
 
     /**
      * 修改手机号

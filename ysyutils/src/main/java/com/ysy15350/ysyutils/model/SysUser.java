@@ -11,17 +11,27 @@ public class SysUser {
 
     private String token;
 
+    private String avatar;
+
     private String mobile;
 
-    private String username;
+    private String nickname;
 
-    private int introducer;
+    private String realname;
 
-    private long createtime;
+    private String personalitySignature;
 
-    private String password;
+    private String alipayAccount;
 
-    private String rights;
+    private int sex;
+
+    private int birthdayYear;
+
+    private int birthdayMonth;
+
+    private int birthdayDay;
+
+    private String habitualResidence;
 
     private String ip;
 
@@ -29,101 +39,139 @@ public class SysUser {
 
     private String skin;
 
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getId() {
-        return this.id;
+    public int getType() {
+        return type;
     }
 
     public void setType(int type) {
         this.type = type;
     }
 
-    public int getType() {
-        return this.type;
+    public String getToken() {
+        return token;
     }
 
     public void setToken(String token) {
         this.token = token;
     }
 
-    public String getToken() {
-        return this.token;
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getMobile() {
+        return mobile;
     }
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
 
-    public String getMobile() {
-        return this.mobile;
+    public String getNickname() {
+        return nickname;
     }
 
-    public String getUsername() {
-        return username;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getRealname() {
+        return realname;
     }
 
-    public void setIntroducer(int introducer) {
-        this.introducer = introducer;
+    public void setRealname(String realname) {
+        this.realname = realname;
     }
 
-    public int getIntroducer() {
-        return this.introducer;
+    public String getPersonalitySignature() {
+        return personalitySignature;
     }
 
-    public void setCreatetime(long createtime) {
-        this.createtime = createtime;
+    public void setPersonalitySignature(String personalitySignature) {
+        this.personalitySignature = personalitySignature;
     }
 
-    public long getCreatetime() {
-        return this.createtime;
+    public String getAlipayAccount() {
+        return alipayAccount;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAlipayAccount(String alipayAccount) {
+        this.alipayAccount = alipayAccount;
     }
 
-    public String getPassword() {
-        return this.password;
+    public int getSex() {
+        return sex;
     }
 
-    public void setRights(String rights) {
-        this.rights = rights;
+    public void setSex(int sex) {
+        this.sex = sex;
     }
 
-    public String getRights() {
-        return this.rights;
+    public int getBirthdayYear() {
+        return birthdayYear;
+    }
+
+    public void setBirthdayYear(int birthdayYear) {
+        this.birthdayYear = birthdayYear;
+    }
+
+    public int getBirthdayMonth() {
+        return birthdayMonth;
+    }
+
+    public void setBirthdayMonth(int birthdayMonth) {
+        this.birthdayMonth = birthdayMonth;
+    }
+
+    public int getBirthdayDay() {
+        return birthdayDay;
+    }
+
+    public void setBirthdayDay(int birthdayDay) {
+        this.birthdayDay = birthdayDay;
+    }
+
+    public String getHabitualResidence() {
+        return habitualResidence;
+    }
+
+    public void setHabitualResidence(String habitualResidence) {
+        this.habitualResidence = habitualResidence;
+    }
+
+    public String getIp() {
+        return ip;
     }
 
     public void setIp(String ip) {
         this.ip = ip;
     }
 
-    public String getIp() {
-        return this.ip;
+    public String getStatus() {
+        return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public String getStatus() {
-        return this.status;
+    public String getSkin() {
+        return skin;
     }
 
     public void setSkin(String skin) {
         this.skin = skin;
     }
-
-    public String getSkin() {
-        return this.skin;
-    }
-
-
 }
