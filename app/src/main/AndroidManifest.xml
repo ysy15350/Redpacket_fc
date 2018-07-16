@@ -57,6 +57,7 @@
 
     <!-- 高德地图缺失权限end -->
 
+
     <!--录音新增权限-->
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -91,6 +92,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <!-- 主界面 -->
         <activity
@@ -132,6 +134,13 @@
         <!-- 10.个人中心 -->
         <activity
             android:name=".mine.usercenter.UserCenterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 19.关注 -->
+        <activity
+            android:name=".mine.follow.FollowListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

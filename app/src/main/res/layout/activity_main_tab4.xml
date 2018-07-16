@@ -4,22 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/base_form">
 
+    <!-- 设计图（宽:480） 模拟器（宽750） 比例：1.5625-->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp180"
-        android:background="@color/bg_form_head"
+        android:layout_height="@dimen/dp202"
+        android:background="@mipmap/bg_gradual_change"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-
+            android:layout_marginTop="@dimen/dp30"
             android:layout_height="@dimen/dp60">
 
             <ImageView
-                style="@style/main_bottom_item_img"
+                style="@style/icon_left"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/dp12"
-                android:src="@mipmap/icon_back" />
+                android:src="@mipmap/icon_back_white" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -27,7 +28,7 @@
                 android:gravity="center"
                 android:text="@string/tab4name"
                 android:textColor="@color/white"
-                android:textSize="@dimen/sp22" />
+                android:textSize="@dimen/sp20" />
 
         </RelativeLayout>
 
@@ -39,10 +40,10 @@
 
             <com.ysy15350.ysyutils.custom_view.RoundImageView
                 android:id="@+id/img_head"
-                android:layout_width="@dimen/dp77"
-                android:layout_height="@dimen/dp77"
-                android:layout_marginStart="@dimen/dp20"
-                android:src="@mipmap/icon_head_test"
+                android:layout_width="@dimen/dp61"
+                android:layout_height="@dimen/dp61"
+                android:layout_marginStart="@dimen/dp30"
+                android:src="@mipmap/img_head"
                 custom:rtype="circle" />
 
             <!--中间-->
@@ -58,19 +59,17 @@
                 <TextView
                     android:id="@+id/tv_nickname"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:text="@string/tab4name"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp22" />
+                    android:textSize="@dimen/sp20" />
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
                     android:text="ID:"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp20" />
+                    android:textSize="@dimen/sp18" />
 
 
             </LinearLayout>
@@ -85,9 +84,11 @@
 
 
                 <ImageView
-                    style="@style/main_bottom_item_img"
+                    android:layout_width="@dimen/dp20"
+                    android:layout_height="@dimen/dp20"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
+                    android:layout_marginEnd="@dimen/dp30"
                     android:src="@mipmap/icon_right_white" />
             </LinearLayout>
 
@@ -107,14 +108,14 @@
             style="@style/tab3_menu_item">
 
             <ImageView
-                style="@style/tab3_menu_item_icon"
-                android:src="@mipmap/icon_tab4_menu1" />
+                style="@style/tab4_menu_item_icon"
+                android:src="@mipmap/icon_menu1" />
 
             <TextView
                 style="@style/tab3_menu_item_text"
                 android:text="@string/main_tab4_menu1" />
 
-            <ImageView style="@style/tab3_menu_item_right" />
+            <ImageView style="@style/icon_right" />
 
         </LinearLayout>
 
@@ -134,14 +135,14 @@
             style="@style/tab3_menu_item">
 
             <ImageView
-                style="@style/tab3_menu_item_icon"
-                android:src="@mipmap/icon_tab4_menu2" />
+                style="@style/tab4_menu_item_icon"
+                android:src="@mipmap/icon_menu2" />
 
             <TextView
                 style="@style/tab3_menu_item_text"
                 android:text="@string/main_tab4_menu2" />
 
-            <ImageView style="@style/tab3_menu_item_right" />
+            <ImageView style="@style/icon_right" />
 
         </LinearLayout>
 
@@ -153,14 +154,14 @@
             style="@style/tab3_menu_item">
 
             <ImageView
-                style="@style/tab3_menu_item_icon"
-                android:src="@mipmap/icon_tab4_menu3" />
+                style="@style/tab4_menu_item_icon"
+                android:src="@mipmap/icon_menu3" />
 
             <TextView
                 style="@style/tab3_menu_item_text"
                 android:text="@string/main_tab4_menu3" />
 
-            <ImageView style="@style/tab3_menu_item_right" />
+            <ImageView style="@style/icon_right" />
 
         </LinearLayout>
 
@@ -172,14 +173,14 @@
             style="@style/tab3_menu_item">
 
             <ImageView
-                style="@style/tab3_menu_item_icon"
-                android:src="@mipmap/icon_tab4_menu4" />
+                style="@style/tab4_menu_item_icon"
+                android:src="@mipmap/icon_menu4" />
 
             <TextView
                 style="@style/tab3_menu_item_text"
                 android:text="@string/main_tab4_menu4" />
 
-            <ImageView style="@style/tab3_menu_item_right" />
+            <ImageView style="@style/icon_right" />
 
         </LinearLayout>
 
@@ -191,14 +192,14 @@
             style="@style/tab3_menu_item">
 
             <ImageView
-                style="@style/tab3_menu_item_icon"
-                android:src="@mipmap/icon_tab4_menu5" />
+                style="@style/tab4_menu_item_icon"
+                android:src="@mipmap/icon_menu5" />
 
             <TextView
                 style="@style/tab3_menu_item_text"
                 android:text="@string/main_tab4_menu5" />
 
-            <ImageView style="@style/tab3_menu_item_right" />
+            <ImageView style="@style/icon_right" />
 
         </LinearLayout>
 
@@ -210,14 +211,14 @@
             style="@style/tab3_menu_item">
 
             <ImageView
-                style="@style/tab3_menu_item_icon"
-                android:src="@mipmap/icon_tab4_menu6" />
+                style="@style/tab4_menu_item_icon"
+                android:src="@mipmap/icon_menu6" />
 
             <TextView
                 style="@style/tab3_menu_item_text"
                 android:text="@string/main_tab4_menu6" />
 
-            <ImageView style="@style/tab3_menu_item_right" />
+            <ImageView style="@style/icon_right" />
 
         </LinearLayout>
 

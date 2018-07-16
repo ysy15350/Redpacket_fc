@@ -17,7 +17,7 @@ import java.util.List;
 import model.AdsCard;
 
 /**
- * 个人中心
+ * 个人主页
  */
 @ContentView(R.layout.activity_usercenter)
 public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewInterface, UserCenterPresenter>
@@ -40,6 +40,8 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
     @Override
     protected void onResume() {
         super.onResume();
+
+        setFormHead("个人主页");
 
         page = 1;//从第一页开始
         initData(page, pageSize);
