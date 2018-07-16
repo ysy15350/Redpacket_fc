@@ -42,6 +42,13 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
     }
 
     @Override
+    public void initView() {
+        super.initView();
+
+        setFormHead("个人资料");
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
 //        bindUserInfo(BaseData.getSysUser());

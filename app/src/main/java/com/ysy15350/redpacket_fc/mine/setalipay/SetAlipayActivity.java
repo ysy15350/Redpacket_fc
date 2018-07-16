@@ -33,7 +33,10 @@ public class SetAlipayActivity extends MVPBaseActivity<SetAlipayViewInterface, S
         return new SetAlipayPresenter(this);
     }
 
+    @Override
+    public void initView() {
+        super.initView();
 
-
-
+        setFormHead("设置支付宝");
+    }
 }

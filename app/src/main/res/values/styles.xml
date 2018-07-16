@@ -72,6 +72,7 @@
         <item name="android:layout_margin">@dimen/dp15</item>
     </style>
 
+
     <!-- 菜单内容 -->
     <style name="tab3_menu_item_text">
         <item name="android:layout_width">0dp</item>
