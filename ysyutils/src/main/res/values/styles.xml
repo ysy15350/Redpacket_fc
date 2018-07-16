@@ -235,17 +235,23 @@
         <item name="android:background">@color/devider_color</item>
     </style>
 
-    <!-- view分割线样式短 -->
+    <!-- view分割线样式短（横） -->
     <style name="view_line_short" parent="view_line">
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginRight">10dp</item>
     </style>
 
-    <!-- view分割线样式 -->
+    <!-- view分割线样式(竖) -->
     <style name="view_line_vertical">
         <item name="android:layout_width">@dimen/dp1</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/devider_color</item>
+    </style>
+
+    <!-- view分割线样式短(竖) -->
+    <style name="view_line_short_vertical" parent="view_line_vertical">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
     </style>
 
     <!-- 叉图标 -->
