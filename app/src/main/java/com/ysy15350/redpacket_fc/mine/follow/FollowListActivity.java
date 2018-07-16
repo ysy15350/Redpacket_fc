@@ -45,9 +45,7 @@ public class FollowListActivity extends MVPBaseListViewActivity<FollowListViewIn
     @Override
     public void initView() {
         super.initView();
-
-        mHolder.setText(R.id.tv_form_title,"关注");
-        mHolder.setVisibility_VISIBLE(R.id.btn_back);
+        setFormHead("关注");
 
     }
 
@@ -152,16 +150,6 @@ public class FollowListActivity extends MVPBaseListViewActivity<FollowListViewIn
         super.bindListView(mAdapter);
     }
 
-    /**
-     * 返回
-     * @param view
-     */
-    @Event(value = R.id.btn_back)
-    private void ll_menu_4Click(View view) {
-
-        finish();;
-
-    }
 
 
 }

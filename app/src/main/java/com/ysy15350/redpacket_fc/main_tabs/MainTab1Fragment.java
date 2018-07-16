@@ -1,10 +1,10 @@
 package com.ysy15350.redpacket_fc.main_tabs;
 
+
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
 
 import org.xutils.view.annotation.ContentView;
-
 
 @ContentView(R.layout.activity_main_tab1)
 public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, MainTab1Presenter>

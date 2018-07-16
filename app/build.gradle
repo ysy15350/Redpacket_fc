@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
     buildTypes {
         release {
@@ -42,6 +43,7 @@ dependencies {
 
     //validation表单验证
     compile 'com.mobsandgeeks:android-saripaar:2.0.3'
+
 
 
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
