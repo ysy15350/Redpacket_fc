@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    style="@style/base_form"
+    android:background="@color/main_color_gray_3">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:id="@+id/ll_wallet_top"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp160"
+            android:background="@mipmap/bg_wallet"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp60"
+                android:layout_marginTop="@dimen/dp30">
+
+                <ImageView
+                    style="@style/icon_left"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp12"
+                    android:src="@mipmap/icon_back_white" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/main_tab4_menu2"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp20" />
+
+                <TextView
+                    android:id="@+id/btn_detailed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:gravity="center"
+                    android:text="明细"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp20" />
+
+                <ImageView
+                    style="@style/icon_left"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp12"
+                    android:src="@mipmap/icon_back_white"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_below="@id/ll_wallet_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp105"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="¥18.666"
+                android:textColor="@color/text_wallet_money1"
+                android:textSize="@dimen/sp28" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="钱包余额"
+                android:textColor="@color/text_wallet_money1"
+                android:textSize="@dimen/sp18" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/dp128"
+            android:layout_height="@dimen/dp128"
+            android:layout_marginTop="@dimen/dp99"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/bg_round_white"
+            android:gravity="center">
+
+            <com.ysy15350.ysyutils.custom_view.RoundImageView
+                android:layout_width="@dimen/dp74"
+                android:layout_height="@dimen/dp74"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/icon_wallet"
+                custom:rtype="circle" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <Button
+        style="@style/btn_ok"
+        android:layout_width="@dimen/dp215"
+        android:layout_height="@dimen/dp55"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp48"
+        android:background="@drawable/shape_btn_hollow_orange"
+        android:text="提现"
+        android:textColor="@color/text_wallet_money1" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"></LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/dp118"
+        android:text="当前绑定支付宝账号为512893295@qq.com"
+        android:textColor="@color/text_content" />
+
+
+</LinearLayout>

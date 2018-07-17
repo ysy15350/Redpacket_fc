@@ -138,6 +138,29 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+
+
+        <!-- 11.钱包 -->
+        <activity
+            android:name=".mine.wallet.WalletActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 14.明细 -->
+        <activity
+            android:name=".mine.wallet.detailed.DetailedListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 15.城主 -->
+        <activity
+            android:name=".mine.cityowner.City_OwnerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <!-- 19.关注 -->
         <activity
             android:name=".mine.follow.FollowListActivity"

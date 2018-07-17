@@ -65,6 +65,17 @@
         <item name="android:layout_margin">@dimen/dp12</item>
     </style>
 
+    <!-- 菜单右边文本 -->
+    <style name="menu_item_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>ßß
+        <item name="android:textSize">@dimen/sp18</item>
+        <item name="android:layout_marginStart">@dimen/dp10</item>
+        <item name="android:layout_marginEnd">@dimen/dp10</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
     <!-- 菜单图标 -->
     <style name="tab4_menu_item_icon">
         <item name="android:layout_width">@dimen/dp22</item>
