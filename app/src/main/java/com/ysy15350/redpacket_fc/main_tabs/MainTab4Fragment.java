@@ -6,9 +6,11 @@ import android.view.View;
 
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
+import com.ysy15350.redpacket_fc.mine.cityowner.City_OwnerActivity;
 import com.ysy15350.redpacket_fc.mine.follow.FollowListActivity;
 import com.ysy15350.redpacket_fc.mine.usercenter.UserCenterActivity;
 import com.ysy15350.redpacket_fc.mine.userinfo.UserInfoActivity;
+import com.ysy15350.redpacket_fc.mine.wallet.WalletActivity;
 import com.ysy15350.redpacket_fc.others.SettingActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
@@ -61,6 +63,46 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     }
 
+    /**
+     * 个人主页
+     * @param view
+     */
+    @Event(value = R.id.ll_menu_1)
+    private void ll_menu_1Click(View view) {
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getActivity(), UserCenterActivity.class));
+        else
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+    }
+
+    /**
+     * 钱包
+     * @param view
+     */
+    @Event(value = R.id.ll_menu_2)
+    private void ll_menu_2Click(View view) {
+
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getActivity(), WalletActivity.class));
+        else
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+
+    }
+
+    /**
+     * 城主
+     * @param view
+     */
+    @Event(value = R.id.ll_menu_3)
+    private void ll_menu_3Click(View view) {
+
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getActivity(), City_OwnerActivity.class));
+        else
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+
+    }
+
 
     /**
      * 关注
@@ -76,14 +118,11 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     }
 
-    @Event(value = R.id.ll_menu_1)
-    private void ll_menu_1Click(View view) {
-        if (BaseData.isLogin())//如果需要登录
-            startActivity(new Intent(getActivity(), UserCenterActivity.class));
-        else
-            startActivity(new Intent(getActivity(), LoginActivity.class));
-    }
 
+    /**
+     * 设置
+     * @param view
+     */
     @Event(value = R.id.ll_menu_6)
     private void ll_menu_6Click(View view) {
         startActivity(new Intent(getActivity(), SettingActivity.class));

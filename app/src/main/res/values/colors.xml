@@ -36,6 +36,7 @@
 
     <!-- 金额文本 -->
     <color name="text_money">#fd7d00</color>
+    <color name="text_wallet_money1">#d9593f</color>
 
     <!--提示文本-->
     <color name="text_hint">#cccccc</color>
