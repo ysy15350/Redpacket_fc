@@ -127,7 +127,6 @@
         <!-- 09.设置支付宝 -->
         <activity
             android:name=".mine.setalipay.SetAlipayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 

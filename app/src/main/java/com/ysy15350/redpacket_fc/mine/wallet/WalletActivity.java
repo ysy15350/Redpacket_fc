@@ -5,9 +5,6 @@ import android.view.View;
 
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
-import com.ysy15350.redpacket_fc.mine.follow.FollowListActivity;
-import com.ysy15350.redpacket_fc.mine.setalipay.SetAlipayPresenter;
-import com.ysy15350.redpacket_fc.mine.setalipay.SetAlipayViewInterface;
 import com.ysy15350.redpacket_fc.mine.wallet.detailed.DetailedListActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
@@ -42,8 +39,8 @@ public class WalletActivity extends MVPBaseActivity<WalletViewInterface, WalletP
      * 明细
      * @param view
      */
-    @Event(value = R.id.ll_menu_4)
-    private void ll_menu_4Click(View view) {
+    @Event(value = R.id.btn_detailed)
+    private void btn_detailedClick(View view) {
 
         if (BaseData.isLogin())//如果需要登录
             startActivity(new Intent(getApplicationContext(), DetailedListActivity.class));

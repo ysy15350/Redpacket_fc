@@ -1,5 +1,6 @@
 package com.ysy15350.redpacket_fc.mine.setalipay;
 
+import android.os.Bundle;
 import android.widget.BaseAdapter;
 
 import com.ysy15350.redpacket_fc.R;
@@ -32,6 +33,8 @@ public class SetAlipayActivity extends MVPBaseActivity<SetAlipayViewInterface, S
         // TODO Auto-generated method stub
         return new SetAlipayPresenter(this);
     }
+
+
 
     @Override
     public void initView() {

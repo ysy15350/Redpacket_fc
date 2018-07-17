@@ -44,6 +44,16 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <!-- 白底圆框布局背景 -->
+    <style name="bg_content_layout_white">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/shape_dialog_white</item>
+        <item name="android:layout_marginStart">@dimen/dp20</item>
+        <item name="android:layout_marginEnd">@dimen/dp20</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
     <!-- 标题文本 -->
     <style name="form_title">
         <item name="android:layout_width">match_parent</item>

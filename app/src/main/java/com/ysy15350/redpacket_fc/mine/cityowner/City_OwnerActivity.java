@@ -27,6 +27,7 @@ public class City_OwnerActivity extends MVPBaseActivity<City_OwnerViewInterface,
         super.initView();
 
         setFormHead("城主");
+        setMenuText("规则");
 
     }
 }

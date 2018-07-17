@@ -1,14 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/base_form">
+    style="@style/base_form"
+    android:background="@mipmap/bg_cityowner">
 
 
     <include layout="@layout/form_head" />
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="@string/main_tab4_menu3"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            style="@style/bg_content_layout_white"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp29"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/dp41"
+            android:paddingTop="@dimen/dp55">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="您还没有购买过城主"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp24" />
+
+            <Button
+                style="@style/btn_ok"
+                android:layout_width="@dimen/dp320"
+                android:layout_height="@dimen/dp51"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp30"
+                android:background="@drawable/shape_btn1_30r"
+                android:text="我要成为城主"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp18" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp10"
+            android:src="@mipmap/icon_yellow_star" />
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/bg_content_layout_white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp20"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/dp35"
+        android:paddingTop="@dimen/dp30">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="城主特权"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp18" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp35"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@mipmap/icon_copper" />
+
+            <TextView
+                style="@style/text_privilege"
+                android:text="@string/privilege1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp35"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@mipmap/icon_copper1" />
+
+            <TextView
+                style="@style/text_privilege"
+                android:text="@string/privilege2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp35"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@mipmap/icon_chip" />
+
+            <TextView
+                style="@style/text_privilege"
+                android:text="@string/privilege3" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp35"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:src="@mipmap/icon_card" />
+
+            <TextView
+                style="@style/text_privilege"
+                android:text="@string/privilege4" />
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </LinearLayout>
