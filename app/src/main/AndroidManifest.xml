@@ -146,6 +146,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <!-- 12、13.提现 -->
+        <activity
+            android:name=".mine.wallet.withdraw_deposit.WithdrawDepositActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <!-- 14.明细 -->
         <activity
             android:name=".mine.wallet.detailed.DetailedListActivity"

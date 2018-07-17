@@ -6,6 +6,7 @@ import android.view.View;
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.mine.wallet.detailed.DetailedListActivity;
+import com.ysy15350.redpacket_fc.mine.wallet.withdraw_deposit.WithdrawDepositActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
 
@@ -46,6 +47,31 @@ public class WalletActivity extends MVPBaseActivity<WalletViewInterface, WalletP
             startActivity(new Intent(getApplicationContext(), DetailedListActivity.class));
         else
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+    }
+
+    /**
+     * 提现
+     * @param view
+     */
+    @Event(value = R.id.btn_withdraw)
+    private void btn_withdrawClick(View view) {
+
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getApplicationContext(), WithdrawDepositActivity.class));
+        else
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+    }
+
+    /**
+     * 返回
+     * @param view
+     */
+    @Event(value = R.id.img_wallet_back)
+    private void img_wallet_backClick(View view) {
+
+        finish();
 
     }
 }

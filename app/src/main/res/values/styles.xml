@@ -118,6 +118,13 @@
         <item name="android:src">@mipmap/icon_right</item>
     </style>
 
+    <!-- 选中图标 -->
+    <style name="imgView_select">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@mipmap/icon_select</item>
+    </style>
+
     <!-- ################ 城主特权 ################ -->
 
     <style name="text_privilege">
