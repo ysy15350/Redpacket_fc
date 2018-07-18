@@ -174,6 +174,20 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <!-- 20.分享 -->
+        <activity
+            android:name=".mine.share.ShareActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 21.分享 -->
+        <activity
+            android:name=".mine.share.invitation.InvitationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
 
         <!-- 高德地图定位 -->
         <service android:name="com.amap.api.location.APSService" />
