@@ -1,7 +1,6 @@
 package com.ysy15350.redpacket_fc.mine.userinfo;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -13,11 +12,7 @@ import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
-import com.ysy15350.ysyutils.common.AppStatusManager;
-import com.ysy15350.ysyutils.common.CommFun;
-import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.common.message.MessageBox;
-import com.ysy15350.ysyutils.model.PageData;
 import com.ysy15350.ysyutils.model.SysUser;
 
 import org.xutils.view.annotation.ContentView;

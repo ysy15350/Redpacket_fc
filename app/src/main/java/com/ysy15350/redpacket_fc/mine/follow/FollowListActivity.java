@@ -1,20 +1,15 @@
 package com.ysy15350.redpacket_fc.mine.follow;
 
-import android.content.Intent;
-import android.view.View;
 import android.widget.BaseAdapter;
 
 import com.ysy15350.redpacket_fc.R;
 
 import com.ysy15350.redpacket_fc.adapters.ListViewAdapter_Follow;
-import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.ysyutils.api.model.Response;
-import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseListViewActivity;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 
 import org.xutils.view.annotation.ContentView;
-import org.xutils.view.annotation.Event;
 
 import java.util.ArrayList;
 import java.util.List;

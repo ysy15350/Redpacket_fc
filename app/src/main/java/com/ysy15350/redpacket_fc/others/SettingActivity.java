@@ -10,11 +10,8 @@ import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.base.BaseActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
-import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.common.message.MessageBox;
-import com.ysy15350.ysyutils.model.PageData;
-import com.ysy15350.ysyutils.model.SysUser;
 import com.ysy15350.ysyutils.model.VersionInfo;
 
 import org.xutils.view.annotation.ContentView;

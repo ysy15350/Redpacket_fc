@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <include layout="@layout/form_head" />
+
+    <!-- 支付宝、当前账号 -->
+    <LinearLayout style="@style/bg_content_layout">
+
+
+        <LinearLayout
+            style="@style/menu_layout"
+            android:layout_marginBottom="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5">
+
+            <ImageView
+                android:layout_width="@dimen/dp46"
+                android:layout_height="@dimen/dp46"
+                android:layout_marginEnd="@dimen/dp10"
+                android:src="@mipmap/icon_alipay" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp5"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="支付宝"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp20" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:text="当前账号521893295@qq.com"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp18" />
+
+
+            </LinearLayout>
+
+            <ImageView style="@style/imgView_select" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line_menu1" />
+
+    </LinearLayout>
+
+    <!-- 收款人、账号 -->
+    <LinearLayout
+        android:layout_marginBottom="@dimen/dp20"
+        style="@style/bg_content_layout">
+
+        <LinearLayout style="@style/menu_layout">
+
+            <TextView
+                style="@style/menu_item_grid_text1"
+                android:text="收款人" />
+
+            <EditText
+                style="@style/base_edit_layout1"
+                android:layout_width="0dp"
+                android:layout_marginStart="@dimen/dp40"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请填写支付宝姓名"
+                android:text=""
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line_menu1" />
+
+        <LinearLayout style="@style/menu_layout">
+
+            <TextView
+                style="@style/menu_item_grid_text1"
+                android:text="账号" />
+
+            <EditText
+                style="@style/base_edit_layout1"
+                android:layout_width="0dp"
+                android:layout_marginStart="@dimen/dp40"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请填写您的支付宝账号"
+                android:text=""
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- 可用余额、提现金额 -->
+    <LinearLayout style="@style/bg_content_layout">
+
+        <LinearLayout style="@style/menu_layout">
+
+            <TextView
+                style="@style/menu_item_grid_text1"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="可用余额" />
+
+            <TextView
+                style="@style/menu_item_grid_text1"
+                android:layout_marginEnd="@dimen/dp5"
+                android:textColor="@color/text_money"
+                android:text="500" />
+
+            <TextView
+                style="@style/menu_item_grid_text1"
+                android:text="元" />
+        </LinearLayout>
+
+        <View style="@style/view_line_menu1" />
+
+        <LinearLayout style="@style/menu_layout">
+
+            <TextView
+                style="@style/menu_item_grid_text1"
+                android:text="提现金额" />
+
+            <EditText
+                style="@style/base_edit_layout1"
+                android:layout_width="0dp"
+                android:layout_marginStart="@dimen/dp40"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="建议提现金额为100的整数倍"
+                android:text=""
+                android:textSize="12sp" />
+
+            <TextView
+                style="@style/menu_item_grid_text1"
+                android:text="元" />
+        </LinearLayout>
+
+        <View style="@style/view_line_menu1" />
+
+    </LinearLayout>
+
+
+    <Button
+        style="@style/btn_ok"
+        android:layout_marginTop="@dimen/dp80"
+        android:background="@drawable/shape_btn2_blue"
+        android:text="确认提现" />
+
+
+</LinearLayout>

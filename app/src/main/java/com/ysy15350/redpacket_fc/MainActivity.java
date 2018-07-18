@@ -1,6 +1,7 @@
 package com.ysy15350.redpacket_fc;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -93,7 +94,6 @@ public class MainActivity extends MVPBaseActivity<MainViewInterface, MainPresent
     private void ll_tab4Click(View view) {
         setSelect(3);
     }
-
 
 
 

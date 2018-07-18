@@ -116,6 +116,12 @@
             android:screenOrientation="portrait" />
 
 
+        <!-- 02.好友邀请 -->
+        <activity
+            android:name=".mine.invitationfriends.InvitationFriendsListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
         <!-- 08.个人资料 -->
         <activity
@@ -127,7 +133,6 @@
         <!-- 09.设置支付宝 -->
         <activity
             android:name=".mine.setalipay.SetAlipayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
@@ -143,6 +148,13 @@
         <!-- 11.钱包 -->
         <activity
             android:name=".mine.wallet.WalletActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 12、13.提现 -->
+        <activity
+            android:name=".mine.wallet.withdraw_deposit.WithdrawDepositActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
@@ -164,6 +176,20 @@
         <!-- 19.关注 -->
         <activity
             android:name=".mine.follow.FollowListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 20.分享 -->
+        <activity
+            android:name=".mine.share.ShareActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 21.分享 -->
+        <activity
+            android:name=".mine.share.invitation.InvitationActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

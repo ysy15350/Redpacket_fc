@@ -8,6 +8,7 @@ import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.mine.cityowner.City_OwnerActivity;
 import com.ysy15350.redpacket_fc.mine.follow.FollowListActivity;
+import com.ysy15350.redpacket_fc.mine.share.ShareActivity;
 import com.ysy15350.redpacket_fc.mine.usercenter.UserCenterActivity;
 import com.ysy15350.redpacket_fc.mine.userinfo.UserInfoActivity;
 import com.ysy15350.redpacket_fc.mine.wallet.WalletActivity;
@@ -113,6 +114,20 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
         if (BaseData.isLogin())//如果需要登录
             startActivity(new Intent(getActivity(), FollowListActivity.class));
+        else
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+
+    }
+
+    /**
+     * 分享
+     * @param view
+     */
+    @Event(value = R.id.ll_menu_5)
+    private void ll_menu_5Click(View view) {
+
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getActivity(), ShareActivity.class));
         else
             startActivity(new Intent(getActivity(), LoginActivity.class));
 

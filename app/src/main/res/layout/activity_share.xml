@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <include layout="@layout/form_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp50"
+        android:background="@mipmap/bg_share"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"></LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgbtn_invitation"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="@dimen/dp89"
+            android:src="@mipmap/imgbtn_immediate_invitation"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

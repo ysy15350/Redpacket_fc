@@ -22,6 +22,7 @@
                 android:layout_marginTop="@dimen/dp30">
 
                 <ImageView
+                    android:id="@+id/img_wallet_back"
                     style="@style/icon_left"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/dp12"
@@ -104,12 +105,13 @@
 
 
     <Button
+        android:id="@+id/btn_withdraw"
         style="@style/btn_ok"
         android:layout_width="@dimen/dp215"
         android:layout_height="@dimen/dp55"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/dp48"
-        android:background="@drawable/shape_btn_hollow_orange"
+        android:background="@drawable/shape_btn_white_orange"
         android:text="提现"
         android:textColor="@color/text_wallet_money1" />
 
