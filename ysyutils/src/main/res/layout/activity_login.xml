@@ -83,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="微信登录"
+            android:text="微信登录11"
             android:textColor="#666666"
             android:textSize="@dimen/sp22" />
 
