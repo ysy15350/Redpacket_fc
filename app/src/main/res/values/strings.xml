@@ -20,4 +20,8 @@
     <string name="privilege3">主城被下一个城主购买后，获得该主城价格涨幅金额的25%</string>
     <string name="privilege4">享有"城市格子"广告位买入金额的50%</string>
 
+    <!-- 邀请 -->
+    <string name="text_invitation">每成功邀请一位好友，最高可得100元。</string>
+    <string name="text_invitation1">最高可得100元</string>
+
 </resources>

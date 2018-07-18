@@ -218,6 +218,22 @@ public class BaseActivity extends AppCompatActivity implements IView, GestureDet
             mHolder.setVisibility_GONE(R.id.btn_back);
     }
 
+    /**
+     * 设置顶部右边图片
+     * @param drawableId
+     */
+    protected void setrightIcon(boolean isBack,int drawableId){
+
+        if (isBack)
+            mHolder.setVisibility_VISIBLE(R.id.img_menu);
+        else
+            mHolder.setVisibility_GONE(R.id.img_menu);
+
+        if(drawableId == 0)
+            return;
+        mHolder.setBackground(R.id.img_menu,drawableId);
+    }
+
     @Override
     public void initData() {
 

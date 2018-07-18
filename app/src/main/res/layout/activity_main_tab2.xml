@@ -64,6 +64,7 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
+        android:id="@+id/ll_btn1"
         android:layout_width="@dimen/dp214"
         android:layout_marginTop="@dimen/dp64"
         android:background="@drawable/shape_btn_hollow_red"

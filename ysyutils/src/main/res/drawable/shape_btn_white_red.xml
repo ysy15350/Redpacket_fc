@@ -3,14 +3,14 @@
 
     <!-- 按钮样式，圆角矩形 -->
 
-    <corners android:radius="@dimen/dp15" />
+    <corners android:radius="@dimen/dp20" />
 
     <!--<solid android:color="@color/btn_normal" />-->
 
     <solid android:color="@color/white" />
 
     <stroke
-        android:width="2px"
+        android:width="@dimen/dp1"
         android:color="@color/btn_normal1" />
 
 

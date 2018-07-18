@@ -7,6 +7,7 @@ package com.ysy15350.ysyutils.common;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -219,6 +220,14 @@ public class ViewHolder {
      * @return
      */
     public ViewHolder setBackground(int viewId, int drawableId) {
+        try {
+            View view = getView(viewId);
+            if (view != null) {
+                view.setBackground(ContextCompat.getDrawable(mContext,drawableId));
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
         return this;
     }

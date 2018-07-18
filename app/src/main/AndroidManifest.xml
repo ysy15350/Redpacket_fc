@@ -116,6 +116,12 @@
             android:screenOrientation="portrait" />
 
 
+        <!-- 02.好友邀请 -->
+        <activity
+            android:name=".mine.invitationfriends.InvitationFriendsListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
 
         <!-- 08.个人资料 -->
         <activity
