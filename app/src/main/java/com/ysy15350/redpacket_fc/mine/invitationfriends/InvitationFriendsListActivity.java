@@ -1,5 +1,9 @@
 package com.ysy15350.redpacket_fc.mine.invitationfriends;
 
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.provider.ContactsContract;
+import android.util.ArrayMap;
 import android.widget.BaseAdapter;
 
 import com.ysy15350.redpacket_fc.R;
@@ -13,6 +17,7 @@ import org.xutils.view.annotation.ContentView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 import model.invitation.MailList;
@@ -31,6 +36,8 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
     ListViewAdapter_Invitation_Friends mAdapter;
 
     List<MailList> mList = new ArrayList<>();
+
+
 
     @Override
     protected InvitationFriendsListPresenter createPresenter() {
@@ -63,9 +70,74 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
 
     @Override
     public void initData(int page, int pageSize) {
-        MessageBox.showWaitDialog(this, "正在加载");
         mPresenter.getFollowList(page, pageSize);
         //获取个人资料
+        getphoneneme();
+    }
+
+    /**
+     * 获取通信录信息
+     */
+    private void getphoneneme(){
+
+        try{
+
+            //得到ContentResolver对象
+            ContentResolver cr = getContentResolver();
+            //取得电话本中开始一项的光标
+            Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+            //向下移动光标
+            while(cursor.moveToNext())
+            {
+                MailList mailList = new MailList();
+                //取得联系人名字
+                int nameFieldColumnIndex = cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME);
+                String contact = cursor.getString(nameFieldColumnIndex);
+                mailList.setName(contact);
+                //取得电话号码
+                String ContactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                Cursor phone = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + ContactId, null, null);
+
+                while(phone.moveToNext())
+                {
+                    String PhoneNumber = phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    mailList.setPhone(PhoneNumber);
+                    //格式化手机号
+                    PhoneNumber = PhoneNumber.replace("-","");
+                }
+
+                mList.add(mailList);
+
+                if (page == 1) {
+                    mList.clear();
+                } else {
+
+                    if (mailList == null) {
+                        showMsg("没有更多了");
+                        xListView.stopLoadMore();
+                    }
+                }
+
+                if (mailList != null)
+                    mList.add(mailList);
+
+                mAdapter = new ListViewAdapter_Invitation_Friends(this, mList);
+
+                bindListView(mAdapter);// 调用父类绑定数据方法
+
+                if (mailList != null ) {
+                    page++;
+                }
+
+            }
+
+
+        }catch (Exception e){
+            e.getMessage();
+        }
+
+
+
     }
 
 
@@ -108,35 +180,7 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
         return null;
     }
 
-    @Override
-    public void bindFollowListCallback(boolean isCache, Response response) {
 
-        MessageBox.hideWaitDialog();
-
-        List<MailList> list = getMailListListFromResponse(response);
-        if (page == 1) {
-            mList.clear();
-        } else {
-
-            if (list == null) {
-                showMsg("没有更多了");
-                xListView.stopLoadMore();
-            } else if (list.isEmpty()) {
-                showMsg("没有更多了");
-                xListView.stopLoadMore();
-            }
-        }
-
-        if (list != null)
-            mList.addAll(list);
-        mAdapter = new ListViewAdapter_Invitation_Friends(this, mList);
-
-        bindListView(mAdapter);// 调用父类绑定数据方法
-
-        if (list != null && !list.isEmpty()) {
-            page++;
-        }
-    }
 
 
 

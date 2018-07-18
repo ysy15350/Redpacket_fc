@@ -28,7 +28,7 @@ public class ListViewAdapter_Invitation_Friends extends CommonAdapter<MailList> 
     public void convert(ViewHolder holder, MailList mailList) {
         try {
             if(mailList !=null){
-                holder.setImageURL(R.id.img1,"");
+                holder.setText(R.id.tv_name,mailList.getName());
             }
         } catch (Exception ex) {
 

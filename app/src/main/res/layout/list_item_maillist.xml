@@ -19,6 +19,7 @@
             android:tag="tab_img" />
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:text="某某"
             android:textSize="@dimen/sp20"

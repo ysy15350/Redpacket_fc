@@ -46,6 +46,9 @@
     <!-- 系统相机相关权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!-- 读取联系人权限 -->
+    <uses-permission   android:name="android.permission.READ_CONTACTS"/>
+
     <!-- <uses-feature android:name="android.hardware.camera" /> -->
     <!-- <uses-feature android:name="android.hardware.camera.autofocus" /> -->
 
@@ -169,6 +172,13 @@
         <!-- 15.城主 -->
         <activity
             android:name=".mine.cityowner.City_OwnerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 16.城主交易界面 -->
+        <activity
+            android:name=".mine.cityowner.cityowner_transaction.CityOwnerTransactionActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

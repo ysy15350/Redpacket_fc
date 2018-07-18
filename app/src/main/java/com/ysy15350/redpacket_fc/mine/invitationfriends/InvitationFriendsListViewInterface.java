@@ -8,11 +8,11 @@ import com.ysy15350.ysyutils.api.model.Response;
 
 public interface InvitationFriendsListViewInterface {
 
-    /**
-     * 绑定关注列表
-     * @param isCache
-     * @param response
-     */
-    public void bindFollowListCallback(boolean isCache, Response response);
+//    /**
+//     * 绑定关注列表
+//     * @param isCache
+//     * @param response
+//     */
+//    public void bindFollowListCallback(boolean isCache, Response response);
 
 }

@@ -1,19 +1,19 @@
-package com.ysy15350.redpacket_fc.mine.invitationfriends;
+package com.ysy15350.redpacket_fc.mine.cityowner.cityowner_transaction;
 
 import android.content.Context;
 
 import com.ysy15350.ysyutils.base.mvp.BasePresenter;
 
 
-public class InvitationFriendsListPresenter extends BasePresenter<InvitationFriendsListViewInterface> {
+public class CityOwnerTransactionPresenter extends BasePresenter<CityOwnerTransactionViewInterface> {
 
-    public InvitationFriendsListPresenter(Context context) {
+    public CityOwnerTransactionPresenter(Context context) {
         super(context);
 
     }
 
-    public void getFollowList(int page,int pageSize){
-//        mView.bindFollowListCallback(false,null);
+    public void getAdsCardList(int page,int pageSize){
+//        mView.bindAdsCardListCallback(false,null);
     }
 
 //    private UserApi userApi=new UserApiImpl();
