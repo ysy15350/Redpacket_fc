@@ -204,6 +204,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <!-- 城市选择器demo -->
+        <activity
+            android:name="com.ysy15350.ysyutils.citychoice.CitypickerWheelActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
 
         <!-- 高德地图定位 -->
         <service android:name="com.amap.api.location.APSService" />

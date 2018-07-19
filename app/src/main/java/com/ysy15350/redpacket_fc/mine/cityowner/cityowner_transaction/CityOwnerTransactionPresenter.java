@@ -2,7 +2,12 @@ package com.ysy15350.redpacket_fc.mine.cityowner.cityowner_transaction;
 
 import android.content.Context;
 
+import com.ysy15350.ysyutils.api.ApiCallBack;
+import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.base.mvp.BasePresenter;
+
+import api.CommonApi;
+import api.impl.CommonApiImpl;
 
 
 public class CityOwnerTransactionPresenter extends BasePresenter<CityOwnerTransactionViewInterface> {
@@ -12,29 +17,24 @@ public class CityOwnerTransactionPresenter extends BasePresenter<CityOwnerTransa
 
     }
 
-    public void getAdsCardList(int page,int pageSize){
-//        mView.bindAdsCardListCallback(false,null);
-    }
+    private CommonApi commonApi = new CommonApiImpl();
 
-//    private UserApi userApi=new UserApiImpl();
-//
-//    public void login(){
-//        userApi.login("test", "test", new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, Response response) {
-//                super.onSuccess(isCache, response);
-//            }
-//        });
-//    }
-//
-//    public void activate() {
-//        userApi.activate(new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, Response response) {
-//                super.onSuccess(isCache, response);
-//                mView.activateCallback(isCache, response);
-//            }
-//        });
-//    }
+    /**
+     * 获取用户协议
+     */
+    public void getProtocol(){
+        commonApi.getProtocol(new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, Response response) {
+                super.onSuccess(isCache, response);
+                mView.bindProtocolCallback(isCache,response);
+            }
+
+            @Override
+            public void onFailed(String msg) {
+                super.onFailed(msg);
+            }
+        });
+    }
 
 }

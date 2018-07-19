@@ -6,6 +6,7 @@ package com.ysy15350.ysyutils.base.model;
 
 public class Constants {
 
+    // 是否调试环境
     public static final boolean DEBUG = Boolean.parseBoolean("false");
 //    public static final boolean DEBUG = Boolean.parseBoolean("true");
 

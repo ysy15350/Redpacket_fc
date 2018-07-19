@@ -23,6 +23,12 @@
     <!-- 窗体标题背景色 -->
     <color name="bg_form_head">#d60000</color>
 
+    <!-- 城市选择器界面使用颜色 -->
+    <color name="c_blue">#40c2fc</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="province_line">#ffc5c9ce</color>
+    <color name="text_color_02">#FF6C6C6C</color>
+
 
     <!-- ***********************文本字体颜色*********************** -->
     <!-- 文本颜色 -->
@@ -41,6 +47,8 @@
 
     <!-- 输入框文本 -->
     <color name="text_edit">#222222</color>
+
+
 
     <!-- 列表标题 -->
     <color name="text_list_title">#000000</color>
