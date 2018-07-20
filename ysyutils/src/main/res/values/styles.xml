@@ -302,7 +302,7 @@
         <item name="android:windowExitAnimation">@anim/pop_up_1</item>
     </style>
 
-    <!-- 可见度从无到有 -->
+    <!-- 中心放大 -->
     <style name="app_pop_2">
         <item name="android:windowEnterAnimation">@anim/pop_down_2</item>
         <item name="android:windowExitAnimation">@anim/pop_up_2</item>
@@ -313,6 +313,13 @@
         <item name="android:windowEnterAnimation">@anim/alpha</item>
         <item name="android:windowExitAnimation">@anim/alpha_2</item>
     </style>
+
+    <!-- 控件左下方放大 -->
+    <style name="app_pop_4">
+        <item name="android:windowEnterAnimation">@anim/pop_down_3</item>
+        <item name="android:windowExitAnimation">@anim/pop_up_3</item>
+    </style>
+
 
 
 
@@ -422,6 +429,8 @@
         <item name="android:paddingLeft">10dp</item>
         <item name="android:singleLine">true</item>
     </style>
+
+
 
 
 </resources>

@@ -126,6 +126,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <!-- 06.打开宝箱 -->
+        <activity
+            android:name=".redpackage.open_treasurebox.OpenTreasureBoxActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <!-- 08.个人资料 -->
         <activity
             android:name=".mine.userinfo.UserInfoActivity"
@@ -200,6 +207,13 @@
         <!-- 21.分享 -->
         <activity
             android:name=".mine.share.invitation.InvitationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 22.广告活跃区 -->
+        <activity
+            android:name=".active_area.activearea.ActiveAreaActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />

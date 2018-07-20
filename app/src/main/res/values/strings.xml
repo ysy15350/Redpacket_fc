@@ -24,4 +24,7 @@
     <string name="text_invitation">每成功邀请一位好友，最高可得100元。</string>
     <string name="text_invitation1">最高可得100元</string>
 
+    <!-- 打开红包 -->
+    <string name="openred">打开宝箱</string>
+    <string name="openred_1">6月旅游好去处，你绝不想错过</string>
 </resources>

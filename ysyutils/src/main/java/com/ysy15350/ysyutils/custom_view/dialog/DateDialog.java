@@ -3,6 +3,7 @@ package com.ysy15350.ysyutils.custom_view.dialog;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
@@ -30,6 +31,7 @@ public class DateDialog extends DialogFragment implements OnDateSetListener {
 
     }
 
+    @SuppressLint("ValidFragment")
     public DateDialog(String dateFormat) {
         this.mDateFormat = dateFormat;
     }
@@ -54,7 +56,7 @@ public class DateDialog extends DialogFragment implements OnDateSetListener {
         String dateStr = CommFunAndroid.toDateString(time, mDateFormat);
 
         if (mDateListener != null) {
-            mDateListener.onDateSet(dateStr);
+            mDateListener.onDateSet(year,month,dayOfMonth,dateStr);
         }
 
         // dateStringCH = year + "年" + (month + 1) + "月";
@@ -85,7 +87,7 @@ public class DateDialog extends DialogFragment implements OnDateSetListener {
     }
 
     public interface DateListener {
-        public void onDateSet(String dateStr);
+        public void onDateSet(int year, int month, int dayOfMonth,String dateStr);
     }
 
 }

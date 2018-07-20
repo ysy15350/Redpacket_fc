@@ -7,6 +7,7 @@ public class MailList {
 
     private String name;
     private String phone;
+    private boolean circular;
 
     public String getName() {
         return name;
@@ -22,5 +23,13 @@ public class MailList {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public boolean isCircular() {
+        return circular;
+    }
+
+    public void setCircular(boolean circular) {
+        this.circular = circular;
     }
 }

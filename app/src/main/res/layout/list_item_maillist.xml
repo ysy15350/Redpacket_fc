@@ -11,12 +11,19 @@
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_tab1"
-            style="@style/main_bottom_item_img"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/select_circular"
-            android:tag="tab_img" />
+        <LinearLayout
+            android:id="@+id/llbtn_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgbtn_circular"
+                style="@style/main_bottom_item_img"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/select_circular"
+                android:tag="tab_img" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/tv_name"

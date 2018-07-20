@@ -70,6 +70,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="¥18.666"
@@ -86,6 +87,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_wallet1"
             android:layout_width="@dimen/dp128"
             android:layout_height="@dimen/dp128"
             android:layout_marginTop="@dimen/dp99"
@@ -121,6 +123,7 @@
         android:layout_weight="1"></LinearLayout>
 
     <TextView
+        android:id="@+id/tv_alipay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

@@ -1,6 +1,7 @@
 package com.ysy15350.redpacket_fc.adapters;
 
 import android.content.Context;
+import android.view.View;
 
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.ysyutils.adapters.base.CommonAdapter;
@@ -25,13 +26,24 @@ public class ListViewAdapter_Invitation_Friends extends CommonAdapter<MailList> 
 
 
     @Override
-    public void convert(ViewHolder holder, MailList mailList) {
+    public void convert(final ViewHolder holder, MailList mailList) {
         try {
             if(mailList !=null){
                 holder.setText(R.id.tv_name,mailList.getName());
+                holder.getView(R.id.imgbtn_circular).setEnabled(true);
             }
         } catch (Exception ex) {
 
         }
+
+        final View viewcircular = holder.getView(R.id.imgbtn_circular);
+
+
+        holder.getView(R.id.llbtn_circular).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewcircular.setEnabled(!viewcircular.isEnabled());
+            }
+        });
     }
 }

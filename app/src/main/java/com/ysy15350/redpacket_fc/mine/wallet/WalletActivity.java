@@ -7,6 +7,7 @@ import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.mine.wallet.detailed.DetailedListActivity;
 import com.ysy15350.redpacket_fc.mine.wallet.withdraw_deposit.WithdrawDepositActivity;
+import com.ysy15350.redpacket_fc.redpackage.open_treasurebox.OpenTreasureBoxActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
 
@@ -33,6 +34,20 @@ public class WalletActivity extends MVPBaseActivity<WalletViewInterface, WalletP
         super.initView();
 
         setFormHead("钱包");
+
+    }
+
+    /**
+     * 打开宝箱
+     * @param view
+     */
+    @Event(value = R.id.ll_wallet1)
+    private void ll_wallet1Click(View view) {
+
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getApplicationContext(), OpenTreasureBoxActivity.class));
+        else
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
     }
 

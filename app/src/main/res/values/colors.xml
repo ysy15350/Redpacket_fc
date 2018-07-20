@@ -56,6 +56,20 @@
     <!-- 分割线颜色 -->
     <color name="devider_color">#ebebeb</color>
 
+    <!-- ***********************广告活动区圆的背景色*********************** -->
+
+    <color name="round_1">#525ed1</color>
+    <color name="round_2">#7d3fb1</color>
+    <color name="round_3">#b33187</color>
+    <color name="round_4">#da4064</color>
+    <color name="round_5">#f3663a</color>
+    <color name="round_6">#fd9345</color>
+    <color name="round_7">#faad51</color>
+    <color name="round_8">#e73d58</color>
+    <color name="round_9">#d7135e</color>
+    <color name="round_10">#d7135e</color>
+
+
 
     <!-- ***********************按钮颜色*********************** -->
 

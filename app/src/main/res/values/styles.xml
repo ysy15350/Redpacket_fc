@@ -135,6 +135,38 @@
         <item name="android:layout_marginStart">@dimen/dp10</item>
     </style>
 
+    <!-- ################ 广告活跃区 ################ -->
+
+    <!-- 左右点击按钮大小 -->
+    <style name="active_lr">
+        <item name="android:layout_width">@dimen/dp16</item>
+        <item name="android:layout_height">@dimen/dp22</item>
+    </style>
+
+    <!-- 左右点击按钮背景 -->
+    <style name="active_bg_lr">
+        <item name="android:layout_width">@dimen/dp35</item>
+        <item name="android:layout_height">@dimen/dp60</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@color/main_color_gray</item>
+    </style>
+
+    <!-- 圆的大小 -->
+    <style name="active_round">
+        <item name="android:layout_width">@dimen/dp40</item>
+        <item name="android:layout_height">@dimen/dp40</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/shape_circle_gary</item>
+    </style>
+
+    <!-- 圆内字体样式 -->
+    <style name="active_round_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 
 
 

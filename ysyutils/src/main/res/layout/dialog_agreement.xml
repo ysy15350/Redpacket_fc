@@ -8,7 +8,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/dp10"
+        android:layout_marginStart="@dimen/sp20"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp30"
+        android:layout_marginBottom="@dimen/dp30"
         android:background="@drawable/shape_dialog_white"
         android:gravity="center"
         android:orientation="vertical">
@@ -16,24 +19,40 @@
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp58"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginTop="@dimen/dp10"
             android:gravity="center"
             android:text="系统提示"
             android:textColor="@color/black"
             android:textSize="@dimen/sp20" />
 
-
-        <TextView
-            android:id="@+id/tv_content"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            android:lineSpacingExtra="5dp"
-            android:padding="15dp"
-            android:text="提示内容"
-            android:textColor="@color/text_content"
-            android:textSize="@dimen/sp18" />
+            android:layout_weight="1"
+            android:layout_height="0dp" >
+
+            <LinearLayout
+                android:id="@+id/ll_listview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:lineSpacingExtra="5dp"
+                    android:padding="15dp"
+                    android:text="提示内容"
+                    android:textColor="@color/text_content"
+                    android:textSize="@dimen/sp16" />
+
+            </LinearLayout>
+        </ScrollView>
+
 
         <View style="@style/view_line" />
 

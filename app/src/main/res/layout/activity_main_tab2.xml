@@ -81,6 +81,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llbtn_activearea"
         android:layout_width="@dimen/dp214"
         android:layout_marginTop="@dimen/dp32"
         android:background="@drawable/shape_btn_hollow_red"

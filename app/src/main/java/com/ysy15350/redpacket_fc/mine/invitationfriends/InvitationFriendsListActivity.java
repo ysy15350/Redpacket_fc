@@ -141,49 +141,6 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
     }
 
 
-    private List<MailList> getMailListListFromResponse(Response response) {
-
-        try {
-            List<MailList> list = null;
-            if (response != null) {
-                Object body = response.getBody();
-                if (body != null) {
-
-                }
-            }
-            list = new ArrayList<>();
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-            list.add(new MailList());
-
-
-            return list;
-
-        } catch (Exception ex) {
-        }
-
-        return null;
-    }
-
-
-
-
-
     @Override
     protected void bindListView(BaseAdapter mAdapter) {
         super.bindListView(mAdapter);

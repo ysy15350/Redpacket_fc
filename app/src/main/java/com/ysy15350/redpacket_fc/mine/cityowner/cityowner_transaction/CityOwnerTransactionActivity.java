@@ -18,11 +18,14 @@ import com.ysy15350.ysyutils.citychoice.bean.ProvinceBean;
 import com.ysy15350.ysyutils.citychoice.citywheel.CityConfig;
 import com.ysy15350.ysyutils.citychoice.style.citypickerview.CityPickerView;
 import com.ysy15350.ysyutils.common.message.MessageBox;
+import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.dialog.AgreementDialog;
 import com.ysy15350.ysyutils.model.SysUser;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
+
+import model.protocol.ProtoclInfo;
 
 /**
  * 城主交易界面
@@ -32,6 +35,14 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
         implements CityOwnerTransactionViewInterface {
 
 
+    /**
+     * 用户协议
+     */
+    private String userProtocl = "";
+
+    /**
+     * 城市选择器
+     */
     CityPickerView mCityPickerView = new CityPickerView();
 
     @Override
@@ -70,6 +81,7 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
 
 
             if (response != null) {
+                String jsonStr = JsonConvertor.toJson(response);
                 ResponseHead responseHead = response.getHead();
                 if (responseHead != null) {
                     int status = responseHead.getResponse_status();
@@ -77,11 +89,14 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
                     if (status == 100) {
 
 
-                        SysUser sysUser = response.getData(SysUser.class);
-                        if (sysUser != null) {
+                        ProtoclInfo protoclInfo = response.getData(ProtoclInfo.class);
+                        if (protoclInfo != null) {
+                            if(!protoclInfo.getProtocol().equals("")){
+                                userProtocl = protoclInfo.getProtocol();
+                            }else {
 
-                            BaseData.setSysUser(sysUser);
-//                            bindUserInfo(sysUser);
+                            }
+
                         }
 
 
@@ -123,8 +138,6 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
                     sb.append(district.getName() + " " + district.getId() + ("\n"));
                 }
 
-//                mResultTv.setText("" + sb.toString());
-
             }
 
             @Override
@@ -142,7 +155,7 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
     @Event(value = R.id.btn_cityowner)
     private void btn_cityownerClick(View view) {
         String title = "方寸红包城主协议";
-        String content= "";
+        String content= userProtocl;
         AgreementDialog agreementDialog = new AgreementDialog(this,title,content,"同意","拒绝",0);
         agreementDialog.setDialogListener(new AgreementDialog.DialogListener() {
             @Override
@@ -165,7 +178,6 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
      */
     @Event(value = R.id.ll_othercity)
     private void ll_othercityClick(View view) {
-//        startActivity(new Intent(this, CitypickerWheelActivity.class));
         wheel();
     }
 }
