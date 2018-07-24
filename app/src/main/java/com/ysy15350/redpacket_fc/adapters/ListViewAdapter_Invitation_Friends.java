@@ -30,7 +30,11 @@ public class ListViewAdapter_Invitation_Friends extends CommonAdapter<MailList> 
         try {
             if(mailList !=null){
                 holder.setText(R.id.tv_name,mailList.getName());
-                holder.getView(R.id.imgbtn_circular).setEnabled(true);
+                if(mailList.getStatus() == 1){
+                    holder.getView(R.id.imgbtn_circular).setEnabled(false);
+                }else {
+                    holder.getView(R.id.imgbtn_circular).setEnabled(true);
+                }
             }
         } catch (Exception ex) {
 

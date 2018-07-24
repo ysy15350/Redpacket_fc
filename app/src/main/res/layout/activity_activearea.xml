@@ -21,10 +21,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/id_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v4.view.ViewPager>
+
 
                 <ImageView
+                    android:id="@+id/img_default"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     android:background="@mipmap/img_citytransaction" />
 
                 <LinearLayout
@@ -74,6 +83,7 @@
                     android:layout_weight="1">
 
                     <LinearLayout
+                        android:id="@+id/ll_round1"
                         style="@style/active_round"
                         android:background="@drawable/shape_circle1">
 
@@ -89,7 +99,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round2"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"
@@ -103,7 +115,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round3"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"
@@ -117,7 +131,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round4"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"
@@ -131,7 +147,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round5"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"
@@ -145,7 +163,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round6"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"
@@ -159,7 +179,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round7"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"
@@ -173,7 +195,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round8"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"
@@ -187,7 +211,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round9"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"
@@ -201,7 +227,9 @@
                     android:gravity="center"
                     android:layout_weight="1">
 
-                    <LinearLayout style="@style/active_round">
+                    <LinearLayout
+                        android:id="@+id/ll_round10"
+                        style="@style/active_round">
 
                         <TextView
                             style="@style/active_round_text"

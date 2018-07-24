@@ -349,6 +349,16 @@ public class CommFun {
     }
 
     /**
+     * 指定的数据是否不为Null或string.Empty
+     * @param inputString
+     * @return
+     */
+    public static Boolean notNullOrEmpty(Object inputString) {
+        return !isNullOrEmpty(inputString);
+    }
+
+
+    /**
      * 指定输入的多个数据的字符串值是否相等，突略大小写
      *
      * @param inputString 多个输入字符数据
@@ -1025,6 +1035,32 @@ public class CommFun {
         long orderNo = Long.parseLong((date)) * 10000;
         orderNo += orderNum;
         return orderNo + "";
+    }
+
+    /**
+     * 将毫秒转化为 分钟：秒 的格式
+     *
+     * @param millisecond 毫秒
+     * @return
+     */
+    public static String formatTime(long millisecond) {
+        int minute;//分钟
+        int second;//秒数
+        minute = (int) ((millisecond / 1000) / 60);
+        second = (int) ((millisecond / 1000) % 60);
+        if (minute < 10) {
+            if (second < 10) {
+                return "0" + minute + ":" + "0" + second;
+            } else {
+                return "0" + minute + ":" + second;
+            }
+        }else {
+            if (second < 10) {
+                return minute + ":" + "0" + second;
+            } else {
+                return minute + ":" + second;
+            }
+        }
     }
 
     /**

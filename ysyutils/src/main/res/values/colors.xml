@@ -146,6 +146,8 @@
     <color name="main_color_black2">#000000</color>
     <!-- 蓝色 -->
     <color name="main_color_blue">#499BF7</color>
+    <!-- 蓝色1 -->
+    <color name="main_color_blue1">#525ed1</color>
     <!-- 绿色 -->
     <color name="main_color_green1">#46b751</color>
 

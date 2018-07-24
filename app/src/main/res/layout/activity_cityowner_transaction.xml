@@ -54,7 +54,8 @@
                         android:layout_marginBottom="@dimen/dp10"
                         android:layout_marginStart="@dimen/dp20"
                         android:layout_marginTop="@dimen/dp20"
-                        android:background="@mipmap/img_head1"></LinearLayout>
+                        android:background="@mipmap/img_head1">
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -123,7 +124,7 @@
                     android:layout_marginBottom="@dimen/dp5">
 
                     <LinearLayout
-                        android:id="@+id/ll_othercity"
+                        android:id="@+id/ll_othercity1"
                         android:layout_width="@dimen/dp160"
                         android:layout_height="@dimen/dp49"
                         android:layout_marginStart="@dimen/dp20"

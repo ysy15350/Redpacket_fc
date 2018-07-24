@@ -4,6 +4,7 @@ import com.ysy15350.ysyutils.Ysy;
 import com.ysy15350.ysyutils.api.ApiCallBack;
 import com.ysy15350.ysyutils.api.model.RequestOptions;
 import com.ysy15350.ysyutils.base.data.BaseData;
+import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.model.SysUser;
 
@@ -122,18 +123,54 @@ public class UserApiImpl implements UserApi {
         Ysy.http().requestPost(requestOptions, callBack);
     }
 
+
     @Override
     public void saveUserInfo(SysUser sysUser, ApiCallBack callBack) {
         try {
-            if (sysUser == null)
-                return;
 
-            RequestOptions requestOptions = new RequestOptions.Builder()
-                    .setRequestMapping(moduleName + "saveUserInfo")
-                    .addBodyParameter("nickName", sysUser.getNickname())//昵称
-                    .addBodyParameter("realName", sysUser.getRealname())//真实姓名
-                    .addBodyParameter("avatar", sysUser.getAvatar())//头像地址
-                    .build();
+
+            RequestOptions.Builder builder = new RequestOptions.Builder();
+            builder.setRequestMapping(moduleName + "saveUserInfo");
+
+
+            // 头像
+
+            // 用户昵称
+            if (CommFun.notNullOrEmpty(sysUser.getNickname())) {
+                builder.addBodyParameter("nickname", sysUser.getNickname());
+            }
+
+            // 个性签名
+            if (CommFun.notNullOrEmpty(sysUser.getPersonalitySignature())) {
+                builder.addBodyParameter("personalitySignature", sysUser.getPersonalitySignature());
+            }
+
+
+            // 支付宝账号
+            if (CommFun.notNullOrEmpty(sysUser.getAlipayAccount())) {
+                builder.addBodyParameter("alipayAccount", sysUser.getAlipayAccount());
+            }
+
+            // 性别
+            builder.addBodyParameter("sex", sysUser.getSex());
+
+
+            // 生日
+            if (CommFun.notNullOrEmpty(sysUser.getBirthday())) {
+                builder.addBodyParameter("birthday", sysUser.getBirthday());
+            }
+
+            // 常驻地区
+            if (CommFun.notNullOrEmpty(sysUser.getHabitualResidence())) {
+                builder.addBodyParameter("habitualResidence", sysUser.getHabitualResidence());
+            }
+
+            // 手机号
+            if (CommFun.notNullOrEmpty(sysUser.getMobile())) {
+                builder.addBodyParameter("mobile", sysUser.getMobile());
+            }
+
+            RequestOptions requestOptions = builder.build();
 
             Ysy.http().requestPost(requestOptions, callBack);
 

@@ -28,6 +28,7 @@ import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.dialog.DateDialog;
+import com.ysy15350.ysyutils.model.PageData;
 import com.ysy15350.ysyutils.model.SysUser;
 
 import org.xutils.view.annotation.ContentView;
@@ -56,9 +57,14 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
     private int sex;
 
     /**
-     * 年、月、日
+     * 出身年、月、日
      */
     private int birthdayYear, birthdayMonth, birthdayDay;
+
+    /**
+     * 出身日期
+     */
+    private String birthday;
 
     /**
      * 常驻地区
@@ -89,8 +95,8 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
     protected void onResume() {
         super.onResume();
         bindUserInfo(BaseData.getSysUser());
-//        MessageBox.showWaitDialog(this,"数据加载中...");
-//        mPresenter.userInfo();
+        MessageBox.showWaitDialog(this,"数据加载中...");
+        mPresenter.userInfo();
     }
 
     @Override
@@ -129,6 +135,28 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
         }
     }
 
+    @Override
+    public void saveUserInfoCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+                    }
+                    showMsg(msg);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * 绑定个人资料
      *
@@ -142,12 +170,12 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
                 // 头像图片
 
                 // 用户名称
-                if(!CommFun.isNullOrEmpty(sysUser.getNickname())){
+                if(!CommFun.notNullOrEmpty(sysUser.getNickname())){
                     mHolder.setText(R.id.et_username, sysUser.getNickname());
                 }
 
                 // 个性签名
-                if(!CommFun.isNullOrEmpty(sysUser.getPersonalitySignature())){
+                if(CommFun.notNullOrEmpty(sysUser.getPersonalitySignature())){
                     mHolder.setText(R.id.et_personalitySignature, sysUser.getPersonalitySignature());
                 }
 
@@ -170,12 +198,12 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
 
 
                 // 常驻地区
-                if(!CommFun.isNullOrEmpty(sysUser.getHabitualResidence())){
+                if(CommFun.notNullOrEmpty(sysUser.getHabitualResidence())){
                     mHolder.setText(R.id.tv_habitualResidence, sysUser.getHabitualResidence());
                 }
 
                 // 手机号
-                if(!CommFun.isNullOrEmpty(sysUser.getMobile())){
+                if(CommFun.notNullOrEmpty(sysUser.getMobile())){
                     mHolder.setText(R.id.et_mobile, sysUser.getMobile());
                 }
             }
@@ -326,6 +354,7 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
             @Override
             public void onDateSet(int year, int month, int dayOfMonth, String dateStr) {
                 mHolder.setText(R.id.tv_birthday, dateStr);
+                birthday = dateStr;
                 birthdayYear = year;
                 birthdayMonth = month;
                 birthdayDay = dayOfMonth;
@@ -374,6 +403,7 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
         sysUser.setBirthdayYear(CommFun.toInt32(birthdayYear,-1));
         sysUser.setBirthdayMonth(CommFun.toInt32(birthdayMonth,-1));
         sysUser.setBirthdayDay(CommFun.toInt32(birthdayDay,-1));
+        sysUser.setBirthday(birthday);
 
 
         // 常驻地区
@@ -381,6 +411,9 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
 
         // 手机号
         sysUser.setMobile(mHolder.getViewText(R.id.et_mobile));
+
+        MessageBox.showWaitDialog(this,"数据保存中...");
+        mPresenter.saveUserInfo(sysUser);
 
     }
 

@@ -21,6 +21,8 @@
     <!-- 窗体默认背景颜色 -->
     <color name="bg_form">#f0f0f0</color>
 
+    <color name="bg_form1">#ecf4ff</color>
+
     <!-- 窗体标题背景色 -->
     <color name="bg_form_head">#d60000</color>
 
@@ -36,6 +38,7 @@
 
     <!-- 金额文本 -->
     <color name="text_money">#fd7d00</color>
+    <color name="text_money1">#fff000</color>
     <color name="text_wallet_money1">#d9593f</color>
 
     <!--提示文本-->

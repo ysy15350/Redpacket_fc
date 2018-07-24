@@ -7,7 +7,8 @@ public class MailList {
 
     private String name;
     private String phone;
-    private boolean circular;
+
+    private  int status;
 
     public String getName() {
         return name;
@@ -25,11 +26,11 @@ public class MailList {
         this.phone = phone;
     }
 
-    public boolean isCircular() {
-        return circular;
+    public int getStatus() {
+        return status;
     }
 
-    public void setCircular(boolean circular) {
-        this.circular = circular;
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

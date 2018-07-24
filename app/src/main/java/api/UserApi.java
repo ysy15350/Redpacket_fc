@@ -63,6 +63,7 @@ public interface UserApi {
      */
     public void userInfo(ApiCallBack callBack);
 
+
     /**
      * 修改用户信息
      *

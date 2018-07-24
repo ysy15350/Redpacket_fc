@@ -58,7 +58,20 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
-    <!-- 高德地图缺失权限end -->
+    <!-- 地图SDK（包含其搜索功能）需要的基础权限 -->
+
+    <!--允许程序打开网络套接字-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!--允许程序设置内置sd卡的写权限-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--允许程序获取网络状态-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!--允许程序访问WiFi网络信息-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!--允许程序读写手机状态和身份-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!--允许程序访问CellID或WiFi热点来获取粗略的位置-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
     <!--录音新增权限-->
@@ -96,6 +109,9 @@
             </intent-filter>
         </activity>
 
+        <meta-data android:name="com.amap.api.v2.apikey" android:value="eb1b2527a19d053b60c284d5c496992f">
+    </meta-data>
+
 
         <!-- 主界面 -->
         <activity
@@ -122,6 +138,13 @@
         <!-- 02.好友邀请 -->
         <activity
             android:name=".mine.invitationfriends.InvitationFriendsListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 02.每日任务 -->
+        <activity
+            android:name=".dailytasks.DailyTasksActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
@@ -229,9 +252,9 @@
         <!-- 高德地图定位 -->
         <service android:name="com.amap.api.location.APSService" />
 
-        <meta-data
+        <!--<meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="29b136d19ed5fe058ceab855b60a2e42" />
+            android:value="29b136d19ed5fe058ceab855b60a2e42" />-->
 
     </application>
 

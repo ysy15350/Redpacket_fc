@@ -167,44 +167,10 @@ public class HttpServiceImpl implements HttpService {
             hasError = true;
 
 
-            String msg = "服务器错误";
-            try {
+            if (mApiCallBack != null) {
 
-                if (ex instanceof HttpException) { // 网络错误
-                    HttpException httpEx = (HttpException) ex;
-                    int responseCode = httpEx.getCode();
-                    String responseMsg = httpEx.getMessage();
-                    String errorResult = httpEx.getResult();
-                    msg = responseMsg;
-
-                    // ...
-                } else if (ex instanceof SocketTimeoutException) {
-                    SocketTimeoutException socketException = (SocketTimeoutException) ex;
-                    msg = socketException.getMessage();
-                } else { // 其他错误
-                    // ...
-                    msg = ex.getMessage();
-                    if (msg == null || "".equals(msg)) {
-                        Throwable throwable = ex.getCause();
-                        if (throwable != null) {
-                            msg = throwable.getMessage();
-                            if (msg == null || "".equals(msg)) {
-                                msg = throwable.getLocalizedMessage();
-                            }
-                        }
-                    }
-                }
-
-                if (msg == null || "".equals(msg))
-                    msg = "服务器错误";
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-
+                mApiCallBack.onFailed(ex);
             }
-            if (mApiCallBack != null)
-                mApiCallBack.onFailed(msg);
 
 //            if (ex != null)
 //                Log.e("RequestServer", ex.getMessage());

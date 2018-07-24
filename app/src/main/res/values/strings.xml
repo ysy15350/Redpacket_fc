@@ -13,6 +13,7 @@
     <string name="main_tab4_menu4">关注</string>
     <string name="main_tab4_menu5">分享</string>
     <string name="main_tab4_menu6">设置</string>
+    <string name="main_tab4_menu7">每日任务</string>
 
     <!-- 城主特权 -->
     <string name="privilege1">即时享有主城内用户收红包金额的5%</string>

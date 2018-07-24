@@ -3,6 +3,6 @@
     android:shape="oval"
     android:useLevel="false" >
 
-    <solid android:color="@color/bg_form_head" />
+    <solid android:color="@color/round_2" />
 
 </shape>

@@ -5,6 +5,7 @@ import android.view.View;
 
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
+import com.ysy15350.redpacket_fc.main_tabs.MainTab1Fragment;
 import com.ysy15350.redpacket_fc.mine.wallet.detailed.DetailedListActivity;
 import com.ysy15350.redpacket_fc.mine.wallet.withdraw_deposit.WithdrawDepositActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
@@ -32,6 +33,7 @@ public class OpenTreasureBoxActivity extends MVPBaseActivity<OpenTreasureBoxView
     public void initView() {
         super.initView();
         setFormHead("打开宝箱");
+
 
     }
 

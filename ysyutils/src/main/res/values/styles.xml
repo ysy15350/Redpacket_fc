@@ -33,7 +33,7 @@
     <style name="form_title_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp80</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/bg_form_head</item>
     </style>
 
     <!-- 内容布局背景 -->

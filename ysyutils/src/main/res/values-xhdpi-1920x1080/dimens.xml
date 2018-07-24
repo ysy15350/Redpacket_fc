@@ -245,6 +245,7 @@
     <dimen name="dp290">326.25dp</dimen>
     <dimen name="dp320">360dp</dimen>
     <dimen name="dp340">382.5dp</dimen>
+    <dimen name="dp450">506.25dp</dimen>
     <dimen name="sp12">13.5sp</dimen>
     <dimen name="sp13">14.625sp</dimen>
     <dimen name="sp14">15.75sp</dimen>

@@ -55,6 +55,9 @@ public class BaseFragment extends Fragment implements IView {
      */
     boolean mNeedLogin = false;
 
+    protected Bundle mSavedInstanceState;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         injected = true;
@@ -65,6 +68,8 @@ public class BaseFragment extends Fragment implements IView {
         mContentView = (ViewGroup) x.view().inject(this, inflater, container);
 
         mHolder = ViewHolder.get(getActivity(), mContentView);
+
+        mSavedInstanceState=savedInstanceState;
 
         init();
 
@@ -161,7 +166,6 @@ public class BaseFragment extends Fragment implements IView {
 
     @Override
     public void initView() {
-
     }
 
     @Override

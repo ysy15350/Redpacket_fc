@@ -135,6 +135,18 @@
         <item name="android:layout_marginStart">@dimen/dp10</item>
     </style>
 
+    <!-- ################ 每日任务 ################ -->
+
+    <style name="layout_dailytasks">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp20</item>
+        <item name="android:layout_marginEnd">@dimen/dp20</item>
+        <item name="android:layout_marginTop">@dimen/dp15</item>
+        <item name="android:background">@drawable/shape_dialog_white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <!-- ################ 广告活跃区 ################ -->
 
     <!-- 左右点击按钮大小 -->

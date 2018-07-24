@@ -19,7 +19,7 @@
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp58"
-            android:background="@drawable/shape_dialog_top"
+            android:background="@drawable/shape_dialog_red_top"
             android:gravity="center"
             android:text="我的二维码"
             android:textColor="@color/white"

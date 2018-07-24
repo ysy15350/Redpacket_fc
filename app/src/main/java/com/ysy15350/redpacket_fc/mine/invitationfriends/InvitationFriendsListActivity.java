@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 import android.util.ArrayMap;
+import android.view.View;
 import android.widget.BaseAdapter;
 
 import com.ysy15350.redpacket_fc.R;
@@ -14,6 +15,7 @@ import com.ysy15350.ysyutils.base.mvp.MVPBaseListViewActivity;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +40,6 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
     List<MailList> mList = new ArrayList<>();
 
 
-
     @Override
     protected InvitationFriendsListPresenter createPresenter() {
         return new InvitationFriendsListPresenter(this);
@@ -51,93 +52,105 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-        page = 1;//从第一页开始
-        initData(page, pageSize);
+
+    @Override
+    public void loadData() {
+        super.loadData();
+
+        MessageBox.showWaitDialog(this, "正在加载...");
+
+        mPresenter.getphoneneme();
+
+//        new Thread() {
+//
+//            @Override
+//            public void run() {
+//                super.run();
+//                mPresenter.getphoneneme();
+//            }
+//        }.start();
+    }
+
+    @Override
+    public void bindData() {
+        super.bindData();
+
+//        List<MailList> mailLists=null;//从缓存中获取
+//        bindListView(mList);
+    }
+
+    @Override
+    public void getphonenemeCallback(final List<MailList> mailLists) {
+
+        MessageBox.hideWaitDialog();
+
+        bindListView(mailLists);
+
+
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//                MessageBox.hideWaitDialog();
+//
+//                bindListView(mailLists);
+//            }
+//        });
 
 
     }
 
-    @Override
-    public void initData() {
-        super.initData();
+    private void bindListView(List<MailList> mailLists){
 
-        mHolder.setImageURL(R.id.img_head, "", true);
+        mList=mailLists;
+
+
+        mAdapter = new ListViewAdapter_Invitation_Friends(InvitationFriendsListActivity.this, mList);
+
+        bindListView(mAdapter);// 调用父类绑定数据方法
     }
+
+    /**
+     * 全部选中
+     *
+     * @param view
+     */
+    @Event(value = R.id.ll_btn1)
+    private void ll_btn1Click(View view) {
+        for (MailList mailList : mList){
+            List<MailList> qmailLists = new ArrayList<>();
+            mailList.setStatus(1);
+            qmailLists.add(mailList);
+        }
+
+        mAdapter = new ListViewAdapter_Invitation_Friends(InvitationFriendsListActivity.this, mList);
+
+        bindListView(mAdapter);// 调用父类绑定数据方法
+    }
+
+    /**
+     * 全部取消
+     *
+     * @param view
+     */
+    @Event(value = R.id.llbtn_cancel)
+    private void llbtn_cancelClick(View view) {
+        for (MailList mailList : mList){
+            List<MailList> qmailLists = new ArrayList<>();
+            mailList.setStatus(0);
+            qmailLists.add(mailList);
+        }
+
+        mAdapter = new ListViewAdapter_Invitation_Friends(InvitationFriendsListActivity.this, mList);
+
+        bindListView(mAdapter);// 调用父类绑定数据方法
+    }
+
 
     @Override
     public void initData(int page, int pageSize) {
         mPresenter.getFollowList(page, pageSize);
-        //获取个人资料
-        getphoneneme();
-    }
-
-    /**
-     * 获取通信录信息
-     */
-    private void getphoneneme(){
-
-        try{
-
-            //得到ContentResolver对象
-            ContentResolver cr = getContentResolver();
-            //取得电话本中开始一项的光标
-            Cursor cursor = cr.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-            //向下移动光标
-            while(cursor.moveToNext())
-            {
-                MailList mailList = new MailList();
-                //取得联系人名字
-                int nameFieldColumnIndex = cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME);
-                String contact = cursor.getString(nameFieldColumnIndex);
-                mailList.setName(contact);
-                //取得电话号码
-                String ContactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                Cursor phone = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + "=" + ContactId, null, null);
-
-                while(phone.moveToNext())
-                {
-                    String PhoneNumber = phone.getString(phone.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                    mailList.setPhone(PhoneNumber);
-                    //格式化手机号
-                    PhoneNumber = PhoneNumber.replace("-","");
-                }
-
-                mList.add(mailList);
-
-                if (page == 1) {
-                    mList.clear();
-                } else {
-
-                    if (mailList == null) {
-                        showMsg("没有更多了");
-                        xListView.stopLoadMore();
-                    }
-                }
-
-                if (mailList != null)
-                    mList.add(mailList);
-
-                mAdapter = new ListViewAdapter_Invitation_Friends(this, mList);
-
-                bindListView(mAdapter);// 调用父类绑定数据方法
-
-                if (mailList != null ) {
-                    page++;
-                }
-
-            }
-
-
-        }catch (Exception e){
-            e.getMessage();
-        }
-
-
-
     }
 
 
@@ -145,7 +158,6 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
     protected void bindListView(BaseAdapter mAdapter) {
         super.bindListView(mAdapter);
     }
-
 
 
 }

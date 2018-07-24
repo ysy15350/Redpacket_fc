@@ -93,6 +93,7 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
                         if (protoclInfo != null) {
                             if(!protoclInfo.getProtocol().equals("")){
                                 userProtocl = protoclInfo.getProtocol();
+                                userProtocl = userProtocl.replace("\\n","\n");
                             }else {
 
                             }
@@ -176,8 +177,8 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
      * 其他领地
      * @param view
      */
-    @Event(value = R.id.ll_othercity)
-    private void ll_othercityClick(View view) {
+    @Event(value = R.id.ll_othercity1)
+    private void ll_othercity1Click(View view) {
         wheel();
     }
 }
