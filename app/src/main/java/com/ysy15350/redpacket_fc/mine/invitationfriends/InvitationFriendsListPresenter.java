@@ -53,8 +53,6 @@ public class InvitationFriendsListPresenter extends BasePresenter<InvitationFrie
                     PhoneNumber = PhoneNumber.replace("-", "");
                 }
 
-                mList.add(mailList);
-
 
                 if (mailList != null)
                     mList.add(mailList);

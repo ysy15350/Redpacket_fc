@@ -39,6 +39,11 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
 
     List<MailList> mList = new ArrayList<>();
 
+    /**
+     * 最终要邀请的联系人集合
+     */
+    List<MailList> finalMail = new ArrayList<>();
+
 
     @Override
     protected InvitationFriendsListPresenter createPresenter() {
@@ -127,6 +132,13 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
         mAdapter = new ListViewAdapter_Invitation_Friends(InvitationFriendsListActivity.this, mList);
 
         bindListView(mAdapter);// 调用父类绑定数据方法
+
+        mAdapter.setMailListsListener(new ListViewAdapter_Invitation_Friends.MailListsListener() {
+            @Override
+            public void onFinalMailLists(List<MailList> mailLists) {
+
+            }
+        });
     }
 
     /**
@@ -145,6 +157,19 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
         mAdapter = new ListViewAdapter_Invitation_Friends(InvitationFriendsListActivity.this, mList);
 
         bindListView(mAdapter);// 调用父类绑定数据方法
+
+        mAdapter.setMailListsListener(new ListViewAdapter_Invitation_Friends.MailListsListener() {
+            @Override
+            public void onFinalMailLists(List<MailList> mailLists) {
+                finalMail = mailLists;
+                for(MailList mailList : finalMail){
+                    if(mailList.getStatus() == 1){
+                        String name = mailList.getName();
+                        String phone = mailList.getPhone();
+                    }
+                }
+            }
+        });
     }
 
 
