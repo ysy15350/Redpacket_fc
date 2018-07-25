@@ -11,14 +11,22 @@
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_tab1"
-            style="@style/main_bottom_item_img"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/select_circular"
-            android:tag="tab_img" />
+        <LinearLayout
+            android:id="@+id/llbtn_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgbtn_circular"
+                style="@style/main_bottom_item_img"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/select_circular"
+                android:tag="tab_img" />
+        </LinearLayout>
+
 
         <TextView
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:text="某某"
             android:textSize="@dimen/sp20"
@@ -42,14 +50,24 @@
 
         </LinearLayout>
 
-        <Button
+        <LinearLayout
+            android:id="@+id/ll_btn1"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp40"
-            android:layout_gravity="center_horizontal"
             android:background="@drawable/shape_btn_hollow_red"
-            android:text="立即邀请"
-            android:textColor="@color/item_pressed"
-            android:textSize="@dimen/sp18" />
+            android:gravity="center"
+            android:padding="@dimen/dp10"
+            android:layout_height="@dimen/dp40">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:text="立即邀请"
+                android:textSize="@dimen/sp18"
+                android:textColor="@color/btn_normal1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <View style="@style/view_line_menu1"/>

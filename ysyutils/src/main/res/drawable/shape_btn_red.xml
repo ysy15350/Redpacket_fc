@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <!-- 按钮样式，圆角矩形 -->
+
+    <corners android:radius="@dimen/dp20" />
+
+    <!--<solid android:color="@color/btn_normal" />-->
+
+    <solid android:color="@color/bg_form_head" />
+
+</shape>

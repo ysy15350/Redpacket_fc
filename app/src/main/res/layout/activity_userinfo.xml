@@ -7,6 +7,12 @@
 
     <!--个人资料-->
 
+    <com.ysy15350.ysyutils.citychoice.MyNestedScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
     <ScrollView
         android:id="@+id/slv_main"
         android:layout_width="match_parent"
@@ -55,14 +61,20 @@
                         style="@style/menu_item_grid_text1"
                         android:text="名字" />
 
+                    <TextView
+                        style="@style/menu_item_grid_text1"
+                        android:visibility="invisible"
+                        android:text="签名的" />
+
                     <EditText
                         android:id="@+id/et_username"
                         style="@style/base_edit_layout1"
                         android:layout_width="0dp"
-                        android:layout_marginStart="@dimen/dp40"
+                        android:layout_marginStart="@dimen/dp20"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:text="白白"
+                        android:hint="请设置昵称"
+                        android:text=""
                         android:textSize="12sp" />
 
                     <ImageView style="@style/imgView_fork" />
@@ -76,13 +88,20 @@
                         style="@style/menu_item_grid_text1"
                         android:text="签名" />
 
+                    <TextView
+                        style="@style/menu_item_grid_text1"
+                        android:visibility="invisible"
+                        android:text="签名的" />
+
                     <EditText
+                        android:id="@+id/et_personalitySignature"
                         style="@style/base_edit_layout1"
                         android:layout_width="0dp"
-                        android:layout_marginStart="@dimen/dp40"
+                        android:layout_marginStart="@dimen/dp20"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:text="个性就是想干啥干啥"
+                        android:hint="请设置一个有趣的个性签名"
+                        android:text=""
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -138,11 +157,19 @@
 
                     <TextView
                         style="@style/menu_item_grid_text1"
+                        android:text="签名的"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        style="@style/menu_item_grid_text1"
                         android:layout_width="0dp"
                         android:layout_marginStart="@dimen/dp20"
                         android:layout_weight="1"
-                        android:text="女"
-                        android:textColor="@color/main_color_gray" />
+                        android:baselineAligned="false"
+                        android:hint="您的性别"
+                        android:text=""
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -153,14 +180,20 @@
                     <TextView
                         style="@style/menu_item_grid_text1"
                         android:text="生日" />
+                    <TextView
+                        style="@style/menu_item_grid_text1"
+                        android:visibility="invisible"
+                        android:text="签名的" />
 
                     <TextView
+                        android:id="@+id/tv_birthday"
                         style="@style/menu_item_grid_text1"
                         android:layout_width="0dp"
                         android:layout_marginStart="@dimen/dp20"
                         android:layout_weight="1"
-                        android:text="请设置"
-                        android:textColor="@color/main_color_gray" />
+                        android:hint="请设置您的出身日期"
+                        android:text=""
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 
@@ -171,8 +204,13 @@
                     <TextView
                         style="@style/menu_item_grid_text1"
                         android:text="常驻地区" />
+                    <TextView
+                        style="@style/menu_item_grid_text1"
+                        android:visibility="invisible"
+                        android:text="签" />
 
                     <TextView
+                        android:id="@+id/tv_habitualResidence"
                         style="@style/menu_item_grid_text1"
                         android:layout_width="0dp"
                         android:layout_marginStart="@dimen/dp20"
@@ -190,13 +228,20 @@
                         style="@style/menu_item_grid_text1"
                         android:text="手机号" />
 
+                    <TextView
+                        style="@style/menu_item_grid_text1"
+                        android:visibility="invisible"
+                        android:text="名的" />
+
                     <EditText
+                        android:id="@+id/et_mobile"
                         style="@style/base_edit_layout1"
                         android:layout_width="0dp"
-                        android:layout_marginStart="@dimen/dp40"
+                        android:layout_marginStart="@dimen/dp20"
                         android:layout_weight="1"
                         android:background="@null"
-                        android:text="请设置"
+                        android:hint="请填写你的手机号码"
+                        android:text=""
                         android:textSize="12sp" />
 
                 </LinearLayout>
@@ -205,16 +250,20 @@
 
 
             <Button
+                android:id="@+id/btn_preservation"
                 style="@style/btn_ok"
                 android:layout_marginBottom="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp10"
                 android:background="@drawable/shape_btn1"
                 android:text="保存" />
 
+
         </LinearLayout>
 
 
     </ScrollView>
+
+    </com.ysy15350.ysyutils.citychoice.MyNestedScrollView>
 
 
 </LinearLayout>

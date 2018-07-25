@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dp40"
+    android:layout_marginStart="@dimen/dp40">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/sp20"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp30"
+        android:layout_marginBottom="@dimen/dp30"
+        android:background="@drawable/shape_dialog_white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginTop="@dimen/dp10"
+            android:gravity="center"
+            android:text="系统提示"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp20" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp" >
+
+            <LinearLayout
+                android:id="@+id/ll_listview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:lineSpacingExtra="5dp"
+                    android:padding="15dp"
+                    android:text="提示内容"
+                    android:textColor="@color/text_content"
+                    android:textSize="@dimen/sp16" />
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <View style="@style/view_line" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp55"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="@dimen/dp187"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="取消"
+                android:textColor="#a4a4a4"
+                android:textSize="@dimen/sp18" />
+
+            <View style="@style/view_line_vertical" />
+
+            <Button
+                android:id="@+id/btn_ok"
+                android:layout_width="@dimen/dp187"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="确定"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp18" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>

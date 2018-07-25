@@ -15,4 +15,11 @@ public interface UserInfoViewInterface {
      * @param response
      */
     public void userInfoCallback(boolean isCache, Response response);
+
+    /**
+     * 修改用户信息回调
+     * @param isCache
+     * @param response
+     */
+    public void saveUserInfoCallback(boolean isCache, Response response);
 }

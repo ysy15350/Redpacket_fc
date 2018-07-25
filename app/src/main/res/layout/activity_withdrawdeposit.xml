@@ -83,6 +83,11 @@
                 style="@style/menu_item_grid_text1"
                 android:text="账号" />
 
+            <TextView
+                style="@style/menu_item_grid_text1"
+                android:visibility="invisible"
+                android:text="隐" />
+
             <EditText
                 style="@style/base_edit_layout1"
                 android:layout_width="0dp"

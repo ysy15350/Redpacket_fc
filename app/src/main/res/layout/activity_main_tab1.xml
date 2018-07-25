@@ -4,12 +4,195 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/form_head" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="红包"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/ll_top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp80"
+        android:layout_alignParentTop="true"
+        android:background="@color/bg_form_head"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp60"
+            android:layout_marginTop="@dimen/dp25"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/llbtn_clock"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp12"
+                    android:src="@mipmap/icon_clock" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_btn_hollow_blue"
+                    android:padding="@dimen/dp5">
+
+                    <TextView
+                        android:id="@+id/tv_countdown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/dp10"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:text="55:12"
+                        android:textColor="@color/main_color_blue1" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="¥ 1264.1564"
+                android:textColor="@color/text_money"
+                android:textSize="@dimen/sp20" />
+
+            <ImageView
+                android:id="@+id/img_invitation"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/dp10"
+                android:src="@mipmap/icon_invitation" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <com.ysy15350.ysyutils.mapcontainer.MapContainer
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.amap.api.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:alpha="0.3"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/img_sy_lb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp5"
+                android:layout_marginLeft="@dimen/dp10"
+                android:src="@mipmap/con_news" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp5">
+
+
+                <com.ysy15350.ysyutils.custom_view.TextSwitchView
+                    android:id="@+id/textSwitcher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:inAnimation="@android:anim/slide_in_left"
+                    android:outAnimation="@android:anim/slide_out_right"
+                    android:textAlignment="center"></com.ysy15350.ysyutils.custom_view.TextSwitchView>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_whole1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/dp50"
+            android:background="@drawable/shape_dialog_white_30r"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp5">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_flag" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1000米"
+                    android:textSize="@dimen/dp18" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp5"
+                android:layout_marginEnd="@dimen/dp20"
+                android:layout_marginStart="@dimen/dp20"
+                android:text="扩大收红包的范围"
+                android:textSize="@dimen/dp18" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_cityowner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp40"
+            android:background="@drawable/shape_dialog_white_right">
+
+            <LinearLayout
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp40"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@mipmap/img_head1"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="@dimen/dp20"
+                android:layout_marginStart="@dimen/dp10"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="江北区"
+                    android:textColor="@color/main_color_gray"
+                    android:textSize="@dimen/dp18" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="用户名字"
+                    android:textColor="@color/main_color_red1"
+                    android:textSize="@dimen/dp18" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.ysy15350.ysyutils.mapcontainer.MapContainer>
 
 </LinearLayout>

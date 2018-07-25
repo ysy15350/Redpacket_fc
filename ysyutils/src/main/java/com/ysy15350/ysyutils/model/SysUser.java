@@ -55,6 +55,8 @@ public class SysUser {
 
     private int birthdayDay;
 
+    private String birthday;
+
     /**
      * 常住地区
      */
@@ -200,5 +202,13 @@ public class SysUser {
 
     public void setSkin(String skin) {
         this.skin = skin;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 }

@@ -7,37 +7,53 @@
     <LinearLayout
         android:id="@+id/ll_top_layout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp100"
+        android:layout_height="@dimen/dp80"
         android:layout_alignParentTop="true"
-        android:background="@color/white"
+        android:background="@color/bg_form_head"
         android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp60"
-            android:layout_marginTop="@dimen/dp30">
+            android:background="@color/white"
+            android:layout_marginTop="@dimen/dp25">
 
-            <ImageView
-                style="@style/icon_left"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dp12"
-                android:src="@mipmap/icon_back" />
+            <LinearLayout
+                android:id="@+id/llbtn_clock"
+                android:layout_width="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/dp12"
+                    android:src="@mipmap/icon_wallet" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:padding="@dimen/dp5"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_countdown"
+                        android:layout_width="wrap_content"
+                        android:layout_marginStart="@dimen/dp10"
+                        android:layout_marginEnd="@dimen/dp10"
+                        android:text="55"
+                        android:textColor="@color/text_list_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="广告 0/10"
-                android:textColor="@color/text_content"
+                android:text="广告0/10"
+                android:textColor="@color/text_list_content"
                 android:textSize="@dimen/sp20" />
-
-            <ImageView
-                style="@style/icon_left"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/dp12"
-                android:src="@mipmap/icon_back_white"
-                android:visibility="gone" />
 
         </RelativeLayout>
 
@@ -51,7 +67,7 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:text="该业还没有广告"
+        android:text="该页还没有广告"
         android:layout_marginTop="@dimen/dp20"
         android:textSize="@dimen/sp26"
         android:layout_height="wrap_content" />
@@ -81,6 +97,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/llbtn_activearea"
         android:layout_width="@dimen/dp214"
         android:layout_marginTop="@dimen/dp32"
         android:background="@drawable/shape_btn_hollow_red"

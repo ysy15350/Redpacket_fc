@@ -51,7 +51,7 @@ public class Config {
 
             Config.server_port = 80;
 
-            Config.projectName = "fchb";
+            Config.projectName = "fchb1";
 
         }
     }

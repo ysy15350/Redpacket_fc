@@ -23,6 +23,12 @@
     <!-- 窗体标题背景色 -->
     <color name="bg_form_head">#d60000</color>
 
+    <!-- 城市选择器界面使用颜色 -->
+    <color name="c_blue">#40c2fc</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <color name="province_line">#ffc5c9ce</color>
+    <color name="text_color_02">#FF6C6C6C</color>
+
 
     <!-- ***********************文本字体颜色*********************** -->
     <!-- 文本颜色 -->
@@ -41,6 +47,8 @@
 
     <!-- 输入框文本 -->
     <color name="text_edit">#222222</color>
+
+
 
     <!-- 列表标题 -->
     <color name="text_list_title">#000000</color>
@@ -83,6 +91,65 @@
     <!--recycler_item颜色-->
     <color name="item_pressed">#AAff0000</color>
     <color name="item_normal">#44ff0000</color>
+
+    <!-- 项目主颜色 -->
+
+    <!-- 红色3 -->
+    <color name="main_color_red3">#bf0000</color>
+    <!-- 红色2 -->
+    <color name="main_color_red2">#ec403e</color>
+    <!-- 红色1 -->
+    <color name="main_color_red1">#fc152b</color>
+
+    <!-- 暗橘色 -->
+    <color name="main_color_red">#ea6a47</color>
+    <!-- 橙色 -->
+    <color name="main_color_orange">#fb7326</color>
+    <!-- 金色 -->
+    <color name="main_color_golden">#dfb542</color>
+    <!-- 金色（深） -->
+    <color name="main_color_golden_deep">#c69f39</color>
+    <!-- 白色 -->
+    <color name="main_color_white">#ffffff</color>
+    <!-- 白色1 -->
+    <color name="main_color_white1">#fafafa</color>
+    <!-- 灰色-4 -->
+    <color name="main_color_gray_4">#efeff4</color>
+    <!-- 灰色-3 -->
+    <color name="main_color_gray_3">#f8f8f8</color>
+
+    <color name="main_color_gray_9">#e5e5e5</color>
+    <!-- 灰色-5 -->
+    <color name="main_color_gray_5">#eee</color>
+    <!-- 灰色-7 -->
+    <color name="main_color_gray_7">#e9f1f5</color>
+    <!-- 灰色-6 -->
+    <color name="main_color_gray_6">#e1e1e1</color>
+    <!-- 灰色-2 -->
+    <color name="main_color_gray_2">#c6c6c6</color>
+    <!-- 灰色-8 -->
+    <color name="main_color_gray_0">#eeeeee</color>
+    <color name="main_color_gray_8">#cccccc</color>
+    <!-- 灰色-1 -->
+    <color name="main_color_gray_1">#aeaeae</color>
+    <!-- 灰色 -->
+    <color name="main_color_gray">#999999</color>
+    <!-- 灰色+2 -->
+    <color name="main_color_gray02">#808080</color>
+    <!-- 灰色+1 -->
+    <color name="main_color_gray01">#666666</color>
+    <!-- 黑色 -->
+    <color name="main_color_black">#333333</color>
+    <!-- 黑色1 -->
+    <color name="main_color_black1">#222222</color>
+    <!-- 黑色2 -->
+    <color name="main_color_black2">#000000</color>
+    <!-- 蓝色 -->
+    <color name="main_color_blue">#499BF7</color>
+    <!-- 蓝色1 -->
+    <color name="main_color_blue1">#525ed1</color>
+    <!-- 绿色 -->
+    <color name="main_color_green1">#46b751</color>
 
 
 </resources>

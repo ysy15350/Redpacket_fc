@@ -44,6 +44,8 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'//json
     compile 'com.android.support:recyclerview-v7:26.0.0'
 
+    compile 'liji.library.dev:citypickerview:0.7.0'
+
 
     //3D地图so及jar
     compile 'com.amap.api:3dmap:latest.integration'

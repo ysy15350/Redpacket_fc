@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.ysy15350.redpacket_fc.MainActivity;
 import com.ysy15350.redpacket_fc.R;
+import com.ysy15350.redpacket_fc.active_area.activearea.ActiveAreaActivity;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.mine.share.ShareActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
@@ -41,6 +42,18 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
 
         MainActivity.tab_position = 0;
         startActivity(new Intent(getActivity(), MainActivity.class));
+
+    }
+
+    /**
+     * 访问好友广告
+     *
+     * @param view
+     */
+    @Event(value = R.id.llbtn_activearea)
+    private void llbtn_activeareaClick(View view) {
+
+        startActivity(new Intent(getActivity(), ActiveAreaActivity.class));
 
     }
 

@@ -28,6 +28,15 @@ import api.impl.UserApiImpl;
 @ContentView(com.ysy15350.ysyutils.R.layout.activity_setting)
 public class SettingActivity extends BaseActivity {
 
+    /**
+     * 夜间免打扰：1：开；0：关
+     */
+    public int re_disturb;
+    /**
+     * 整点红包提醒：1：开；0：关
+     */
+    public int re_whole_red;
+
     //测试接口
     UserApi userApi = new UserApiImpl();
 
@@ -49,6 +58,42 @@ public class SettingActivity extends BaseActivity {
     private void ll_menu_3Click(View view) {
         BaseData.loginout();
         startActivity(new Intent(this, LoginActivity.class));
+    }
+
+    /**
+     * 夜间免打扰
+     * @param view
+     */
+    @Event(value = R.id.llbtn_dxset_xmhk)
+    private void llbtn_dxset_xmhkClick(View view) {
+
+        mHolder.getView(R.id.imgbtn_dxset_xmhk).setEnabled(!mHolder.getView(R.id.imgbtn_dxset_xmhk).isEnabled());
+        Boolean isChecked = mHolder.getView(R.id.imgbtn_dxset_xmhk).isEnabled();
+
+        if (isChecked) {
+            re_disturb=1;
+        } else {
+            re_disturb=0;
+        }
+
+    }
+
+    /**
+     * 整点红包提醒
+     * @param view
+     */
+    @Event(value = R.id.llbtn_whole_red)
+    private void llbtn_whole_redClick(View view) {
+
+        mHolder.getView(R.id.imgbtn_whole_red).setEnabled(!mHolder.getView(R.id.imgbtn_whole_red).isEnabled());
+        Boolean isChecked = mHolder.getView(R.id.imgbtn_whole_red).isEnabled();
+
+        if (isChecked) {
+            re_whole_red=1;
+        } else {
+            re_whole_red=0;
+        }
+
     }
 
     /**
