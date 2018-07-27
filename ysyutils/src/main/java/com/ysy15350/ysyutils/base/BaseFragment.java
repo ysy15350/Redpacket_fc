@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.ysy15350.ysyutils.BuildConfig;
 import com.ysy15350.ysyutils.R;
 import com.ysy15350.ysyutils.base.data.BaseData;
@@ -69,7 +70,7 @@ public class BaseFragment extends Fragment implements IView {
 
         mHolder = ViewHolder.get(getActivity(), mContentView);
 
-        mSavedInstanceState=savedInstanceState;
+        mSavedInstanceState = savedInstanceState;
 
         init();
 
@@ -87,6 +88,7 @@ public class BaseFragment extends Fragment implements IView {
     @Override
     public void onResume() {
         super.onResume();
+        StatusBarCompat.setLightStatusBar(getActivity().getWindow(), true);
         bindData();
     }
 
@@ -145,18 +147,19 @@ public class BaseFragment extends Fragment implements IView {
 
     /**
      * 设置顶部右边图片
+     *
      * @param drawableId
      */
-    protected void setrightIcon(boolean isBack,int drawableId){
+    protected void setrightIcon(boolean isBack, int drawableId) {
 
         if (isBack)
             mHolder.setVisibility_VISIBLE(R.id.img_menu);
         else
             mHolder.setVisibility_GONE(R.id.img_menu);
 
-        if(drawableId == 0)
+        if (drawableId == 0)
             return;
-        mHolder.setBackground(R.id.img_menu,drawableId);
+        mHolder.setBackground(R.id.img_menu, drawableId);
     }
 
     @Override

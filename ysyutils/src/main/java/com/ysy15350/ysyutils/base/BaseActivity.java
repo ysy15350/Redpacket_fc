@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,9 +21,12 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
+import com.githang.statusbar.StatusBarCompat;
 import com.ysy15350.ysyutils.BuildConfig;
 import com.ysy15350.ysyutils.R;
 import com.ysy15350.ysyutils.api.model.Response;
@@ -43,6 +47,8 @@ import com.ysy15350.ysyutils.model.LocationInfo;
 import org.xutils.common.util.LogUtil;
 import org.xutils.x;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -221,18 +227,19 @@ public class BaseActivity extends AppCompatActivity implements IView, GestureDet
 
     /**
      * 设置顶部右边图片
+     *
      * @param drawableId
      */
-    protected void setrightIcon(boolean isBack,int drawableId){
+    protected void setrightIcon(boolean isBack, int drawableId) {
 
         if (isBack)
             mHolder.setVisibility_VISIBLE(R.id.img_menu);
         else
             mHolder.setVisibility_GONE(R.id.img_menu);
 
-        if(drawableId == 0)
+        if (drawableId == 0)
             return;
-        mHolder.setBackground(R.id.img_menu,drawableId);
+        mHolder.setBackground(R.id.img_menu, drawableId);
     }
 
     @Override
@@ -244,6 +251,12 @@ public class BaseActivity extends AppCompatActivity implements IView, GestureDet
     public void initView() {
         // 填充状态栏
         CommFunAndroid.fullScreenStatuBar(this);
+
+
+        int color = getResources().getColor(R.color.blue);
+
+        //StatusBarCompat.setStatusBarColor(this, color, true);
+        StatusBarCompat.setLightStatusBar(getWindow(), true);
 
         if (mHolder == null)
             return;
@@ -910,12 +923,12 @@ public class BaseActivity extends AppCompatActivity implements IView, GestureDet
 
 
     /*
-*  http://www.jb51.net/article/49294.htm
-*  for左右手势
-*  1.复制下面的内容到目标Activity
-*  2.目标Activity的onCreate()调用initGesture()
-*  3.目标Activity需implements OnTouchListener, OnGestureListener
-*/
+     *  http://www.jb51.net/article/49294.htm
+     *  for左右手势
+     *  1.复制下面的内容到目标Activity
+     *  2.目标Activity的onCreate()调用initGesture()
+     *  3.目标Activity需implements OnTouchListener, OnGestureListener
+     */
     private GestureDetector mGestureDetector;
     private int verticalMinDistance = 180;
     private int minVelocity = 0;
@@ -993,5 +1006,6 @@ public class BaseActivity extends AppCompatActivity implements IView, GestureDet
         mGestureDetector.onTouchEvent(ev);
         return super.dispatchTouchEvent(ev);
     }
+
 
 }

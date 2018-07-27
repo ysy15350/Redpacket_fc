@@ -4,6 +4,7 @@ package com.ysy15350.redpacket_fc.main_tabs;
 import android.content.Intent;
 import android.view.View;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.mine.cityowner.City_OwnerActivity;
@@ -42,6 +43,13 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        StatusBarCompat.setLightStatusBar(getActivity().getWindow(), false);
+    }
+
+
+    @Override
     public void loadData() {
         super.loadData();
 
@@ -57,8 +65,8 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
             String nickName = CommFun.isNullOrEmpty(sysUser.getNickname()) ? CommFun.getPhone(sysUser.getMobile()) : sysUser.getNickname();
             mHolder.setText(R.id.tv_nickname, nickName);
-            if(CommFun.notNullOrEmpty(sysUser.getId()+"")){
-                mHolder.setText(R.id.tv_nameid,sysUser.getId()+"");
+            if (CommFun.notNullOrEmpty(sysUser.getId() + "")) {
+                mHolder.setText(R.id.tv_nameid, sysUser.getId() + "");
             }
         }
     }
@@ -97,6 +105,7 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     /**
      * 个人资料
+     *
      * @param view
      */
     @Event(value = R.id.ll_userinfo)
@@ -111,6 +120,7 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     /**
      * 个人主页
+     *
      * @param view
      */
     @Event(value = R.id.ll_menu_1)
@@ -123,6 +133,7 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     /**
      * 钱包
+     *
      * @param view
      */
     @Event(value = R.id.ll_menu_2)
@@ -137,6 +148,7 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     /**
      * 城主
+     *
      * @param view
      */
     @Event(value = R.id.ll_menu_3)
@@ -152,6 +164,7 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     /**
      * 关注
+     *
      * @param view
      */
     @Event(value = R.id.ll_menu_4)
@@ -166,6 +179,7 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     /**
      * 分享
+     *
      * @param view
      */
     @Event(value = R.id.ll_menu_5)
@@ -181,6 +195,7 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
     /**
      * 设置
+     *
      * @param view
      */
     @Event(value = R.id.ll_menu_6)
