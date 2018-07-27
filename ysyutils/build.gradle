@@ -53,4 +53,7 @@ dependencies {
     compile 'com.amap.api:location:latest.integration'
     //搜索功能
     compile 'com.amap.api:search:latest.integration'
+
+    //改变状态栏
+    compile 'com.githang:status-bar-compat:latest.integration'
 }

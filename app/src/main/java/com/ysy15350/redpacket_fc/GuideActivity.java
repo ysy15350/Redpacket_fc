@@ -1,9 +1,12 @@
 package com.ysy15350.redpacket_fc;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -13,6 +16,7 @@ import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
 import com.ysy15350.ysyutils.common.AppStatusManager;
+import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.model.SysUser;
 
 
@@ -55,6 +59,9 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
 
         //显示全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // 填充状态栏
+        CommFunAndroid.fullScreenStatuBar(this);
+
 
         //http://blog.csdn.net/wangshihui512/article/details/50768294
         //view自带的定时器：postDelayed方法
@@ -75,6 +82,7 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
 
         YSYApplication.getContext();//初始化上下文
     }
+
 
     @Override
     protected void onResume() {

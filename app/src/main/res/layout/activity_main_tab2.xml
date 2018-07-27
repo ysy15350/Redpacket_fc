@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp80"
         android:layout_alignParentTop="true"
-        android:background="@color/bg_form_head"
         android:orientation="vertical">
 
         <RelativeLayout
