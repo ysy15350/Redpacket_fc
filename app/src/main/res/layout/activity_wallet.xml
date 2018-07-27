@@ -73,7 +73,7 @@
                 android:id="@+id/tv_balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="¥18.666"
+                android:text="0.0"
                 android:textColor="@color/text_wallet_money1"
                 android:textSize="@dimen/sp28" />
 
@@ -122,14 +122,32 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"></LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_alipay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/dp118"
-        android:text="当前绑定支付宝账号为512893295@qq.com"
-        android:textColor="@color/text_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_alipay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dp118"
+            android:text="当前绑定支付宝账号为512893295@qq.com"
+            android:textColor="@color/text_content" />
+
+        <TextView
+            android:id="@+id/tv_setalipay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dp118"
+            android:text="去设置支付宝"
+            android:textColor="@color/blue" />
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

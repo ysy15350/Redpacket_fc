@@ -8,6 +8,11 @@ import com.ysy15350.ysyutils.api.model.Response;
 
 public interface SetAlipayViewInterface {
 
-//    public void bindAdsCardListCallback(boolean isCache, Response response);
+    /**
+     * 修改用户信息回调
+     * @param isCache
+     * @param response
+     */
+    public void saveUserInfoCallback(boolean isCache, Response response);
 
 }

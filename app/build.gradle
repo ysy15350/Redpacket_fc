@@ -35,10 +35,13 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     //validation表单验证
     compile 'com.mobsandgeeks:android-saripaar:2.0.3'
-    //照片选择、拍照
-    compile 'com.jph.takephoto:takephoto_library:4.0.3'
+
     //validation表单验证
     compile 'com.mobsandgeeks:android-saripaar:2.0.3'
+
+    // 微信登录
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

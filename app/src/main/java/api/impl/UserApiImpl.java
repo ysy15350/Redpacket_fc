@@ -136,39 +136,27 @@ public class UserApiImpl implements UserApi {
             // 头像
 
             // 用户昵称
-            if (CommFun.notNullOrEmpty(sysUser.getNickname())) {
-                builder.addBodyParameter("nickname", sysUser.getNickname());
-            }
+            builder.addBodyParameter("nickname", sysUser.getNickname());
 
             // 个性签名
-            if (CommFun.notNullOrEmpty(sysUser.getPersonalitySignature())) {
-                builder.addBodyParameter("personalitySignature", sysUser.getPersonalitySignature());
-            }
+            builder.addBodyParameter("personalitySignature", sysUser.getPersonalitySignature());
 
 
             // 支付宝账号
-            if (CommFun.notNullOrEmpty(sysUser.getAlipayAccount())) {
-                builder.addBodyParameter("alipayAccount", sysUser.getAlipayAccount());
-            }
+            builder.addBodyParameter("alipayAccount", sysUser.getAlipayAccount());
 
             // 性别
             builder.addBodyParameter("sex", sysUser.getSex());
 
 
             // 生日
-            if (CommFun.notNullOrEmpty(sysUser.getBirthday())) {
-                builder.addBodyParameter("birthday", sysUser.getBirthday());
-            }
+            builder.addBodyParameter("birthday", sysUser.getBirthday());
 
             // 常驻地区
-            if (CommFun.notNullOrEmpty(sysUser.getHabitualResidence())) {
-                builder.addBodyParameter("habitualResidence", sysUser.getHabitualResidence());
-            }
+            builder.addBodyParameter("habitualResidence", sysUser.getHabitualResidence());
 
             // 手机号
-            if (CommFun.notNullOrEmpty(sysUser.getMobile())) {
-                builder.addBodyParameter("mobile", sysUser.getMobile());
-            }
+            builder.addBodyParameter("mobile", sysUser.getMobile());
 
             RequestOptions requestOptions = builder.build();
 

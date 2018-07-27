@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.Typeface;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -42,9 +43,10 @@ import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.maps.model.Text;
 import com.amap.api.maps.model.TextOptions;
+import com.google.gson.reflect.TypeToken;
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
-import com.ysy15350.redpacket_fc.dailytasks.DailyTasksActivity;
+import com.ysy15350.redpacket_fc.dailytasks.DailyTasksListActivity;
 import com.ysy15350.redpacket_fc.dialog.RedPackageDialog;
 import com.ysy15350.redpacket_fc.dialog.WholePointDialog;
 import com.ysy15350.redpacket_fc.mine.cityowner.cityowner_transaction.CityOwnerTransactionActivity;
@@ -56,6 +58,7 @@ import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
 import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.common.message.MessageBox;
+import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.TextSwitchView;
 import com.ysy15350.ysyutils.custom_view.dialog.AgreementDialog;
 import com.ysy15350.ysyutils.gaodemap.util.Constants;
@@ -67,9 +70,13 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.invitation.MailList;
+
+import static com.ysy15350.ysyutils.common.cache.ACache.aCache;
+
 @ContentView(R.layout.activity_main_tab1)
 public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, MainTab1Presenter>
-        implements MainTab1ViewInterface, LocationSource, AMapLocationListener, AMap.OnMapTouchListener, AMap.OnMarkerClickListener,
+        implements MainTab1ViewInterface, LocationSource, AMap.OnMyLocationChangeListener, AMap.OnMapTouchListener, AMap.OnMarkerClickListener,
         AMap.OnInfoWindowClickListener, AMap.OnMarkerDragListener, AMap.OnMapLoadedListener, AMap.InfoWindowAdapter, RadioGroup.OnCheckedChangeListener {
 
     private static final String TAG = "MainTab1Fragment";
@@ -121,7 +128,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     /**
      * 0：初始化；1：界面已看不见；2：界面再次可见
      */
-    private int status =0;
+    private int status = 0;
 
 
     public MainTab1Fragment() {
@@ -131,6 +138,31 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     public MainTab1Presenter createPresenter() {
         // TODO Auto-generated method stub
         return new MainTab1Presenter(getActivity());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mMapView.onCreate(mSavedInstanceState);
+
+        aMap = mMapView.getMap();
+        setUpMap();
+
+        setTextSwitch("消息1,消息2,消息3,消息4,消息5");
+
+
+        //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
+        mMapView.onResume();
+
+        if (status == 0) {
+            status = 2;
+        }
+
+        timerStart();
+
+
+        useMoveToLocationWithMapMode = true;
     }
 
 
@@ -143,7 +175,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
 
     private void setUpMap() {
-        aMap.setLocationSource(this);// 设置定位监听
+        //aMap.setLocationSource(this);// 设置定位监听
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setOnMapTouchListener(this);
@@ -153,7 +185,32 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         aMap.setOnMarkerClickListener(this);// 设置点击marker事件监听器
         aMap.setOnInfoWindowClickListener(this);// 设置点击infoWindow事件监听器
 
-        addMarkersToMap();// 往地图上添加marker
+
+        //---------------------------------------------
+        myLocationStyle = new MyLocationStyle();
+
+        myLocationStyle.myLocationType(MyLocationStyle.LOCATION_TYPE_LOCATE);//定位一次，且将视角移动到地图中心点。
+
+        //myLocationStyle.interval(2000); //设置连续定位模式下的定位间隔，只在连续定位模式下生效，单次定位模式下不会生效。单位为毫秒。
+        aMap.setMyLocationStyle(myLocationStyle);//设置定位蓝点的Style
+//aMap.getUiSettings().setMyLocationButtonEnabled(true);设置默认定位按钮是否显示，非必需设置。
+        aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
+
+        // 获取缓存定位坐标并不设置定位
+        try {
+            if (aCache != null) {
+                String latlngJson = aCache.getAsString("latlngJson");
+                if (CommFun.notNullOrEmpty(latlngJson)) {
+                    LatLng cachelatLng = JsonConvertor.fromJson(latlngJson, LatLng.class);
+                    aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cachelatLng, 15));
+                }
+            }
+        } catch (Exception e) {
+
+        }
+
+
+        //addMarkersToMap();// 往地图上添加marker
     }
 
     /**
@@ -163,21 +220,21 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
         ArrayList<MarkerOptions> markerOptionlst = new ArrayList<MarkerOptions>();
 
-        latLngs.add(Constants.LONGKIN);
-        latLngs.add(Constants.LATLNG1);
-        latLngs.add(Constants.LATLNG2);
-        latLngs.add(Constants.LATLNG3);
-        latLngs.add(Constants.LATLNG4);
+//        latLngs.add(Constants.LONGKIN);
+//        latLngs.add(Constants.LATLNG1);
+//        latLngs.add(Constants.LATLNG2);
+//        latLngs.add(Constants.LATLNG3);
+//        latLngs.add(Constants.LATLNG4);
 //        latLngs.add(Constants.LATLNG5);
 //        latLngs.add(Constants.LATLNG6);
 //        latLngs.add(Constants.LATLNG7);
 
-        for (LatLng latLng : latLngs) {
-            MarkerOptions markerOptions = newMarkerOptions(latLng);
-            Marker marker = aMap.addMarker(markerOptions);
-            growInto(marker);
-//            markerOptionlst.add(markerOptions);
-        }
+//        for (LatLng latLng : latLngs) {
+//            MarkerOptions markerOptions = newMarkerOptions(latLng);
+//            Marker marker = aMap.addMarker(markerOptions);
+//            growInto(marker);
+////            markerOptionlst.add(markerOptions);
+//        }
 //        List<Marker> markerlst = aMap.addMarkers(markerOptionlst, true);
 
     }
@@ -196,6 +253,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     }
 
     String[] messageArray;
+
     private void setTextSwitch(String result) {
         if (!CommFunAndroid.isNullOrEmpty(result)) {
             messageArray = result.split(",");
@@ -297,30 +355,6 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        mMapView.onCreate(mSavedInstanceState);
-
-        aMap = mMapView.getMap();
-        setUpMap();
-
-        setTextSwitch("消息1,消息2,消息3,消息4,消息5");
-
-
-        //在activity执行onResume时执行mMapView.onResume ()，重新绘制加载地图
-        mMapView.onResume();
-
-        if(status == 0){
-            status = 2;
-        }
-
-        timerStart();
-
-
-        useMoveToLocationWithMapMode = true;
-    }
 
     @Override
     public void onPause() {
@@ -337,7 +371,6 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         //在activity执行onSaveInstanceState时执行mMapView.onSaveInstanceState (outState)，保存地图当前的状态
         mMapView.onSaveInstanceState(outState);
     }
-
 
 
     /**
@@ -358,14 +391,82 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
      */
     @Override
     public void onMapLoaded() {
-        // 设置所有maker显示在当前可视区域地图中
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        // 遍历坐标集合
-        for (LatLng latLng : latLngs) {
-            builder.include(latLng);
+
+
+    }
+
+    /**
+     * 生成红包
+     */
+    private void createRedPacket(LatLng latLng) {
+
+        try {
+
+            if (latLng != null) {
+                double latitude = currentLatlng.latitude;
+                double longitude = currentLatlng.longitude;
+                for (int i = 0; i < 14; i++) {
+                    double d1 = latitude + (i / 100);
+                    double d2 = longitude + (i / 100);
+//                    LatLng item = new LatLng(29.646661, 106.566095);
+                    LatLng item = new LatLng(d1, d2);
+                    latLngs.add(item);
+                }
+                drawRedPacket(latLngs);//绘制红包
+            }
+
+        } catch (Exception ex) {
+
         }
-        LatLngBounds bounds = builder.build();
-        aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150));
+
+    }
+
+    /**
+     * 绘制红包
+     */
+    private void drawRedPacket(List<LatLng> latLngs) {
+        try {
+
+            //currentLatlng   ;//当前位置
+            ArrayList<MarkerOptions> markerOptionlst = new ArrayList<MarkerOptions>();
+
+            for (LatLng latLng : latLngs) {
+                MarkerOptions markerOptions = newMarkerOptions(latLng);
+                Marker marker = aMap.addMarker(markerOptions);
+                growInto(marker);
+//            markerOptionlst.add(markerOptions);
+            }
+            //aMap.addMarkers(markerOptionlst, true);
+
+            // 设置所有maker显示在当前可视区域地图中
+            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            if (latLngs != null && latLngs.size() > 0) {
+                // 遍历坐标集合
+                for (LatLng latLng : latLngs) {
+                    builder.include(latLng);
+                }
+            } else {
+                // 获取缓存定位坐标并不设置定位
+                try {
+                    if (aCache != null) {
+                        String latlngJson = aCache.getAsString("latlngJson");
+                        if (CommFun.notNullOrEmpty(latlngJson)) {
+                            LatLng cachelatLng = JsonConvertor.fromJson(latlngJson, LatLng.class);
+                            builder.include(cachelatLng);
+                        }
+                    }
+                } catch (Exception e) {
+
+                }
+            }
+
+            LatLngBounds bounds = builder.build();
+            aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150));//移动地图中心点
+            addPolylinescircle(currentLatlng, radius);// 绘制圆
+
+        } catch (Exception ex) {
+
+        }
     }
 
     @Override
@@ -428,18 +529,18 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             mlocationClient = new AMapLocationClient(getActivity());
             mLocationOption = new AMapLocationClientOption();
             //设置定位监听
-            mlocationClient.setLocationListener(this);
+//            mlocationClient.setLocationListener(this);
             //设置为高精度定位模式
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
             //设置每5秒定位一次
-            mLocationOption.setInterval(2000);
+            //mLocationOption.setInterval(2000);
             //设置定位参数
             mlocationClient.setLocationOption(mLocationOption);
             // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
             // 注意设置合适的定位时间的间隔（最小间隔支持为2000ms），并且在合适时间调用stopLocation()方法来取消定位请求
             // 在定位结束后，在合适的生命周期调用onDestroy()方法
             // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-            mlocationClient.startLocation();
+            //mlocationClient.startLocation();
         }
     }
 
@@ -453,41 +554,70 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         mlocationClient = null;
     }
 
+//    @Override
+//    public void onLocationChanged(AMapLocation amapLocation) {
+//        if (mListener != null && amapLocation != null) {
+//            if (amapLocation != null
+//                    && amapLocation.getErrorCode() == 0) {
+//                LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
+//                // 缓存定位坐标
+//                if (aCache != null) {
+//                    String latlngJson = JsonConvertor.toJson(latLng);
+//                    aCache.put("latlngJson", latlngJson);
+//                }
+//                currentLatlng = latLng;
+//                addPolylinescircle(currentLatlng, radius);
+//                //展示自定义定位小蓝点
+//                if (locationMarker == null) {
+//                    //首次定位
+//                    locationMarker = aMap.addMarker(new MarkerOptions().position(latLng)
+//                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.gps_point)));
+//
+//                    //首次定位,选择移动到地图中心点并修改级别到15级
+//                    aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+//
+//
+//                }
+//
+//                Log.d(TAG, "onLocationChanged: " + latLng.latitude + "," + latLng.longitude);
+////                else {
+////
+////                    if (useMoveToLocationWithMapMode) {
+////                        //二次以后定位，使用sdk中没有的模式，让地图和小蓝点一起移动到中心点（类似导航锁车时的效果）
+////                        startMoveLocationAndMap(latLng);
+////                    } else {
+////                        startChangeLocation(latLng);
+////                    }
+////
+////                }
+//
+//                createRedPacket(latLng);//绘制红包
+//
+//
+//            } else {
+//                String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
+//                Log.e("AmapErr", errText);
+//            }
+//        }
+//    }
+
+
     @Override
-    public void onLocationChanged(AMapLocation amapLocation) {
-        if (mListener != null && amapLocation != null) {
-            if (amapLocation != null
-                    && amapLocation.getErrorCode() == 0) {
-                LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
-                currentLatlng = latLng;
-                addPolylinescircle(currentLatlng, radius);
-                //展示自定义定位小蓝点
-                if (locationMarker == null) {
-                    //首次定位
-                    locationMarker = aMap.addMarker(new MarkerOptions().position(latLng)
-                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.gps_point)));
-
-                    //首次定位,选择移动到地图中心点并修改级别到15级
-                    aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+    public void onMyLocationChange(Location location) {
 
 
-                } else {
+        // 缓存定位坐标
+        if (aCache != null) {
 
-                    if (useMoveToLocationWithMapMode) {
-                        //二次以后定位，使用sdk中没有的模式，让地图和小蓝点一起移动到中心点（类似导航锁车时的效果）
-                        startMoveLocationAndMap(latLng);
-                    } else {
-                        startChangeLocation(latLng);
-                    }
+            Log.d(TAG, "onMyLocationChange: " + location.getLatitude() + "," + location.getLongitude());
 
-                }
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            String latlngJson = JsonConvertor.toJson(latLng);
+            aCache.put("latlngJson", latlngJson);
 
-
-            } else {
-                String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-                Log.e("AmapErr", errText);
-            }
+            createRedPacket(latLng);
         }
+
     }
 
     /**
@@ -645,7 +775,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
          */
         @Override
         public void onFinish() {
-            mHolder.setText(R.id.tv_countdown,"00:00");
+            mHolder.setText(R.id.tv_countdown, "00:00");
         }
     };
 
@@ -683,12 +813,12 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     @Event(value = R.id.llbtn_clock)
     private void llbtn_clockClick(View view) {
 
-        WholePointDialog wholePointDialog = new WholePointDialog(getActivity(), "¥654.66", "dsfd", "不知道谁提供的");
-
-        wholePointDialog.show();
+//        WholePointDialog wholePointDialog = new WholePointDialog(getActivity(), "¥654.66", "dsfd", "不知道谁提供的");
+//
+//        wholePointDialog.show();
 
         // 每日任务
-//        startActivity(new Intent(getActivity(), DailyTasksActivity.class));
+        startActivity(new Intent(getActivity(), DailyTasksListActivity.class));
     }
 
     /**

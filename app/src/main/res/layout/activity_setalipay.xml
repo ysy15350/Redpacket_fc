@@ -33,6 +33,7 @@
                 android:text="姓名" />
 
             <EditText
+                android:id="@+id/et_realname"
                 style="@style/base_edit_layout1"
                 android:layout_width="0dp"
                 android:layout_marginStart="@dimen/dp40"
@@ -53,6 +54,7 @@
                 android:text="账号" />
 
             <EditText
+                android:id="@+id/et_alipayAccount"
                 style="@style/base_edit_layout1"
                 android:layout_width="0dp"
                 android:layout_marginStart="@dimen/dp40"
@@ -67,6 +69,7 @@
 
 
     <Button
+        android:id="@+id/btn_preservation1"
         style="@style/btn_ok"
         android:layout_marginBottom="@dimen/dp10"
         android:layout_marginTop="@dimen/dp150"

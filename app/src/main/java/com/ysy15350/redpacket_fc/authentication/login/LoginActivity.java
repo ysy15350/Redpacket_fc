@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ysy15350.redpacket_fc.MainActivity;
+import com.ysy15350.redpacket_fc.MyApplication;
 import com.ysy15350.redpacket_fc.R;
+import com.ysy15350.redpacket_fc.wxapi.WXEntryActivity;
 import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.base.data.BaseData;
@@ -88,7 +90,7 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
     @Event(value = R.id.btn_login)
     private void btn_loginClick(View view) {
 
-        showWaitDialog("正在进行身份验证...");
+
 
         String mobile = mHolder.getViewText(R.id.et_mobile);
         if (CommFunAndroid.isNullOrEmpty(mobile)) {
@@ -102,12 +104,26 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
             return;
         }
 
+        showWaitDialog("正在进行身份验证...");
+
         mPresenter.loginByCode(mobile, code);
 
         // mPresenter.getData();//
         // 调用presenter的获取数据方法，在presenter类中调用bindData接口，本类实现了bindData方法
         //
     }
+    /**
+     * 微信登录
+     *
+     * @param view
+     */
+    @Event(value = R.id.llbtn_WXlogn)
+    private void llbtn_WXlognClick(View view) {
+
+        WXEntryActivity.loginWeixin(this, MyApplication.iwxapi);
+
+    }
+
 
     @Override
     public void getDynCodeCallback(boolean isCache, Response response) {

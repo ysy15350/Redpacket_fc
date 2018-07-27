@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Redpacket_fc</string>
+    <string name="app_name">方寸红包</string>
 
     <!-- 首页选项卡文本 -->
     <string name="tab1name">红包</string>

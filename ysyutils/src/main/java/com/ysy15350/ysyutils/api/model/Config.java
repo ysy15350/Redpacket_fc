@@ -47,11 +47,11 @@ public class Config {
 
         } else {// 正式
 
-            Config.server_url = "39.108.90.201";
+            Config.server_url = "www.fchb1.com";
 
             Config.server_port = 80;
 
-            Config.projectName = "fchb1";
+            Config.projectName = "";
 
         }
     }

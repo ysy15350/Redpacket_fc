@@ -34,6 +34,7 @@
                     android:textSize="@dimen/sp20" />
 
                 <TextView
+                    android:id="@+id/tv_alipayAccount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
@@ -54,6 +55,7 @@
 
     <!-- 收款人、账号 -->
     <LinearLayout
+        android:id="@+id/ll_alipay"
         android:layout_marginBottom="@dimen/dp20"
         style="@style/bg_content_layout">
 
@@ -64,6 +66,7 @@
                 android:text="收款人" />
 
             <EditText
+                android:id="@+id/et_realname1"
                 style="@style/base_edit_layout1"
                 android:layout_width="0dp"
                 android:layout_marginStart="@dimen/dp40"
@@ -89,6 +92,7 @@
                 android:text="隐" />
 
             <EditText
+                android:id="@+id/et_alipayAccount1"
                 style="@style/base_edit_layout1"
                 android:layout_width="0dp"
                 android:layout_marginStart="@dimen/dp40"
@@ -114,10 +118,11 @@
                 android:text="可用余额" />
 
             <TextView
+                android:id="@+id/tv_account"
                 style="@style/menu_item_grid_text1"
                 android:layout_marginEnd="@dimen/dp5"
                 android:textColor="@color/text_money"
-                android:text="500" />
+                android:text="0" />
 
             <TextView
                 style="@style/menu_item_grid_text1"
@@ -133,12 +138,15 @@
                 android:text="提现金额" />
 
             <EditText
+                android:id="@+id/et_withdrawAccount"
                 style="@style/base_edit_layout1"
                 android:layout_width="0dp"
                 android:layout_marginStart="@dimen/dp40"
                 android:layout_weight="1"
                 android:background="@null"
+                android:gravity="right|center_vertical"
                 android:hint="建议提现金额为100的整数倍"
+                android:layout_marginEnd="@dimen/dp5"
                 android:text=""
                 android:textSize="12sp" />
 
@@ -153,6 +161,7 @@
 
 
     <Button
+        android:id="@+id/btn_withdraw"
         style="@style/btn_ok"
         android:layout_marginTop="@dimen/dp80"
         android:background="@drawable/shape_btn2_blue"

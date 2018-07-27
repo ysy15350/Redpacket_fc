@@ -169,14 +169,11 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
 
 
                 // 性别
-                if (sysUser.getSex() != 0) {
-                    if(sysUser.getSex() == 1){  // 男
-                        mHolder.setBackground(R.id.img_sex,R.mipmap.icon_boy);
-                    }else {
-                        mHolder.setBackground(R.id.img_sex,R.mipmap.icon_girl);
-                    }
+                if (sysUser.getSex() == 1) { // 男
+                    mHolder.setBackground(R.id.img_sex,R.mipmap.icon_boy);
+                }else if (sysUser.getSex() == 2) {
+                    mHolder.setBackground(R.id.img_sex,R.mipmap.icon_girl);
                 }
-
                 // 常驻地区
                 if(!CommFun.isNullOrEmpty(sysUser.getHabitualResidence())){
                     mHolder.setText(R.id.tv_habitualResidence, sysUser.getHabitualResidence());

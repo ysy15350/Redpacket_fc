@@ -107,6 +107,15 @@ public class HttpServiceImpl implements HttpService {
 
     }
 
+    @Override
+    public void requestWXPost(StringBuffer url, ApiCallBack apiCallBack) {
+
+        mRequestParams = new RequestParams(url.toString());
+
+        this.mApiCallBack = apiCallBack;
+        x.http().post(mRequestParams, cacheCallback);
+    }
+
 
     /**
      * 框架回调

@@ -1,5 +1,7 @@
 package com.ysy15350.ysyutils.citychoice.citywheel;
 
+import com.ysy15350.ysyutils.common.SystemModels;
+
 /**
  * 城市选择器样式配置
  * 作者：liji on 2017/11/4 10:31
@@ -83,17 +85,17 @@ public class CityConfig {
     /**
      * 第一次默认的显示省份，一般配合定位，使用
      */
-    private String defaultProvinceName = "重庆";
+    private String defaultProvinceName = "";
     
     /**
      * 第一次默认得显示城市，一般配合定位，使用
      */
-    private String defaultCityName = "重庆";
+    private String defaultCityName = "";
     
     /**
      * 第一次默认得显示，一般配合定位，使用
      */
-    private String defaultDistrict = "江北区";
+    private String defaultDistrict = "";
     
     /**
      * 自定义的item布局
@@ -467,7 +469,7 @@ public class CityConfig {
         /**
          * 标题
          */
-        private String mTitle = "选择地区";
+        private String mTitle = "";
 
         /**
          * 标题背景颜色

@@ -13,9 +13,12 @@ import com.ysy15350.redpacket_fc.mine.usercenter.UserCenterActivity;
 import com.ysy15350.redpacket_fc.mine.userinfo.UserInfoActivity;
 import com.ysy15350.redpacket_fc.mine.wallet.WalletActivity;
 import com.ysy15350.redpacket_fc.others.SettingActivity;
+import com.ysy15350.ysyutils.api.model.Response;
+import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
 import com.ysy15350.ysyutils.common.CommFun;
+import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.model.SysUser;
 
 import org.xutils.view.annotation.ContentView;
@@ -24,7 +27,7 @@ import org.xutils.view.annotation.Event;
 
 @ContentView(R.layout.activity_main_tab4)
 public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, MainTab4Presenter>
-        implements MainTab3ViewInterface {
+        implements MainTab4ViewInterface {
 
     private static final String TAG = "MainTab4Fragment";
 
@@ -39,6 +42,13 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
     }
 
     @Override
+    public void loadData() {
+        super.loadData();
+
+
+    }
+
+    @Override
     public void bindData() {
         super.bindData();
 
@@ -47,6 +57,41 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
 
             String nickName = CommFun.isNullOrEmpty(sysUser.getNickname()) ? CommFun.getPhone(sysUser.getMobile()) : sysUser.getNickname();
             mHolder.setText(R.id.tv_nickname, nickName);
+            if(CommFun.notNullOrEmpty(sysUser.getId()+"")){
+                mHolder.setText(R.id.tv_nameid,sysUser.getId()+"");
+            }
+        }
+    }
+
+    @Override
+    public void userInfoCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+
+            if (response != null) {
+                String jsonStr = JsonConvertor.toJson(response);
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+
+                        SysUser sysUser = response.getData(SysUser.class);
+                        if (sysUser != null) {
+                            BaseData.setSysUser(sysUser);
+                        }
+
+
+                    }
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

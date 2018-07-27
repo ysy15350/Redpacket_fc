@@ -2,11 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     style="@style/base_form"
+    android:orientation="vertical"
     android:background="@color/bg_form1">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,19 +59,30 @@
                             android:layout_height="0dp"
                             android:layout_weight="1"></LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="60"
-                            android:textColor="@color/text_money1"
-                            android:textSize="@dimen/sp32" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:gravity="center_horizontal"
+                            android:layout_height="wrap_content">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="当前活跃度"
-                            android:textColor="@color/text_money1"
-                            android:textSize="@dimen/sp22" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="当前活跃度"
+                                android:textColor="@color/text_money1"
+                                android:textSize="@dimen/sp22" />
+
+                            <TextView
+                                android:id="@+id/tv_activity"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="60"
+                                android:layout_marginStart="@dimen/dp20"
+                                android:textColor="@color/text_money1"
+                                android:textSize="@dimen/sp32" />
+
+                        </LinearLayout>
+
+
                     </LinearLayout>
 
                 </LinearLayout>
@@ -97,13 +109,8 @@
                             android:layout_marginEnd="@dimen/dp10">
 
                             <LinearLayout
-                                android:layout_width="@dimen/dp50"
-                                android:layout_height="wrap_content">
-
-                            </LinearLayout>
-
-                            <LinearLayout
                                 android:layout_width="0dp"
+                                android:layout_marginStart="@dimen/dp40"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1">
 
@@ -122,6 +129,7 @@
                                         android:textColor="@color/bg_form_head" />
 
                                     <ImageView
+                                        android:id="@+id/img_treasurebox20"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/dp5"
@@ -149,6 +157,7 @@
                                         android:textColor="@color/bg_form_head" />
 
                                     <ImageView
+                                        android:id="@+id/img_treasurebox40"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/dp5"
@@ -176,6 +185,7 @@
                                         android:textColor="@color/bg_form_head" />
 
                                     <ImageView
+                                        android:id="@+id/img_treasurebox60"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/dp5"
@@ -203,6 +213,7 @@
                                         android:textColor="@color/bg_form_head" />
 
                                     <ImageView
+                                        android:id="@+id/img_treasurebox80"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/dp5"
@@ -230,6 +241,7 @@
                                         android:textColor="@color/bg_form_head" />
 
                                     <ImageView
+                                        android:id="@+id/img_treasurebox100"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/dp5"
@@ -267,12 +279,14 @@
 
 
                         <LinearLayout
+                            android:id="@+id/ll_activity"
                             android:layout_width="@dimen/dp121"
                             android:layout_height="@dimen/dp38"
                             android:background="@mipmap/icon_heel"
                             android:gravity="center_horizontal">
 
                             <TextView
+                                android:id="@+id/tv_activityvalue"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp15"
@@ -283,8 +297,10 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/ll_receive"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="visible"
                         android:background="@drawable/shape_dialog_red_bottom"
                         android:gravity="center_vertical">
 
@@ -312,6 +328,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/llbtn_receive"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/dp20"
@@ -331,460 +348,563 @@
                 </LinearLayout>
             </RelativeLayout>
 
-            <LinearLayout style="@style/layout_dailytasks">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp20"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_daily_2" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp20"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="每日登录"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp20" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="完成：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dp20"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="活跃度：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dp40"
-                        android:background="@drawable/shape_btn_red"
-                        android:gravity="center"
-                        android:padding="@dimen/dp10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/dp10"
-                            android:layout_marginStart="@dimen/dp10"
-                            android:text="领取奖励"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp18" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout style="@style/layout_dailytasks">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp20"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_daily_5" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp20"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="领红包"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp20" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="完成：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dp20"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="活跃度：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dp40"
-                        android:background="@drawable/shape_btn_red"
-                        android:gravity="center"
-                        android:padding="@dimen/dp10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/dp10"
-                            android:layout_marginStart="@dimen/dp10"
-                            android:text="领取奖励"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp18" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout style="@style/layout_dailytasks">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp20"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_daily_4" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp20"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="整点红包"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp20" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="完成：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dp20"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="活跃度：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dp40"
-                        android:background="@drawable/shape_btn_red"
-                        android:gravity="center"
-                        android:padding="@dimen/dp10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/dp10"
-                            android:layout_marginStart="@dimen/dp10"
-                            android:text="领取奖励"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp18" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout style="@style/layout_dailytasks">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp20"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_daily_1" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp20"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="邀请好友"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp20" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="完成：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dp20"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="活跃度：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dp40"
-                        android:background="@drawable/shape_btn_red"
-                        android:gravity="center"
-                        android:padding="@dimen/dp10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/dp10"
-                            android:layout_marginStart="@dimen/dp10"
-                            android:text="领取奖励"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp18" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout style="@style/layout_dailytasks">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp20"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_daily_2" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp20"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="完成限时任务"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp20" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="完成：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dp20"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="活跃度：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dp40"
-                        android:background="@drawable/shape_btn_red"
-                        android:gravity="center"
-                        android:padding="@dimen/dp10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/dp10"
-                            android:layout_marginStart="@dimen/dp10"
-                            android:text="领取奖励"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp18" />
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
             <LinearLayout
-                style="@style/layout_dailytasks"
-                android:layout_marginBottom="@dimen/dp50">
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone"
+                android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/dp20"
-                    android:gravity="center_vertical">
+                <LinearLayout style="@style/layout_dailytasks">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@mipmap/icon_daily_3" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/dp20"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="收集广告"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/sp20" />
+                        android:layout_margin="@dimen/dp20"
+                        android:gravity="center_vertical">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content">
 
-                            <TextView
+                            <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="完成：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/dp20"
-                                android:layout_marginTop="@dimen/dp5"
-                                android:text="活跃度：1/1"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/sp18" />
+                                android:src="@mipmap/icon_daily_2" />
                         </LinearLayout>
 
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp20"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="每日登录"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp20" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="完成：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dp20"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="活跃度：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/shape_btn_red"
+                            android:gravity="center"
+                            android:padding="@dimen/dp10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/dp10"
+                                android:layout_marginStart="@dimen/dp10"
+                                android:text="领取奖励"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp18" />
+                        </LinearLayout>
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/layout_dailytasks">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/dp40"
-                        android:background="@drawable/shape_btn_red"
-                        android:gravity="center"
-                        android:padding="@dimen/dp10">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp20"
+                        android:gravity="center_vertical">
 
-                        <TextView
+                        <LinearLayout
                             android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/icon_daily_5" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/dp10"
-                            android:layout_marginStart="@dimen/dp10"
-                            android:text="领取奖励"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp18" />
+                            android:layout_marginStart="@dimen/dp20"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="领红包"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp20" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="完成：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dp20"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="活跃度：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/shape_btn_red"
+                            android:gravity="center"
+                            android:padding="@dimen/dp10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/dp10"
+                                android:layout_marginStart="@dimen/dp10"
+                                android:text="领取奖励"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp18" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/layout_dailytasks">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp20"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/icon_daily_4" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp20"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="整点红包"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp20" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="完成：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dp20"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="活跃度：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/shape_btn_red"
+                            android:gravity="center"
+                            android:padding="@dimen/dp10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/dp10"
+                                android:layout_marginStart="@dimen/dp10"
+                                android:text="领取奖励"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp18" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/layout_dailytasks">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp20"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/icon_daily_1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp20"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="邀请好友"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp20" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="完成：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dp20"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="活跃度：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/shape_btn_red"
+                            android:gravity="center"
+                            android:padding="@dimen/dp10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/dp10"
+                                android:layout_marginStart="@dimen/dp10"
+                                android:text="领取奖励"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp18" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout style="@style/layout_dailytasks">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp20"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/icon_daily_2" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp20"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="完成限时任务"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp20" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="完成：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dp20"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="活跃度：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/shape_btn_red"
+                            android:gravity="center"
+                            android:padding="@dimen/dp10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/dp10"
+                                android:layout_marginStart="@dimen/dp10"
+                                android:text="领取奖励"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp18" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/layout_dailytasks"
+                    android:layout_marginBottom="@dimen/dp50">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dp20"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@mipmap/icon_daily_3" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dp20"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="收集广告"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/sp20" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="完成：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/dp20"
+                                    android:layout_marginTop="@dimen/dp5"
+                                    android:text="活跃度：1/1"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/sp18" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/dp40"
+                            android:background="@drawable/shape_btn_red"
+                            android:gravity="center"
+                            android:padding="@dimen/dp10">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/dp10"
+                                android:layout_marginStart="@dimen/dp10"
+                                android:text="领取奖励"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp18" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/bg_form_head1"
+        android:paddingStart="@dimen/dp30"
+        android:paddingEnd="@dimen/dp40"
+        android:paddingTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="任务"
+                android:textSize="@dimen/sp22"
+                android:textColor="@color/bg_form_head"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="进度"
+                android:textSize="@dimen/sp22"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="活跃度"
+                android:textSize="@dimen/sp22"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <com.ysy15350.ysyutils.custom_view.x_view.XListView
+            android:id="@+id/xListView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@color/devider_color"
+            android:dividerHeight="@dimen/dp16"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/ll_nodata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/dp100"
+                android:layout_height="@dimen/dp100"
+                android:src="@mipmap/icon_note" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp53"
+                    android:gravity="center_vertical"
+                    android:text="笔记为空"
+                    android:textColor="@color/text_title"
+                    android:textSize="@dimen/sp22" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/shape_btn"
+                android:text="写笔记"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp18" />
+
+
+        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>

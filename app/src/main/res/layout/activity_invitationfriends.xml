@@ -135,6 +135,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/llbtn_Invitation"
             android:layout_width="@dimen/dp192"
             android:layout_height="wrap_content"
             android:background="@color/btn_normal1"

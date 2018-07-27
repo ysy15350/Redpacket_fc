@@ -1,7 +1,10 @@
 package com.ysy15350.redpacket_fc;
 
 
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.ysy15350.redpacket_fc.wxapi.WXEntryActivity;
 import com.ysy15350.ysyutils.YSYApplication;
+import com.ysy15350.ysyutils.wxAuth.Constants;
 
 /**
  * Created by yangshiyou on 2018/3/6.
@@ -9,13 +12,16 @@ import com.ysy15350.ysyutils.YSYApplication;
 
 public class MyApplication extends YSYApplication {
 
-    /**
-     *  MD5: C1:B3:E1:D1:E3:33:BE:A5:CF:ED:7C:84:9A:8D:DF:0B
-     SHA1: D5:E8:47:AD:43:E1:A1:04:F0:54:CB:AC:62:4E:1D:B5:42:60:8C:F7
-     SHA256: B4:38:CA:99:70:B9:C3:B2:B7:8C:80:E6:2C:A5:FA:25:A4:94:D4:3B:36:7B:E9:4C:DC:82:F9:52:9E:AE:01:11
-     签名算法名称: SHA256withRSA
-     版本: 3
+    public static IWXAPI iwxapi;
 
-     */
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // 初始化微信组件
+        initWeiXin();
+    }
 
+    private void initWeiXin() {
+        iwxapi = WXEntryActivity.initWeiXin(this, Constants.WEIXIN_APP_ID);
+    }
 }

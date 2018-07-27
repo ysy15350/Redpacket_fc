@@ -17,6 +17,7 @@ import com.ysy15350.ysyutils.citychoice.bean.DistrictBean;
 import com.ysy15350.ysyutils.citychoice.bean.ProvinceBean;
 import com.ysy15350.ysyutils.citychoice.citywheel.CityConfig;
 import com.ysy15350.ysyutils.citychoice.style.citypickerview.CityPickerView;
+import com.ysy15350.ysyutils.common.SystemModels;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.dialog.AgreementDialog;
@@ -55,14 +56,8 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
     public void initView() {
         super.initView();
 
-        setFormHead("当前地区");
+        setFormHead(SystemModels.locationInfo.getDistrict());
         setMenuText("规则");
-
-        /**
-         * 预先加载仿iOS滚轮实现的全部数据
-         */
-        mCityPickerView.init(this);
-
 
     }
 
@@ -113,41 +108,6 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
         }
     }
 
-    /**
-     * 弹出选择器
-     */
-    private void wheel() {
-
-        CityConfig cityConfig = new CityConfig.Builder().title("选择城市")//标题
-                .build();
-
-        mCityPickerView.setConfig(cityConfig);
-        mCityPickerView.setOnCityItemClickListener(new OnCityItemClickListener() {
-            @Override
-            public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
-                StringBuilder sb = new StringBuilder();
-                sb.append("选择的结果：\n");
-                if (province != null) {
-                    sb.append(province.getName() + " " + province.getId() + "\n");
-                }
-
-                if (city != null) {
-                    sb.append(city.getName() + " " + city.getId() + ("\n"));
-                }
-
-                if (district != null) {
-                    sb.append(district.getName() + " " + district.getId() + ("\n"));
-                }
-
-            }
-
-            @Override
-            public void onCancel() {
-                MessageBox.show("已取消");
-            }
-        });
-        mCityPickerView.showCityPicker();
-    }
 
     /**
      * 我要成为城主
@@ -180,5 +140,46 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
     @Event(value = R.id.ll_othercity1)
     private void ll_othercity1Click(View view) {
         wheel();
+    }
+
+    /**
+     * 弹出选择器
+     */
+    private void wheel() {
+
+        mCityPickerView.init(this);
+
+        CityConfig cityConfig = new CityConfig.Builder().title("")//标题
+                .province(SystemModels.locationInfo.getProvince())
+                .city(SystemModels.locationInfo.getCity())
+                .district(SystemModels.locationInfo.getDistrict())
+                .build();
+
+        mCityPickerView.setConfig(cityConfig);
+        mCityPickerView.setOnCityItemClickListener(new OnCityItemClickListener() {
+            @Override
+            public void onSelected(ProvinceBean province, CityBean city, DistrictBean district) {
+                StringBuilder sb = new StringBuilder();
+                sb.append("选择的结果：\n");
+                if (province != null) {
+                    sb.append(province.getName() + " " + province.getId() + "\n");
+                }
+
+                if (city != null) {
+                    sb.append(city.getName() + " " + city.getId() + ("\n"));
+                }
+
+                if (district != null) {
+                    sb.append(district.getName() + " " + district.getId() + ("\n"));
+                }
+
+            }
+
+            @Override
+            public void onCancel() {
+                MessageBox.show("已取消");
+            }
+        });
+        mCityPickerView.showCityPicker();
     }
 }

@@ -68,6 +68,21 @@ public class SysUser {
 
     private String skin;
 
+    /**
+     * 账户余额
+     */
+    private double account;
+
+    /**
+     * 最后定位坐标
+     */
+    private String lastLocation;
+
+    /**
+     * 定位地区
+     */
+    private String lastLocationStr;
+
     public int getId() {
         return id;
     }
@@ -210,5 +225,29 @@ public class SysUser {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public double getAccount() {
+        return account;
+    }
+
+    public void setAccount(double account) {
+        this.account = account;
+    }
+
+    public String getLastLocation() {
+        return lastLocation;
+    }
+
+    public void setLastLocation(String lastLocation) {
+        this.lastLocation = lastLocation;
+    }
+
+    public String getLastLocationStr() {
+        return lastLocationStr;
+    }
+
+    public void setLastLocationStr(String lastLocationStr) {
+        this.lastLocationStr = lastLocationStr;
     }
 }

@@ -18,9 +18,8 @@
 
         <ImageButton
             android:id="@+id/btn_back"
-            android:layout_width="@dimen/dp30"
-            android:layout_height="@dimen/dp30"
-            android:layout_marginTop="@dimen/dp25"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp80"
             android:background="@null"
             android:contentDescription="@string/app_name"
             android:padding="@dimen/dp10"

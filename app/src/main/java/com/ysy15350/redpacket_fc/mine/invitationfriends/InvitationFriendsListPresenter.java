@@ -6,11 +6,17 @@ import android.database.Cursor;
 import android.provider.ContactsContract;
 
 import com.ysy15350.redpacket_fc.adapters.ListViewAdapter_Invitation_Friends;
+import com.ysy15350.ysyutils.api.ApiCallBack;
+import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.base.mvp.BasePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import api.AccountAPi;
+import api.UserApi;
+import api.impl.AccounApiImpl;
+import api.impl.UserApiImpl;
 import model.invitation.MailList;
 
 
@@ -20,6 +26,37 @@ public class InvitationFriendsListPresenter extends BasePresenter<InvitationFrie
         super(context);
 
     }
+
+    private AccountAPi accountAPi = new AccounApiImpl();
+
+
+    /**
+     * 邀请
+     */
+    public void invite(String mobile) {
+
+        accountAPi.invite(mobile, new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, Response response) {
+                super.onSuccess(isCache, response);
+                mView.inviteCallback(isCache,response);
+            }
+        });
+    }
+    /**
+     * 已邀请过的手机号
+     */
+    public void getInviteList(String mobile) {
+
+        accountAPi.getInviteList(mobile,new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, Response response) {
+                super.onSuccess(isCache, response);
+                mView.getInviteListCallback(isCache,response);
+            }
+        });
+    }
+
 
 
     /**
@@ -56,12 +93,9 @@ public class InvitationFriendsListPresenter extends BasePresenter<InvitationFrie
 
                 if (mailList != null)
                     mList.add(mailList);
-
-
-                mView.getphonenemeCallback(mList);
-
-
             }
+
+            mView.getphonenemeCallback(mList);
 
 
         } catch (Exception e) {
@@ -72,29 +106,8 @@ public class InvitationFriendsListPresenter extends BasePresenter<InvitationFrie
     }
 
 
-    public void getFollowList(int page, int pageSize) {
-//        mView.bindFollowListCallback(false,null);
-    }
 
-//    private UserApi userApi=new UserApiImpl();
-//
-//    public void login(){
-//        userApi.login("test", "test", new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, Response response) {
-//                super.onSuccess(isCache, response);
-//            }
-//        });
-//    }
-//
-//    public void activate() {
-//        userApi.activate(new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, Response response) {
-//                super.onSuccess(isCache, response);
-//                mView.activateCallback(isCache, response);
-//            }
-//        });
-//    }
+
+
 
 }

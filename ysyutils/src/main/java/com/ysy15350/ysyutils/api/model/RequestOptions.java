@@ -91,11 +91,7 @@ public class RequestOptions {
          * @param value
          */
         public Builder addBodyParameter(String name, Object value) {
-            if (!TextUtils.isEmpty(name)) {
-                options.bodyParams.add(new KeyValuePair(name, value));
-            } else {
-                //options.bodyContent = value;
-            }
+            options.bodyParams.add(new KeyValuePair(name, value));
             return this;
         }
 

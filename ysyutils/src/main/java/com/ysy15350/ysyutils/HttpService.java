@@ -17,5 +17,10 @@ public interface HttpService {
      */
     public void requestPost(RequestOptions requestOptions, ApiCallBack apiCallBack);
 
+    /**
+     * 执行微信网络请求
+     */
+    public void requestWXPost(StringBuffer url, ApiCallBack apiCallBack);
+
 }
 

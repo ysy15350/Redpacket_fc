@@ -30,6 +30,7 @@ import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.common.AppStatusManager;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.common.RequestPermissionType;
+import com.ysy15350.ysyutils.common.SystemModels;
 import com.ysy15350.ysyutils.common.ViewHolder;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 import com.ysy15350.ysyutils.custom_view.dialog.ConfirmDialog;
@@ -860,6 +861,7 @@ public class BaseActivity extends AppCompatActivity implements IView, GestureDet
                             //可在其中解析amapLocation获取相应内容。
 
                             LocationInfo locationInfo = LocationInfo.parseAMapLocation(aMapLocation);
+
                             onLocationChange(locationInfo);
 
                         } else {
@@ -883,6 +885,7 @@ public class BaseActivity extends AppCompatActivity implements IView, GestureDet
     protected void onLocationChange(LocationInfo locationInfo) {
         mLocationInfo = locationInfo;
         if (locationInfo != null) {
+            SystemModels.locationInfo = locationInfo;
             Log.d(TAG, "onLocationChanged: " + locationInfo.getAddress());
         }
     }

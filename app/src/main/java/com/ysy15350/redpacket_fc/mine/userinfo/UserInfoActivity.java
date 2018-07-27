@@ -25,6 +25,7 @@ import com.ysy15350.ysyutils.citychoice.bean.ProvinceBean;
 import com.ysy15350.ysyutils.citychoice.citywheel.CityConfig;
 import com.ysy15350.ysyutils.citychoice.style.citypickerview.CityPickerView;
 import com.ysy15350.ysyutils.common.CommFun;
+import com.ysy15350.ysyutils.common.SystemModels;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.dialog.DateDialog;
@@ -72,7 +73,6 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
     private StringBuilder habitualResidence;
 
 
-
     @Override
     protected UserInfoPresenter createPresenter() {
         // TODO Auto-generated method stub
@@ -88,15 +88,17 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
         /**
          * 预先加载仿iOS滚轮实现的全部数据
          */
-        mCityPickerView.init(this);
+        //mCityPickerView.init(this);
     }
 
+
     @Override
-    protected void onResume() {
-        super.onResume();
+    public void loadData() {
+        super.loadData();
+
         bindUserInfo(BaseData.getSysUser());
-        MessageBox.showWaitDialog(this,"数据加载中...");
-        mPresenter.userInfo();
+//        MessageBox.showWaitDialog(this, "数据加载中...");
+//        mPresenter.userInfo();
     }
 
     @Override
@@ -147,7 +149,7 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
                     int status = responseHead.getResponse_status();
                     String msg = responseHead.getResponse_msg();
                     if (status == 100) {
-
+                        loadData();
                     }
                     showMsg(msg);
                 }
@@ -170,42 +172,38 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
                 // 头像图片
 
                 // 用户名称
-                if(!CommFun.notNullOrEmpty(sysUser.getNickname())){
-                    mHolder.setText(R.id.et_username, sysUser.getNickname());
-                }
+                mHolder.setText(R.id.et_username, sysUser.getNickname());
+
 
                 // 个性签名
-                if(CommFun.notNullOrEmpty(sysUser.getPersonalitySignature())){
-                    mHolder.setText(R.id.et_personalitySignature, sysUser.getPersonalitySignature());
-                }
+                mHolder.setText(R.id.et_personalitySignature, sysUser.getPersonalitySignature());
 
                 // 支付宝账号
                 mHolder.setText(R.id.btn_setalipay, sysUser.getAlipayAccount());
 
+                String sexStr = "";
+
                 // 性别
-                if (sysUser.getSex() != 0) {
-                    mHolder.setText(R.id.tv_sex, sysUser.getSex() + "");
+                if (sysUser.getSex() == 1) {
+                    sexStr = "男";
+                } else if (sysUser.getSex() == 2) {
+                    sexStr = "女";
+                } else {
+                    sexStr = "未设置";
                 }
 
+                mHolder.setText(R.id.tv_sex, sexStr);
+
+
                 // 生日
-                if (sysUser.getBirthdayYear() != 0
-                        && sysUser.getBirthdayMonth() != 0
-                        && sysUser.getBirthdayDay() != 0
-                        ) {
-                    String birthday = sysUser.getBirthdayYear() + "-" + sysUser.getBirthdayMonth() + "-" + sysUser.getBirthdayDay();
-                    mHolder.setText(R.id.tv_birthday, birthday);
-                }
+                mHolder.setText(R.id.tv_birthday, sysUser.getBirthday());
 
 
                 // 常驻地区
-                if(CommFun.notNullOrEmpty(sysUser.getHabitualResidence())){
-                    mHolder.setText(R.id.tv_habitualResidence, sysUser.getHabitualResidence());
-                }
+                mHolder.setText(R.id.tv_habitualResidence, sysUser.getHabitualResidence());
 
                 // 手机号
-                if(CommFun.notNullOrEmpty(sysUser.getMobile())){
-                    mHolder.setText(R.id.et_mobile, sysUser.getMobile());
-                }
+                mHolder.setText(R.id.et_mobile, sysUser.getMobile());
             }
         } catch (Exception e) {
         }
@@ -216,7 +214,12 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
      */
     private void wheel() {
 
-        CityConfig cityConfig = new CityConfig.Builder().title("选择城市")//标题
+        mCityPickerView.init(this);
+
+        CityConfig cityConfig = new CityConfig.Builder().title("")//标题
+                .province(SystemModels.locationInfo.getProvince())
+                .city(SystemModels.locationInfo.getCity())
+                .district(SystemModels.locationInfo.getDistrict())
                 .build();
 
         mCityPickerView.setConfig(cityConfig);
@@ -251,6 +254,18 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
     }
 
     /**
+     * 清空昵称
+     *
+     * @param view
+     */
+    @Event(value = R.id.imgbtn_fork)
+    private void imgbtn_forkClick(View view) {
+
+        mHolder.setText(R.id.et_username, "");
+
+    }
+
+    /**
      * 设置支付宝
      *
      * @param view
@@ -271,7 +286,7 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
     private View mPopView;
     private PopupWindow mPopupWindow;
     RelativeLayout rl_pop_main;
-    LinearLayout ll_boy,ll_gril;
+    LinearLayout ll_boy, ll_gril;
 
     /**
      * 性别
@@ -293,6 +308,7 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
                 @Override
                 public void onClick(View view) {
                     mHolder.setText(R.id.tv_sex, "男");
+                    sex = 1;
                     mPopupWindow.dismiss();
                 }
             });
@@ -303,6 +319,7 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
                 @Override
                 public void onClick(View view) {
                     mHolder.setText(R.id.tv_sex, "女");
+                    sex = 2;
                     mPopupWindow.dismiss();
                 }
             });
@@ -394,15 +411,17 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
         sysUser.setPersonalitySignature(mHolder.getViewText(R.id.et_personalitySignature));
 
         // 支付宝账号
-        sysUser.setAlipayAccount(mHolder.getViewText(R.id.btn_setalipay));
+        if (!mHolder.getViewText(R.id.btn_setalipay).equals("去设置")) {
+            sysUser.setAlipayAccount(mHolder.getViewText(R.id.btn_setalipay));
+        }
 
         // 性别
-        sysUser.setSex(CommFun.toInt32(mHolder.getViewText(R.id.tv_sex),-1));
+        sysUser.setSex(CommFun.toInt32(sex, -1));
 
         // 生日
-        sysUser.setBirthdayYear(CommFun.toInt32(birthdayYear,-1));
-        sysUser.setBirthdayMonth(CommFun.toInt32(birthdayMonth,-1));
-        sysUser.setBirthdayDay(CommFun.toInt32(birthdayDay,-1));
+        sysUser.setBirthdayYear(CommFun.toInt32(birthdayYear, -1));
+        sysUser.setBirthdayMonth(CommFun.toInt32(birthdayMonth, -1));
+        sysUser.setBirthdayDay(CommFun.toInt32(birthdayDay, -1));
         sysUser.setBirthday(birthday);
 
 
@@ -410,9 +429,14 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
         sysUser.setHabitualResidence(mHolder.getViewText(R.id.tv_habitualResidence));
 
         // 手机号
-        sysUser.setMobile(mHolder.getViewText(R.id.et_mobile));
+        String phone = mHolder.getViewText(R.id.et_mobile);
+        if (CommFun.isNullOrEmpty(phone)) {
+            MessageBox.show("请输入您的手机号");
+            return;
+        }
+        sysUser.setMobile(phone);
 
-        MessageBox.showWaitDialog(this,"数据保存中...");
+        MessageBox.showWaitDialog(this, "数据保存中...");
         mPresenter.saveUserInfo(sysUser);
 
     }

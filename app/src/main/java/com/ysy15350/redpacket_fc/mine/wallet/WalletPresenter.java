@@ -3,7 +3,16 @@ package com.ysy15350.redpacket_fc.mine.wallet;
 import android.content.Context;
 
 import com.ysy15350.redpacket_fc.mine.setalipay.SetAlipayViewInterface;
+import com.ysy15350.ysyutils.api.ApiCallBack;
+import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.base.mvp.BasePresenter;
+import com.ysy15350.ysyutils.model.SysUser;
+
+import api.AccountAPi;
+import api.UserApi;
+import api.impl.AccounApiImpl;
+import api.impl.UserApiImpl;
+import model.withdraw.Withdraw;
 
 
 public class WalletPresenter extends BasePresenter<WalletViewInterface> {
@@ -12,30 +21,5 @@ public class WalletPresenter extends BasePresenter<WalletViewInterface> {
         super(context);
 
     }
-
-    public void getAdsCardList(int page,int pageSize){
-//        mView.bindAdsCardListCallback(false,null);
-    }
-
-//    private UserApi userApi=new UserApiImpl();
-//
-//    public void login(){
-//        userApi.login("test", "test", new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, Response response) {
-//                super.onSuccess(isCache, response);
-//            }
-//        });
-//    }
-//
-//    public void activate() {
-//        userApi.activate(new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, Response response) {
-//                super.onSuccess(isCache, response);
-//                mView.activateCallback(isCache, response);
-//            }
-//        });
-//    }
 
 }

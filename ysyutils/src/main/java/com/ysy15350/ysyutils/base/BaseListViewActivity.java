@@ -30,7 +30,7 @@ public abstract class BaseListViewActivity extends BaseActivity
         if (xListView != null) {
 
             xListView.setDivider(new ColorDrawable(getResources().getColor(R.color.devider_color))); // 设置间距颜色
-            xListView.setDividerHeight(CommFunAndroid.dip2px(10)); // 设置间距高度(此必须设置在setDivider（）之后，否则无效果)
+//            xListView.setDividerHeight(CommFunAndroid.dip2px(1)); // 设置间距高度(此必须设置在setDivider（）之后，否则无效果)
 
             xListView.setPullLoadEnable(true);
 

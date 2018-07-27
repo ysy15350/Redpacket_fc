@@ -1,10 +1,12 @@
 package com.ysy15350.ysyutils.api.model;
 
 
+import com.google.gson.reflect.TypeToken;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.List;
 
 
 public class Response {

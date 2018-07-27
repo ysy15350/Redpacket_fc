@@ -77,7 +77,9 @@
                         android:text=""
                         android:textSize="12sp" />
 
-                    <ImageView style="@style/imgView_fork" />
+                    <ImageView
+                        android:id="@+id/imgbtn_fork"
+                        style="@style/imgView_fork" />
                 </LinearLayout>
 
                 <View style="@style/view_line_menu1" />
@@ -216,7 +218,7 @@
                         android:layout_marginStart="@dimen/dp20"
                         android:layout_weight="1"
                         android:text="请设置"
-                        android:textColor="@color/main_color_gray" />
+                        android:textColor="@color/black" />
 
                 </LinearLayout>
 

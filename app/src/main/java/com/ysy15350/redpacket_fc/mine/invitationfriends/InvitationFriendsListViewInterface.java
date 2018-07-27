@@ -12,13 +12,24 @@ import model.invitation.MailList;
 
 public interface InvitationFriendsListViewInterface {
 
-//    /**
-//     * 绑定关注列表
-//     * @param isCache
-//     * @param response
-//     */
-//    public void bindFollowListCallback(boolean isCache, Response response);
+    /**
+     * 邀请回调
+     * @param isCache
+     * @param response
+     */
+    void inviteCallback(boolean isCache, Response response);
+    /**
+     * 已邀请过的手机号回调
+     * @param isCache
+     * @param response
+     */
+    void getInviteListCallback(boolean isCache, Response response);
 
-    public void getphonenemeCallback(List<MailList> mailLists);
+
+    /**
+     * 获取手机联系人回调
+     * @param mailLists
+     */
+    void getphonenemeCallback(List<MailList> mailLists);
 
 }
