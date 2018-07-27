@@ -69,6 +69,7 @@ import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import model.invitation.MailList;
 
@@ -76,7 +77,7 @@ import static com.ysy15350.ysyutils.common.cache.ACache.aCache;
 
 @ContentView(R.layout.activity_main_tab1)
 public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, MainTab1Presenter>
-        implements MainTab1ViewInterface, LocationSource, AMap.OnMyLocationChangeListener, AMap.OnMapTouchListener, AMap.OnMarkerClickListener,
+        implements MainTab1ViewInterface, LocationSource, AMapLocationListener, AMap.OnMyLocationChangeListener, AMap.OnMapTouchListener, AMap.OnMarkerClickListener,
         AMap.OnInfoWindowClickListener, AMap.OnMarkerDragListener, AMap.OnMapLoadedListener, AMap.InfoWindowAdapter, RadioGroup.OnCheckedChangeListener {
 
     private static final String TAG = "MainTab1Fragment";
@@ -107,9 +108,9 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     private LatLng currentLatlng;
 
     /**
-     * 圆的半径（默认500米）
+     * 圆的半径（默认1000米）
      */
-    private int radius = 500;
+    private int radius = 1000;
 
     /**
      * 地图坐标集合
@@ -176,6 +177,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
     private void setUpMap() {
         //aMap.setLocationSource(this);// 设置定位监听
+        aMap.setOnMyLocationChangeListener(this);// 设置定位监听
         aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setOnMapTouchListener(this);
@@ -196,21 +198,29 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 //aMap.getUiSettings().setMyLocationButtonEnabled(true);设置默认定位按钮是否显示，非必需设置。
         aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
 
+
+
+
+        //addMarkersToMap();// 往地图上添加marker
+    }
+
+    @Override
+    public void readCahce() {
+        super.readCahce();
+
         // 获取缓存定位坐标并不设置定位
         try {
             if (aCache != null) {
                 String latlngJson = aCache.getAsString("latlngJson");
                 if (CommFun.notNullOrEmpty(latlngJson)) {
                     LatLng cachelatLng = JsonConvertor.fromJson(latlngJson, LatLng.class);
+                    currentLatlng = cachelatLng;
                     aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cachelatLng, 15));
                 }
             }
         } catch (Exception e) {
 
         }
-
-
-        //addMarkersToMap();// 往地图上添加marker
     }
 
     /**
@@ -405,11 +415,12 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             if (latLng != null) {
                 double latitude = currentLatlng.latitude;
                 double longitude = currentLatlng.longitude;
-                for (int i = 0; i < 14; i++) {
-                    double d1 = latitude + (i / 100);
-                    double d2 = longitude + (i / 100);
+                for (int i = 0; i < 100; i++) {
+                    Random ran = new Random(System.currentTimeMillis());
+                    double lat = latitude+(ran.nextInt(3)*0.02);
+                    double lng = longitude+(ran.nextInt(3)*0.02);
 //                    LatLng item = new LatLng(29.646661, 106.566095);
-                    LatLng item = new LatLng(d1, d2);
+                    LatLng item = new LatLng(lat, lng);
                     latLngs.add(item);
                 }
                 drawRedPacket(latLngs);//绘制红包
@@ -447,22 +458,27 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                 }
             } else {
                 // 获取缓存定位坐标并不设置定位
+
+                LatLng cachelatLng = null;
+
                 try {
                     if (aCache != null) {
                         String latlngJson = aCache.getAsString("latlngJson");
                         if (CommFun.notNullOrEmpty(latlngJson)) {
-                            LatLng cachelatLng = JsonConvertor.fromJson(latlngJson, LatLng.class);
+                            cachelatLng = JsonConvertor.fromJson(latlngJson, LatLng.class);
                             builder.include(cachelatLng);
                         }
                     }
                 } catch (Exception e) {
 
                 }
+
             }
 
             LatLngBounds bounds = builder.build();
             aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150));//移动地图中心点
-            addPolylinescircle(currentLatlng, radius);// 绘制圆
+
+
 
         } catch (Exception ex) {
 
@@ -529,7 +545,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             mlocationClient = new AMapLocationClient(getActivity());
             mLocationOption = new AMapLocationClientOption();
             //设置定位监听
-//            mlocationClient.setLocationListener(this);
+            mlocationClient.setLocationListener(this);
             //设置为高精度定位模式
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
             //设置每5秒定位一次
@@ -554,52 +570,52 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         mlocationClient = null;
     }
 
-//    @Override
-//    public void onLocationChanged(AMapLocation amapLocation) {
-//        if (mListener != null && amapLocation != null) {
-//            if (amapLocation != null
-//                    && amapLocation.getErrorCode() == 0) {
-//                LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
-//                // 缓存定位坐标
-//                if (aCache != null) {
-//                    String latlngJson = JsonConvertor.toJson(latLng);
-//                    aCache.put("latlngJson", latlngJson);
+    @Override
+    public void onLocationChanged(AMapLocation amapLocation) {
+        if (mListener != null && amapLocation != null) {
+            if (amapLocation != null
+                    && amapLocation.getErrorCode() == 0) {
+                LatLng latLng = new LatLng(amapLocation.getLatitude(), amapLocation.getLongitude());
+                // 缓存定位坐标
+                if (aCache != null) {
+                    String latlngJson = JsonConvertor.toJson(latLng);
+                    aCache.put("latlngJson", latlngJson);
+                }
+                currentLatlng = latLng;
+                addPolylinescircle(currentLatlng, radius);
+                //展示自定义定位小蓝点
+                if (locationMarker == null) {
+                    //首次定位
+                    locationMarker = aMap.addMarker(new MarkerOptions().position(latLng)
+                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.gps_point)));
+
+                    //首次定位,选择移动到地图中心点并修改级别到15级
+                    aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
+
+
+                }
+
+                Log.d(TAG, "onLocationChanged: " + latLng.latitude + "," + latLng.longitude);
+//                else {
+//
+//                    if (useMoveToLocationWithMapMode) {
+//                        //二次以后定位，使用sdk中没有的模式，让地图和小蓝点一起移动到中心点（类似导航锁车时的效果）
+//                        startMoveLocationAndMap(latLng);
+//                    } else {
+//                        startChangeLocation(latLng);
+//                    }
+//
 //                }
-//                currentLatlng = latLng;
-//                addPolylinescircle(currentLatlng, radius);
-//                //展示自定义定位小蓝点
-//                if (locationMarker == null) {
-//                    //首次定位
-//                    locationMarker = aMap.addMarker(new MarkerOptions().position(latLng)
-//                            .icon(BitmapDescriptorFactory.fromResource(R.mipmap.gps_point)));
-//
-//                    //首次定位,选择移动到地图中心点并修改级别到15级
-//                    aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15));
-//
-//
-//                }
-//
-//                Log.d(TAG, "onLocationChanged: " + latLng.latitude + "," + latLng.longitude);
-////                else {
-////
-////                    if (useMoveToLocationWithMapMode) {
-////                        //二次以后定位，使用sdk中没有的模式，让地图和小蓝点一起移动到中心点（类似导航锁车时的效果）
-////                        startMoveLocationAndMap(latLng);
-////                    } else {
-////                        startChangeLocation(latLng);
-////                    }
-////
-////                }
-//
-//                createRedPacket(latLng);//绘制红包
-//
-//
-//            } else {
-//                String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
-//                Log.e("AmapErr", errText);
-//            }
-//        }
-//    }
+
+                createRedPacket(latLng);//绘制红包
+
+
+            } else {
+                String errText = "定位失败," + amapLocation.getErrorCode() + ": " + amapLocation.getErrorInfo();
+                Log.e("AmapErr", errText);
+            }
+        }
+    }
 
 
     @Override
@@ -612,10 +628,12 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             Log.d(TAG, "onMyLocationChange: " + location.getLatitude() + "," + location.getLongitude());
 
             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            currentLatlng = latLng;
             String latlngJson = JsonConvertor.toJson(latLng);
             aCache.put("latlngJson", latlngJson);
 
-            createRedPacket(latLng);
+            createRedPacket(currentLatlng);//生成红包
+            addPolylinescircle(currentLatlng, radius); // 绘制圆
         }
 
     }
@@ -699,6 +717,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     ;
 
     /**
+     * 绘制圆
      * @param centerpoint 中心点坐标
      * @param radius      半径 米
      */
@@ -713,13 +732,14 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                     .strokeWidth(25);// 像素
             circle = aMap.addCircle(circleOptions);
             status = 0;
+
         }
 
     }
 
     private void Repaint() {
         aMap.clear();
-        addMarkersToMap();// 往地图上添加marker
+        createRedPacket(currentLatlng);//生成红包
         circleOptions = new CircleOptions().center(currentLatlng)
                 .radius(radius += 100)
                 .strokeColor(Color.argb(1, 1, 1, 1))

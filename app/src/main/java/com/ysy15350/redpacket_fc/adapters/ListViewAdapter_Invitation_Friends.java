@@ -35,11 +35,27 @@ public class ListViewAdapter_Invitation_Friends extends CommonAdapter<MailList> 
             if(mailList !=null){
                 String name  = mailList.getName();
                 holder.setText(R.id.tv_name,mailList.getName());
-                if(mailList.getStatus() == 1){
-                    holder.getView(R.id.imgbtn_circular).setEnabled(false);
+
+                // 是否已邀请
+                if(mailList.isSelect()){
+                    holder.setText(R.id.tv_invita,"已邀请");
+                    holder.getView(R.id.ll_btn1).setEnabled(false);
+                    holder.setVisibility_GONE(R.id.imgbtn_circular);
                 }else {
-                    holder.getView(R.id.imgbtn_circular).setEnabled(true);
+                    holder.setText(R.id.tv_invita,"立即邀请");
+                    holder.getView(R.id.ll_btn1).setEnabled(true);
+                    holder.setVisibility_VISIBLE(R.id.imgbtn_circular);
                 }
+
+                // 选中状态
+                boolean isStatus = true;
+                if(mailList.getStatus() == 1){
+                    isStatus = false;
+                }else {
+                    isStatus = true;
+                }
+                holder.getView(R.id.imgbtn_circular).setEnabled(isStatus);
+
             }
         } catch (Exception ex) {
 

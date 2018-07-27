@@ -8,6 +8,10 @@ public class MailList {
     private String name;
     private String phone;
 
+    /**
+     * 是否已邀请
+     */
+    private boolean select;
     private  int status;
 
     public String getName() {
@@ -32,5 +36,13 @@ public class MailList {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public boolean isSelect() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select = select;
     }
 }

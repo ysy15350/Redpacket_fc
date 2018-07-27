@@ -14,7 +14,7 @@ public interface AccountAPi {
     void withdraw(Withdraw withdraw, ApiCallBack callBack);
 
     /**
-     * 邀请
+     * 执行邀请联系人
      * @param mobile 邀请手机号
      * @param callBack
      */

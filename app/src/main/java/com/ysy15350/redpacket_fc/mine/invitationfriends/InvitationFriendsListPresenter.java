@@ -31,7 +31,7 @@ public class InvitationFriendsListPresenter extends BasePresenter<InvitationFrie
 
 
     /**
-     * 邀请
+     * 执行邀请联系人
      */
     public void invite(String mobile) {
 
@@ -44,7 +44,7 @@ public class InvitationFriendsListPresenter extends BasePresenter<InvitationFrie
         });
     }
     /**
-     * 已邀请过的手机号
+     * 获取已邀请过的手机号
      */
     public void getInviteList(String mobile) {
 

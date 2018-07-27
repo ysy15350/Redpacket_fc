@@ -79,18 +79,9 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
         super.loadData();
 
         MessageBox.showWaitDialog(this, "正在加载...");
-
         // 获取手机联系人
         mPresenter.getphoneneme();
 
-//        new Thread() {
-//
-//            @Override
-//            public void run() {
-//                super.run();
-//                mPresenter.getphoneneme();
-//            }
-//        }.start();
     }
 
 
@@ -150,56 +141,6 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
 
     }
 
-    private void bindListView(List<MailList> mailLists) {
-
-        mList = mailLists;
-
-
-        mAdapter = new ListViewAdapter_Invitation_Friends(InvitationFriendsListActivity.this, mList);
-
-        bindListView(mAdapter);// 调用父类绑定数据方法
-    }
-
-    @Override
-    public void inviteCallback(boolean isCache, Response response) {
-        try {
-
-            hideWaitDialog();
-
-            if (response != null) {
-                ResponseHead responseHead = response.getHead();
-                if (responseHead != null) {
-                    int status = responseHead.getResponse_status();
-                    String msg = responseHead.getResponse_msg();
-                    if (status == 100) {
-
-//                        Object responseBody = response.getBody();
-//                        String body = JsonConvertor.toJson(responseBody);
-
-//                        List<MailList> mailLists = JsonConvertor.fromJson(body,new TypeToken<List<MailList>>(){}.getType());
-//                        bindListView(mailLists);
-//                        mList = mailLists;
-//                        if(aCache != null){
-//                            String mailListsJson = JsonConvertor.toJson(mailLists);
-//                            aCache.put("mailListsJson",mailListsJson);
-//                        }
-                    }
-                    showMsg(msg);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void bindInviteList(List<SysUser> sysUserList) {
-        String userphone = "";
-//        int i = mobile.indexOf(mailLists.get(4).getPhone());
-//        if (i != -1) {
-//
-//        }
-
-    }
 
     @Override
     public void getInviteListCallback(boolean isCache, Response response) {
@@ -229,6 +170,41 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
             e.printStackTrace();
         }
     }
+
+    /**
+     * 通过已邀请人列表，改变最初所有联系人的状态
+     * @param sysUserList
+     */
+    private void bindInviteList(List<SysUser> sysUserList) {
+
+        for (long i = 0;i<sysUserList.size();i++){
+            String mobile = sysUserList.get((int) i).getMobile();
+            for (long y = 0; y<mList.size();y++){
+                String phone = mList.get((int) y).getPhone();
+                if(phone.equals(mobile)){
+                    mList.get((int) y).setSelect(true);
+                }
+            }
+        }
+
+        bindListView(mList);
+
+    }
+
+    /**
+     * 绑定最终联系人数据到列表
+     * @param mailLists
+     */
+    private void bindListView(List<MailList> mailLists) {
+
+        mList = mailLists;
+
+
+        mAdapter = new ListViewAdapter_Invitation_Friends(InvitationFriendsListActivity.this, mList);
+
+        bindListView(mAdapter);// 调用父类绑定数据方法
+    }
+
 
     /**
      * 全部选中
@@ -287,7 +263,7 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
     }
 
     /**
-     * 全部取消
+     * 立即邀请
      *
      * @param view
      */
@@ -297,6 +273,28 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
 
         MessageBox.showWaitDialog(this, "数据提交中...");
         mPresenter.invite("345161321,34135136132");
+    }
+
+    @Override
+    public void inviteCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+                    }
+                    showMsg(msg);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
