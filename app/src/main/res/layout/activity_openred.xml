@@ -68,6 +68,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tv_redpackageaccont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="18.666"
@@ -136,12 +137,11 @@
             android:layout_marginBottom="@dimen/dp20"
             android:layout_height="wrap_content" />
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/img_pictures"
             android:layout_width="match_parent"
             android:layout_margin="@dimen/dp20"
-            android:background="@mipmap/bg_gradual_change"
-            android:layout_height="wrap_content">
-        </LinearLayout>
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_marginBottom="@dimen/dp15"

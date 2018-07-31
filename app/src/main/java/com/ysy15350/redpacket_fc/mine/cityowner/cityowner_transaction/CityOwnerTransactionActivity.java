@@ -137,8 +137,8 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
      * 其他领地
      * @param view
      */
-    @Event(value = R.id.ll_othercity1)
-    private void ll_othercity1Click(View view) {
+    @Event(value = R.id.ll_othercity11)
+    private void ll_othercity11Click(View view) {
         wheel();
     }
 

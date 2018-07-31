@@ -35,5 +35,15 @@ public class MainTab4Presenter extends BasePresenter<MainTab4ViewInterface> {
         });
     }
 
+    public void activate() {
+        userApi.activate(new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, Response response) {
+                super.onSuccess(isCache, response);
+                mView.activateCallback(isCache, response);
+            }
+        });
+    }
+
 
 }

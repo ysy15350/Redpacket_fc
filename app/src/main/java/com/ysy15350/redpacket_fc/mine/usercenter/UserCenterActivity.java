@@ -86,25 +86,7 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
 
                 }
             }
-            list = new ArrayList<>();
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
+
 
 
             return list;
@@ -158,24 +140,24 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
                 // 头像图片
 
                 // 用户名称
-                if(!CommFun.isNullOrEmpty(sysUser.getNickname())){
-                    mHolder.setText(R.id.tv_username, sysUser.getNickname());
-                }
+                String name = CommFun.isNullOrEmpty(sysUser.getNickname()) ? sysUser.getMobile() : sysUser.getNickname();
+                mHolder.setText(R.id.tv_username, name);
+
 
                 // 个性签名
-                if(!CommFun.isNullOrEmpty(sysUser.getPersonalitySignature())){
+                if (!CommFun.isNullOrEmpty(sysUser.getPersonalitySignature())) {
                     mHolder.setText(R.id.tv_autograph, sysUser.getPersonalitySignature());
                 }
 
 
                 // 性别
                 if (sysUser.getSex() == 1) { // 男
-                    mHolder.setBackground(R.id.img_sex,R.mipmap.icon_boy);
-                }else if (sysUser.getSex() == 2) {
-                    mHolder.setBackground(R.id.img_sex,R.mipmap.icon_girl);
+                    mHolder.setBackground(R.id.img_sex, R.mipmap.icon_boy);
+                } else if (sysUser.getSex() == 2) {
+                    mHolder.setBackground(R.id.img_sex, R.mipmap.icon_girl);
                 }
                 // 常驻地区
-                if(!CommFun.isNullOrEmpty(sysUser.getHabitualResidence())){
+                if (!CommFun.isNullOrEmpty(sysUser.getHabitualResidence())) {
                     mHolder.setText(R.id.tv_habitualResidence, sysUser.getHabitualResidence());
                 }
 
@@ -221,6 +203,7 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
 
     /**
      * 返回
+     *
      * @param view
      */
     @Event(value = R.id.imgbtn_back)

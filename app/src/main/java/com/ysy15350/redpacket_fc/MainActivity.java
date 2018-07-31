@@ -16,9 +16,13 @@ import com.ysy15350.redpacket_fc.main_tabs.MainTab1Fragment;
 import com.ysy15350.redpacket_fc.main_tabs.MainTab2Fragment;
 import com.ysy15350.redpacket_fc.main_tabs.MainTab3Fragment;
 import com.ysy15350.redpacket_fc.main_tabs.MainTab4Fragment;
+import com.ysy15350.ysyutils.api.model.Response;
+import com.ysy15350.ysyutils.api.model.ResponseHead;
+import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
 import com.ysy15350.ysyutils.common.ExitApplication;
 import com.ysy15350.ysyutils.common.message.MessageBox;
+import com.ysy15350.ysyutils.model.SysUser;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -152,6 +156,40 @@ public class MainActivity extends MVPBaseActivity<MainViewInterface, MainPresent
 
         setSelect(tab_position);
 
+        mPresenter.activate();
+
+    }
+
+
+    @Override
+    public void activateCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+
+                        SysUser sysUser = response.getData(SysUser.class);
+                        if (sysUser != null) {
+
+                            BaseData.setSysUser(sysUser);
+                        }
+                    }
+
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

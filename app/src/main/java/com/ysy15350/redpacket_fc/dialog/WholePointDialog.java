@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
+import com.ysy15350.ysyutils.common.ViewHolder;
 
 
 /**
@@ -33,6 +34,12 @@ public class WholePointDialog extends Dialog {
     ImageView img_advertisement,imgbtn_white_fork;
 
     private View ll_close;
+
+    /**
+     * 控件ViewGroup
+     */
+    protected View mContentView;
+    private ViewHolder mHolder;
 
     public WholePointDialog(Context context) {
         this(context, "系统提示", "是否确定？", "确定", "取消");
@@ -81,6 +88,8 @@ public class WholePointDialog extends Dialog {
         tv_provider = conentView.findViewById(R.id.tv_provider);
         imgbtn_white_fork = conentView.findViewById(R.id.imgbtn_white_fork);
 
+        mHolder = ViewHolder.get(mContext, conentView);
+
         // 金额
         if (!CommFunAndroid.isNullOrEmpty(mMoney)) {
             tv_money.setText(mMoney);
@@ -88,7 +97,7 @@ public class WholePointDialog extends Dialog {
 
         // 广告图片
         if (!CommFunAndroid.isNullOrEmpty(mImgurl)) {
-            tv_money.setText(mMoney);
+            mHolder.setImageURL(img_advertisement,mImgurl);
         }
 
         // 提供商

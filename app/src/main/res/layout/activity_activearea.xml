@@ -244,7 +244,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:id="@+id/btn_cityowner"
+                    android:id="@+id/btn_fcb"
                     style="@style/btn_ok"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/dp49"

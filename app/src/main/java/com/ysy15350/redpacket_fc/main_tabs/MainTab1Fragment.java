@@ -53,21 +53,29 @@ import com.ysy15350.redpacket_fc.mine.cityowner.cityowner_transaction.CityOwnerT
 import com.ysy15350.redpacket_fc.mine.invitationfriends.InvitationFriendsListActivity;
 import com.ysy15350.redpacket_fc.mine.share.ShareActivity;
 import com.ysy15350.redpacket_fc.redpackage.open_treasurebox.OpenTreasureBoxActivity;
+import com.ysy15350.ysyutils.api.model.Response;
+import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
 import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
+import com.ysy15350.ysyutils.common.SystemModels;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.TextSwitchView;
 import com.ysy15350.ysyutils.custom_view.dialog.AgreementDialog;
 import com.ysy15350.ysyutils.gaodemap.util.Constants;
+import com.ysy15350.ysyutils.model.PageData;
+import com.ysy15350.ysyutils.model.SysUser;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -108,9 +116,9 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     private LatLng currentLatlng;
 
     /**
-     * 圆的半径（默认1000米）
+     * 圆的半径（默认200米）
      */
-    private int radius = 1000;
+    private int radius = 200;
 
     /**
      * 地图坐标集合
@@ -147,6 +155,8 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
         mMapView.onCreate(mSavedInstanceState);
 
+
+
         aMap = mMapView.getMap();
         setUpMap();
 
@@ -160,20 +170,38 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             status = 2;
         }
 
-        timerStart();
-
 
         useMoveToLocationWithMapMode = true;
     }
 
-
     @Override
-    public void initView() {
-        super.initView();
+    public void loadData() {
+        super.loadData();
 
-
+        mPresenter.getSystemTime();
     }
 
+    @Override
+    public void bindData() {
+        super.bindData();
+
+        SysUser sysUser = BaseData.getSysUser();
+        if (null != sysUser) {
+            String account = "";
+            if(CommFun.notNullOrEmpty(sysUser.getAccount())){
+                account = "¥"+sysUser.getAccount();
+            }else {
+                account = "未登录";
+
+            }
+            mHolder.setText(R.id.tv_useraccont, account);
+        }else {
+            mHolder.setText(R.id.tv_useraccont, "未登录");
+        }
+        String cityProper = SystemModels.locationInfo.getDistrict();
+        mHolder.setText(R.id.tv_cityProper, cityProper);
+
+    }
 
     private void setUpMap() {
         //aMap.setLocationSource(this);// 设置定位监听
@@ -198,10 +226,6 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 //aMap.getUiSettings().setMyLocationButtonEnabled(true);设置默认定位按钮是否显示，非必需设置。
         aMap.setMyLocationEnabled(true);// 设置为true表示启动显示定位蓝点，false表示隐藏定位蓝点并不进行定位，默认是false。
 
-
-
-
-        //addMarkersToMap();// 往地图上添加marker
     }
 
     @Override
@@ -223,31 +247,58 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         }
     }
 
-    /**
-     * 在地图上添加marker
-     */
-    private void addMarkersToMap() {
+    @Override
+    public void getSystemTimeCallback(boolean isCache, Response response) {
+        try {
 
-        ArrayList<MarkerOptions> markerOptionlst = new ArrayList<MarkerOptions>();
+            hideWaitDialog();
 
-//        latLngs.add(Constants.LONGKIN);
-//        latLngs.add(Constants.LATLNG1);
-//        latLngs.add(Constants.LATLNG2);
-//        latLngs.add(Constants.LATLNG3);
-//        latLngs.add(Constants.LATLNG4);
-//        latLngs.add(Constants.LATLNG5);
-//        latLngs.add(Constants.LATLNG6);
-//        latLngs.add(Constants.LATLNG7);
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+                        PageData pageData = response.getData(PageData.class);
 
-//        for (LatLng latLng : latLngs) {
-//            MarkerOptions markerOptions = newMarkerOptions(latLng);
-//            Marker marker = aMap.addMarker(markerOptions);
-//            growInto(marker);
-////            markerOptionlst.add(markerOptions);
-//        }
-//        List<Marker> markerlst = aMap.addMarkers(markerOptionlst, true);
+                        //为了测试，从接口返回结果中获取验证码并显示，正式使用时注释
+                        if (pageData != null) {
 
+                            String systemTimeStr = pageData.getString("systemTimeStr");
+                            if (!CommFun.isNullOrEmpty(systemTimeStr)) {
+                                // 服务器时间
+                                Date systemDate = CommFun.toDate(systemTimeStr);
+                                Calendar calendar = Calendar.getInstance();
+
+                                calendar.setTime(systemDate);
+                                int systemHour = calendar.get(Calendar.HOUR_OF_DAY);
+                                int systemMinute = calendar.get(Calendar.MINUTE);
+                                int systemSecond = calendar.get(Calendar.SECOND);
+
+                                // 得到倒计时的分秒
+                                int second = 60-systemSecond;
+                                int minute = 0;
+                                if(second>0){
+                                    minute = (60-systemMinute)-1;
+                                }else {
+                                    minute = 60-systemMinute;
+                                }
+                                long millisInFuture = ((minute*60)+second)*1000;
+                                //倒计时器
+                                CountDownTimers countDownTimers = new CountDownTimers(millisInFuture,1000);
+                                countDownTimers.start();
+                            }
+                        }
+                    }
+                    showMsg(msg);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+
 
     private MarkerOptions newMarkerOptions(LatLng var1) {
         MarkerOptions markerOptions = new MarkerOptions();
@@ -417,8 +468,8 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                 double longitude = currentLatlng.longitude;
                 for (int i = 0; i < 100; i++) {
                     Random ran = new Random(System.currentTimeMillis());
-                    double lat = latitude+(ran.nextInt(3)*0.02);
-                    double lng = longitude+(ran.nextInt(3)*0.02);
+                    double lat = latitude+(ran.nextInt(2)*0.02);
+                    double lng = longitude+(ran.nextInt(2)*0.02);
 //                    LatLng item = new LatLng(29.646661, 106.566095);
                     LatLng item = new LatLng(lat, lng);
                     latLngs.add(item);
@@ -779,39 +830,44 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     /**
      * 倒数计时器
      */
-    private CountDownTimer timer = new CountDownTimer(15 * 60 * 1000, 1000) {
+    class CountDownTimers extends CountDownTimer{
+
+        public CountDownTimers(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        /**
+         * 取消倒计时
+         */
+        public void timerCancel() {
+            this.cancel();
+        }
+
+        /**
+         * 开始倒计时
+         */
+        public void timerStart() {
+            this.start();
+        }
+
         /**
          * 固定间隔被调用,就是每隔countDownInterval会回调一次方法onTick
-         * @param millisUntilFinished
          */
         @Override
         public void onTick(long millisUntilFinished) {
             mHolder.setText(R.id.tv_countdown, CommFun.formatTime(millisUntilFinished));
         }
 
-
         /**
          * 倒计时完成时被调用
          */
         @Override
         public void onFinish() {
-            mHolder.setText(R.id.tv_countdown, "00:00");
+
         }
-    };
-
-    /**
-     * 取消倒计时
-     */
-    public void timerCancel() {
-        timer.cancel();
     }
 
-    /**
-     * 开始倒计时
-     */
-    public void timerStart() {
-        timer.start();
-    }
+
 
     /**
      * 邀请好友
@@ -824,6 +880,10 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
     }
 
+    private String  strprice;
+    private String strimgurl;
+    private String strcompany;
+
 
     /**
      * 打开整点红包/每日任务
@@ -833,12 +893,57 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     @Event(value = R.id.llbtn_clock)
     private void llbtn_clockClick(View view) {
 
-//        WholePointDialog wholePointDialog = new WholePointDialog(getActivity(), "¥654.66", "dsfd", "不知道谁提供的");
-//
-//        wholePointDialog.show();
+        MessageBox.showWaitDialog(getActivity(),"数据加载中...");
 
-        // 每日任务
-        startActivity(new Intent(getActivity(), DailyTasksListActivity.class));
+        mPresenter.grabRedPacket(2);
+
+//        // 每日任务
+//        startActivity(new Intent(getActivity(), DailyTasksListActivity.class));
+    }
+
+    @Override
+    public void grabRedPacketCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+                        PageData pageData = response.getData(PageData.class);
+
+                        if (pageData != null) {
+
+                            double price = (double) pageData.get("price");
+                            if (CommFun.notNullOrEmpty(price)) {
+                                strprice = "¥"+price;
+                            }
+
+                            String imgurl = pageData.getString("imgurl");
+                            if (CommFun.notNullOrEmpty(imgurl)) {
+                                strimgurl = imgurl;
+                            }
+
+                            String company = pageData.getString("company");
+                            if (CommFun.notNullOrEmpty(company)) {
+                                strcompany = company;
+                            }
+
+                            WholePointDialog wholePointDialog = new WholePointDialog(getActivity(), strprice, strimgurl, strcompany);
+
+                            wholePointDialog.show();
+                        }
+                    }else {
+                        showMsg(msg);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

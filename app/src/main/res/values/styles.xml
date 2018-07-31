@@ -153,14 +153,15 @@
     <!-- 左右点击按钮大小 -->
     <style name="active_lr">
         <item name="android:layout_width">@dimen/dp16</item>
-        <item name="android:layout_height">@dimen/dp22</item>
+        <item name="android:layout_height">@dimen/dp30</item>
     </style>
 
     <!-- 左右点击按钮背景 -->
     <style name="active_bg_lr">
-        <item name="android:layout_width">@dimen/dp35</item>
-        <item name="android:layout_height">@dimen/dp60</item>
+        <item name="android:layout_width">@dimen/dp40</item>
+        <item name="android:layout_height">@dimen/dp80</item>
         <item name="android:gravity">center</item>
+        <item name="android:alpha">0.6</item>
         <item name="android:background">@color/main_color_gray</item>
     </style>
 

@@ -54,6 +54,8 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
         super.loadData();
 
 
+        mPresenter.activate();
+
     }
 
     @Override
@@ -66,10 +68,43 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
             String nickName = CommFun.isNullOrEmpty(sysUser.getNickname()) ? CommFun.getPhone(sysUser.getMobile()) : sysUser.getNickname();
             mHolder.setText(R.id.tv_nickname, nickName);
             if (CommFun.notNullOrEmpty(sysUser.getId() + "")) {
-                mHolder.setText(R.id.tv_nameid, sysUser.getId() + "");
+                mHolder.setText(R.id.tv_nameid, "ID:"+sysUser.getId());
             }
         }
+
     }
+
+    @Override
+    public void activateCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+
+                        SysUser sysUser = response.getData(SysUser.class);
+                        if (sysUser != null) {
+
+                            BaseData.setSysUser(sysUser);
+                        }
+                    }
+
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     @Override
     public void userInfoCallback(boolean isCache, Response response) {

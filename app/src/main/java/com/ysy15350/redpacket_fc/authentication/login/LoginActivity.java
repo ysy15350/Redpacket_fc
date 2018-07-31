@@ -3,6 +3,7 @@ package com.ysy15350.redpacket_fc.authentication.login;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.ysy15350.redpacket_fc.MainActivity;
@@ -28,6 +29,7 @@ import org.xutils.view.annotation.Event;
 @ContentView(R.layout.activity_login)
 public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPresenter> implements LoginViewInterface {
 
+    private static final String TAG = "LoginActivity";
     View contentView;
 
     @Override
@@ -145,7 +147,8 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
 
                             String code = pageData.getString("code");
                             if (!CommFun.isNullOrEmpty(code)) {
-                                mHolder.setText(R.id.et_code, code);
+                                Log.d(TAG, "getDynCodeCallback: "+code);
+//                                mHolder.setText(R.id.et_code, code);
                             }
                         }
 

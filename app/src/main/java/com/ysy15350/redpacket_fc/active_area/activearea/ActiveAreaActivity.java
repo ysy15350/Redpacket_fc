@@ -41,7 +41,7 @@ public class ActiveAreaActivity extends MVPBaseActivity<ActiveAreaViewInterface,
     @Override
     public void initView() {
         super.initView();
-        setFormHead("");
+        setFormHead("广告0/10");
 
         getPictures();
     }
@@ -60,6 +60,14 @@ public class ActiveAreaActivity extends MVPBaseActivity<ActiveAreaViewInterface,
             ActiveAreaInfo areaInfo = new ActiveAreaInfo();
             areaInfo.setImgurl(img[y]);
             activeAreaInfos.add(areaInfo);
+        }
+
+        if(img.length<9){
+            mHolder.setBackground(R.id.btn_fcb,R.drawable.shape_btn_gray);
+            mHolder.getView(R.id.btn_fcb).setEnabled(false);
+        }else {
+            mHolder.setBackground(R.id.btn_fcb,R.drawable.shape_btn2_blue);
+            mHolder.getView(R.id.btn_fcb).setEnabled(true);
         }
 
         bindPictures(activeAreaInfos);
@@ -99,6 +107,7 @@ public class ActiveAreaActivity extends MVPBaseActivity<ActiveAreaViewInterface,
                     myViewPager.setMyViewPagerListener(new MyViewPager.MyViewPagerListener() {
                         @Override
                         public void onPageChanged(int index) {
+                            setFormHead("广告"+index+"/10");
                             switch (index){
                                 case 0:
                                     mHolder.setBackground(R.id.ll_round1,R.drawable.shape_circle1);
@@ -164,6 +173,14 @@ public class ActiveAreaActivity extends MVPBaseActivity<ActiveAreaViewInterface,
     }
 
 
+    /**
+     * 生成FCB
+     * @param view
+     */
+    @Event(value = R.id.btn_fcb)
+    private void btn_fcbClick(View view) {
+
+    }
 
 
 

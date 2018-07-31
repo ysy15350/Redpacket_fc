@@ -138,8 +138,7 @@
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/dp5"
-                                        android:src="@mipmap/icon_ctiy" />
+                                        android:src="@mipmap/icon_diamonds" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -166,8 +165,7 @@
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/dp5"
-                                        android:src="@mipmap/icon_ctiy" />
+                                        android:src="@mipmap/icon_diamonds" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -194,8 +192,7 @@
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/dp5"
-                                        android:src="@mipmap/icon_ctiy" />
+                                        android:src="@mipmap/icon_diamonds" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -222,8 +219,7 @@
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/dp5"
-                                        android:src="@mipmap/icon_ctiy" />
+                                        android:src="@mipmap/icon_diamonds" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -250,8 +246,7 @@
                                     <ImageView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_marginTop="@dimen/dp5"
-                                        android:src="@mipmap/icon_ctiy" />
+                                        android:src="@mipmap/icon_diamonds" />
                                 </LinearLayout>
                             </LinearLayout>
 
@@ -261,9 +256,8 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp15"
-                            android:layout_marginEnd="@dimen/dp40"
+                            android:layout_marginEnd="@dimen/dp45"
                             android:layout_marginStart="@dimen/dp40"
-                            android:layout_marginTop="@dimen/dp5"
                             android:background="@mipmap/bg_progressbar"
                             android:gravity="center">
 
@@ -271,7 +265,8 @@
                                 android:id="@+id/progress"
                                 style="?android:attr/progressBarStyleHorizontal"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/dp5"
+                                android:layout_height="@dimen/dp12"
+                                android:layout_marginStart="@dimen/dp3"
                                 android:layout_marginRight="@dimen/dp10"
                                 android:max="100"
                                 android:progressDrawable="@drawable/bar_project_progress" />

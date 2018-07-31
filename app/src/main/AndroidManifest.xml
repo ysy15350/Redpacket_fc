@@ -115,6 +115,7 @@
             </intent-filter>
         </activity>
 
+        <!-- 高德地图 -->
         <meta-data android:name="com.amap.api.v2.apikey" android:value="eb1b2527a19d053b60c284d5c496992f">
     </meta-data>
 

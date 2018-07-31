@@ -96,7 +96,7 @@
                         android:layout_marginBottom="@dimen/dp20">
 
                         <LinearLayout
-                            android:id="@+id/ll_othercity1"
+                            android:id="@+id/ll_othercity11"
                             android:layout_width="@dimen/dp160"
                             android:layout_height="@dimen/dp49"
                             android:layout_marginStart="@dimen/dp20"

@@ -79,27 +79,6 @@ public class FollowListActivity extends MVPBaseListViewActivity<FollowListViewIn
 
                 }
             }
-            list = new ArrayList<>();
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-            list.add(new FollowListInfo());
-
-
             return list;
 
         } catch (Exception ex) {

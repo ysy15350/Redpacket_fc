@@ -11,4 +11,6 @@ public interface MainTab4ViewInterface {
      */
     public void userInfoCallback(boolean isCache, Response response);
 
+    public void activateCallback(boolean isCache, Response response);
+
 }

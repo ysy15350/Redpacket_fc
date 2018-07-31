@@ -73,26 +73,6 @@ public class DetailedListActivity extends MVPBaseListViewActivity<DetailedListVi
 
                 }
             }
-            list = new ArrayList<>();
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-            list.add(new AdsCard());
-
 
             return list;
 

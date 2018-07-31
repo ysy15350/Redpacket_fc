@@ -20,4 +20,11 @@ public interface CommonApi {
      * @param callBack
      */
     public void checkVersion(int versionCode,ApiCallBack callBack);
+
+    /**
+     * 获取系统时间
+     * @param callBack
+     */
+    public void getSystemTime(ApiCallBack callBack);
+
 }

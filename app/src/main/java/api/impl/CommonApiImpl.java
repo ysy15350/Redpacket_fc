@@ -43,4 +43,20 @@ public class CommonApiImpl implements CommonApi {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void getSystemTime(ApiCallBack callBack) {
+        try {
+
+            RequestOptions requestOptions = new RequestOptions.Builder()
+                    .setRequestMapping(moduleName + "getSystemTime")
+                    .build();
+
+
+            Ysy.http().requestPost(requestOptions, callBack);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

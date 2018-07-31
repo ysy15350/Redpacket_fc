@@ -61,11 +61,12 @@
             android:id="@+id/tv_time"
             android:layout_width="@dimen/dp80"
             android:layout_height="@dimen/dp50"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/dp20"
             android:background="@drawable/dialog_wait_bg"
             android:gravity="center"
-            android:text="3"
+            android:text="跳过"
             android:textColor="@color/white" />
 
 

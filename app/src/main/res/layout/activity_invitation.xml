@@ -15,9 +15,35 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_weight="1"
-            android:layout_height="0dp"></LinearLayout>
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="0dp">
+            </LinearLayout>
+
+            <com.ysy15350.ysyutils.custom_view.qrcode.CanvasRQ
+                android:id="@+id/crq_code"
+                android:layout_width="@dimen/dp40"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_height="@dimen/dp40" />
+
+            <ImageView
+                android:id="@+id/img_QR"
+                android:layout_width="@dimen/dp150"
+                android:layout_height="@dimen/dp150"
+                android:layout_marginBottom="@dimen/dp180"
+                android:visibility="visible"
+                android:layout_marginStart="@dimen/dp10"
+                android:background="@color/main_color_blue" />
+        </LinearLayout>
 
         <Button
+            android:id="@+id/btn_share"
             style="@style/btn_ok"
             android:layout_width="@dimen/dp195"
             android:layout_height="@dimen/dp51"

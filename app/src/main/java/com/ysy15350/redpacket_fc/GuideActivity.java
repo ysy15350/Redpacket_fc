@@ -136,7 +136,14 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    tv_time.setText("" + time--);
+                    tv_time.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(GuideActivity.this, MainActivity.class);
+                            GuideActivity.this.startActivity(intent);
+                            GuideActivity.this.finish();
+                        }
+                    });
                 }
             });
 

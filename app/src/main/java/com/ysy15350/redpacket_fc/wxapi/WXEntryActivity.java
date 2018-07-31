@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXTextObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -84,6 +87,33 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
         api.sendReq(req);
     }
 
+    /**
+     * 微信分享
+     * @param text
+     */
+    public static void shareWeixin(String text,int type,IWXAPI api){
+        WXTextObject textObject = new WXTextObject();
+        textObject.text = text;
+
+        WXMediaMessage msg = new WXMediaMessage();
+        msg.mediaObject = textObject;
+        msg.description = text;
+
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.transaction = text;
+
+        req.message = msg;
+        switch (type) {
+            case 1: // 设置发送给朋友
+                req.scene = SendMessageToWX.Req.WXSceneSession;
+                break;
+            case 2: //设置发送到朋友圈
+                req.scene = SendMessageToWX.Req.WXSceneTimeline;
+                break;
+        }
+        api.sendReq(req);
+    }
+
     @Override
     public void onReq(BaseReq baseReq) {
         switch (baseReq.getType()) {
@@ -117,6 +147,26 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                 finish();
                 break;
         }
+
+        // 分享
+//        String result = "";
+//
+//        switch (baseResp.errCode) {
+//            case BaseResp.ErrCode.ERR_OK:
+//                result = "发送成功";
+//                break;
+//            case BaseResp.ErrCode.ERR_USER_CANCEL:
+//                result = "发送取消";
+//                break;
+//            case BaseResp.ErrCode.ERR_AUTH_DENIED:
+//                result = "发送被拒绝";
+//                break;
+//            default:
+//                result = "发送返回";
+//                break;
+//        }
+//
+//        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
     }
 
 
@@ -172,12 +222,12 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                 .append("&openid==")
                 .append(openId);
 
-        Ysy.http().requestWXPost(userUrl, new ApiCallBack() {
-            @Override
-            public void onSuccess(boolean isCache, String data) {
-                super.onSuccess(isCache, data);
-                String datas = data;
-            }
-        });
+//        Ysy.http().requestWXPost(userUrl, new ApiCallBack() {
+//            @Override
+//            public void onSuccess(boolean isCache, String data) {
+//                super.onSuccess(isCache, data);
+//                String datas = data;
+//            }
+//        });
     }
 }
