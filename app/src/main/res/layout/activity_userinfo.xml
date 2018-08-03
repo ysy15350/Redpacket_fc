@@ -36,6 +36,7 @@
                     custom:rtype="circle" />
 
                 <LinearLayout
+                    android:id="@+id/llbtn_avatar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/dp22"

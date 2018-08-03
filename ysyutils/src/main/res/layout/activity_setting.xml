@@ -154,6 +154,7 @@
         style="@style/menu_item_list_layout_horizon">
 
         <TextView
+            android:id="@+id/tv_Exitaccount"
             style="@style/menu_item_list_text"
             android:layout_weight="1"
             android:text="@string/setting3" />

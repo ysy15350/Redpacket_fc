@@ -90,7 +90,7 @@ public class HttpServiceImpl implements HttpService {
                         bodyParams) {
                     mRequestParams.addBodyParameter(param.getKeyStr(), param.getValueStr());
 
-                    stringBuilder1.append(String.format("◦                    key=%s\r\t\r\tvalue=%s\n", param.getKey(), param.getValue().toString()));
+                    stringBuilder1.append(String.format("◦                    key=%s\r\t\r\tvalue=%s\n", param.getKey(), param.getValue()));
                 }
 
                 stringBuilder1.append("◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦◦\n");

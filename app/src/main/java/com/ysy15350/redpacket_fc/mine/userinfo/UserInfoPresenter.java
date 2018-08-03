@@ -7,7 +7,11 @@ import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.base.mvp.BasePresenter;
 import com.ysy15350.ysyutils.model.SysUser;
 
+import java.io.File;
+
+import api.FileApi;
 import api.UserApi;
+import api.impl.FileApiImpl;
 import api.impl.UserApiImpl;
 
 
@@ -19,6 +23,7 @@ public class UserInfoPresenter extends BasePresenter<UserInfoViewInterface> {
     }
 
     private UserApi userApi = new UserApiImpl();
+    FileApi fileApi = new FileApiImpl();
 
     /**
      * 获取用户信息
@@ -48,6 +53,22 @@ public class UserInfoPresenter extends BasePresenter<UserInfoViewInterface> {
         });
 
 
+    }
+
+    /**
+     * 上传头像
+     * @param type
+     * @param imgName
+     * @param imgData
+     */
+    public void imgUp(int type, String imgName, File imgData) {
+        fileApi.imgUp(type, imgName, imgData, new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, Response response) {
+                super.onSuccess(isCache, response);
+                mView.imgUpCallback(isCache, response);
+            }
+        });
     }
 
 }

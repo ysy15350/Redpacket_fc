@@ -47,7 +47,7 @@ public class WithdrawDepositActivity extends MVPBaseActivity<WithdrawDepositView
     public void initData() {
         super.initData();
 
-        MessageBox.showWaitDialog(this,"数据加载中...");
+        MessageBox.showWaitDialog(this, "数据加载中...");
         mPresenter.userInfo();
     }
 
@@ -108,10 +108,16 @@ public class WithdrawDepositActivity extends MVPBaseActivity<WithdrawDepositView
             return;
         }
 
+        int price_value = CommFun.toInt32(price, 0);
+        if (price_value < 25) {
+            showMsg("提现金额必须大于25元");
+            return;
+        }
+
         withdraw.setRealname(realname);
         withdraw.setAlipayAccount(alipayAccount);
-        withdraw.setPrice(CommFun.toDouble(price,0d));
-        MessageBox.showWaitDialog(this,"数据提交中...");
+        withdraw.setPrice(CommFun.toDouble(price, 0d));
+        MessageBox.showWaitDialog(this, "数据提交中...");
         mPresenter.withdraw(withdraw);
 
     }

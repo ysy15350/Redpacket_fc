@@ -23,6 +23,9 @@ public class Constants {
 	public static final int BUSLINE_id_RESULT = 6002;// 公交id查询
 	public static final int BUSLINE_NO_RESULT = 6003;// 异常情况
 
+	public static final double XProportion = 251917.054334903741897;// 经度比例
+	public static final double YProportion = 107696.999926018805895;// 纬度比例
+
 
 	public static final LatLng LONGKIN = new LatLng(29.646661,106.566095); // 隆金宝坐标
 	public static final LatLng LATLNG1 = new LatLng(29.649160,106.566310); // 重庆市渝北区留云路

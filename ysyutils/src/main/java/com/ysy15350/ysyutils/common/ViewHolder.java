@@ -443,4 +443,23 @@ public class ViewHolder {
     }
 
 
+    public <T extends View> T setOnClickListener(int viewId,View.OnClickListener listener) {
+        try {
+            View view = mViews.get(viewId);
+            if (view == null) {
+                view = mConvertView.findViewById(viewId);
+                mViews.put(viewId, view);
+            }
+
+            if(view!=null){
+                view.setOnClickListener(listener);
+            }
+
+            return (T) view;
+        } catch (Exception e) {
+
+        }
+        return null;
+    }
+
 }

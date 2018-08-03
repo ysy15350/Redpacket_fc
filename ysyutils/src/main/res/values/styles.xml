@@ -85,7 +85,7 @@
     <style name="base_edit_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp57</item>
-        <item name="android:background">@drawable/shape_edit</item>
+        <item name="android:background">@drawable/shape_btn_hollow_gray</item>
         <item name="android:gravity">center_vertical</item>
     </style>
 
@@ -392,7 +392,7 @@
     <style name="btn_ok">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/dp50</item>
-        <item name="android:background">@drawable/shape_btn</item>
+        <item name="android:background">@drawable/shape_btn2</item>
         <item name="android:layout_marginStart">@dimen/dp20</item>
         <item name="android:layout_marginEnd">@dimen/dp20</item>
         <item name="android:text">@string/btn_ok</item>

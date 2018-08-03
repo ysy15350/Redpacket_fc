@@ -19,6 +19,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.ysy15350.ysyutils.R;
+import com.ysy15350.ysyutils.base.model.Constants;
+import com.ysy15350.ysyutils.common.CommFun;
 
 import java.util.Hashtable;
 
@@ -43,7 +45,7 @@ public class CanvasRQ extends View {
 	int BACKGROUND_COLOR = 0xffffffff;
 	private final int IMAGE_CODE = 0; // 这里的IMAGE_CODE是自己任意定义的
 	// 图片宽度的一般
-	public static int IMAGE_HALFWIDTH = 40;
+	public static int IMAGE_HALFWIDTH = 15;
 
 	// 插入到二维码里面的图片对象
 	private Bitmap mIcon;
@@ -74,18 +76,20 @@ public class CanvasRQ extends View {
 		iconHeight = typedArray.getDimension(R.styleable.QrCode_iconHeight, 0);
 		qrCodeWidth = typedArray.getDimension(R.styleable.QrCode_qrCodeWidth, 0);
 		qrCodeHeight = typedArray.getDimension(R.styleable.QrCode_qrCodeHeight, 0);
-		qr = typedArray.getString(R.styleable.QrCode_url);
 
-		QR_WIDTH = (int) qrCodeWidth;
-		QR_HEIGHT = (int) qrCodeWidth;
-
-		IMAGE_HALFWIDTH = (int) iconWidth;
 
 		paint = new Paint();
 		// createImage();
 		// mBG=BitmapFactory.decodeResource(context.getResources(),
 		// R.drawable.ic_text_item_bg_default);
 		mOverBp = BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher);
+
+		try {
+            CanvasRQ.qr = url;
+            cretaeBitmap(qr, mOverBp);
+        }catch (Exception e){
+
+        }
 	}
 
 	public CanvasRQ(Context context) {
@@ -145,6 +149,17 @@ public class CanvasRQ extends View {
 		}
 	}
 
+	private void getlinkUrl() {
+
+		String path = "http://115.28.78.72:800/user/register?tjr=%s";
+
+		String path_1 = "https://m.longkin.net/user/register?tjr=%s";
+
+		CanvasRQ.qr = Constants.DEBUG ? path : path_1;
+
+	}
+
+
 	/**
 	 * 生成二维码 中间插入小图片
 	 * 
@@ -196,4 +211,5 @@ public class CanvasRQ extends View {
 	public String getContent() {
 		return qr;
 	}
+
 }

@@ -58,74 +58,338 @@
 
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_marginTop="@dimen/dp77"
-        android:src="@mipmap/img_no_advertising"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="该页还没有广告"
-        android:layout_marginTop="@dimen/dp20"
-        android:textSize="@dimen/sp26"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="您可以通过以下方式收集"
-        android:layout_marginTop="@dimen/dp10"
-        android:textSize="@dimen/sp22"
-        android:layout_height="wrap_content" />
-
     <LinearLayout
-        android:id="@+id/ll_btn1"
-        android:layout_width="@dimen/dp214"
-        android:layout_marginTop="@dimen/dp64"
-        android:background="@drawable/shape_btn_hollow_red"
-        android:gravity="center"
-        android:layout_height="@dimen/dp56">
+        android:id="@+id/ll_activearea"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginEnd="@dimen/dp10"
-            android:text="收集广告红包"
-            android:textColor="@color/btn_normal1"
-            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp5"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/id_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v4.view.ViewPager>
+
+
+                <ImageView
+                    android:id="@+id/img_default"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    android:background="@mipmap/img_citytransaction" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <LinearLayout style="@style/active_bg_lr">
+
+                            <ImageView
+                                style="@style/active_lr"
+                                android:background="@mipmap/icon_back" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/active_bg_lr">
+
+                        <ImageView
+                            style="@style/active_lr"
+                            android:background="@mipmap/icon_right" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp10"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp20">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round1"
+                        style="@style/active_round"
+                        android:background="@drawable/shape_circle1">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="1" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round2"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="2" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round3"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="3" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round4"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="4" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round5"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="5" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round6"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="6" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round7"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="7" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round8"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="8" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round9"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="9" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+
+                    <LinearLayout
+                        android:id="@+id/ll_round10"
+                        style="@style/active_round">
+
+                        <TextView
+                            style="@style/active_round_text"
+                            android:text="10" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/btn_fcb"
+                    style="@style/btn_ok"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp49"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_btn_gray"
+                    android:text="生成 FCB"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp18" />
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llbtn_activearea"
-        android:layout_width="@dimen/dp214"
-        android:layout_marginTop="@dimen/dp32"
-        android:background="@drawable/shape_btn_hollow_red"
-        android:gravity="center"
-        android:layout_height="@dimen/dp56">
+        android:id="@+id/ll_noadvertisement"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/dp77"
+            android:src="@mipmap/img_no_advertising"
+            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginEnd="@dimen/dp10"
-            android:text="访问好友广告"
-            android:textColor="@color/btn_normal1"
+            android:text="该页还没有广告"
+            android:layout_marginTop="@dimen/dp20"
+            android:textSize="@dimen/sp26"
             android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="@dimen/dp214"
-        android:layout_marginTop="@dimen/dp32"
-        android:background="@drawable/shape_btn_hollow_red"
-        android:gravity="center"
-        android:layout_height="@dimen/dp56">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_marginStart="@dimen/dp10"
-            android:layout_marginEnd="@dimen/dp10"
-            android:text="参与系统活动"
-            android:textColor="@color/btn_normal1"
+            android:text="您可以通过以下方式收集"
+            android:layout_marginTop="@dimen/dp10"
+            android:textSize="@dimen/sp22"
             android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/ll_btn1"
+            android:layout_width="@dimen/dp214"
+            android:layout_marginTop="@dimen/dp64"
+            android:background="@drawable/shape_btn_hollow_red"
+            android:gravity="center"
+            android:layout_height="@dimen/dp56">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:text="收集广告红包"
+                android:textColor="@color/btn_normal1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llbtn_activearea"
+            android:layout_width="@dimen/dp214"
+            android:layout_marginTop="@dimen/dp32"
+            android:background="@drawable/shape_btn_hollow_red"
+            android:gravity="center"
+            android:layout_height="@dimen/dp56">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:text="访问好友广告"
+                android:textColor="@color/btn_normal1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/dp214"
+            android:layout_marginTop="@dimen/dp32"
+            android:background="@drawable/shape_btn_hollow_red"
+            android:gravity="center"
+            android:layout_height="@dimen/dp56">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginStart="@dimen/dp10"
+                android:layout_marginEnd="@dimen/dp10"
+                android:text="参与系统活动"
+                android:textColor="@color/btn_normal1"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

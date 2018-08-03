@@ -46,7 +46,7 @@
                             android:id="@+id/tv_region"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="重庆市  沙坪坝区"
+                            android:text="- - -"
                             android:textSize="@dimen/sp16" />
 
                         <ImageView
@@ -60,7 +60,7 @@
                         android:id="@+id/tv_cityowneruser"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="用户姓名"
+                        android:text="-"
                         android:layout_marginBottom="@dimen/dp20"
                         android:textSize="@dimen/sp20" />
 
@@ -83,7 +83,7 @@
                             android:id="@+id/tv_cityowneraccount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="¥ 45654.2"
+                            android:text="-"
                             android:textSize="@dimen/sp20" />
                     </LinearLayout>
 

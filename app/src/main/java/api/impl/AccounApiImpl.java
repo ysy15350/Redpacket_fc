@@ -72,4 +72,21 @@ public class AccounApiImpl implements AccountAPi {
 
         Ysy.http().requestPost(requestOptions, callBack);
     }
+
+    @Override
+    public void buildCityOwnerPayOrder(double price, int type, ApiCallBack callBack) {
+        try {
+            RequestOptions requestOptions = new RequestOptions.Builder()
+                    .setRequestMapping(moduleName + "buildCityOwnerPayOrder")
+                    .addBodyParameter("price",price) // 金额
+                    .addBodyParameter("type",type) // 支付类型
+                    .build();
+
+
+            Ysy.http().requestPost(requestOptions, callBack);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

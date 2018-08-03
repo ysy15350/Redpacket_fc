@@ -11,6 +11,9 @@ import com.ysy15350.redpacket_fc.mine.wallet.WalletPresenter;
 import com.ysy15350.redpacket_fc.mine.wallet.WalletViewInterface;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
+import com.ysy15350.ysyutils.common.CommFun;
+import com.ysy15350.ysyutils.common.SystemModels;
+import com.ysy15350.ysyutils.common.message.MessageBox;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
@@ -47,7 +50,12 @@ public class City_OwnerActivity extends MVPBaseActivity<City_OwnerViewInterface,
     private void btn_cityClick(View view) {
 
         if (BaseData.isLogin())//如果需要登录
-            startActivity(new Intent(this, CityOwnerTransactionActivity.class));
+            if(CommFun.notNullOrEmpty(SystemModels.locationInfo.getDistrict())){
+                startActivity(new Intent(this, CityOwnerTransactionActivity.class));
+            }else {
+                MessageBox.show("定位失败");
+                return;
+            }
         else
             startActivity(new Intent(this, LoginActivity.class));
 

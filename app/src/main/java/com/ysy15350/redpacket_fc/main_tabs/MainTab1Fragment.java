@@ -52,6 +52,7 @@ import com.ysy15350.redpacket_fc.dialog.WholePointDialog;
 import com.ysy15350.redpacket_fc.mine.cityowner.cityowner_transaction.CityOwnerTransactionActivity;
 import com.ysy15350.redpacket_fc.mine.invitationfriends.InvitationFriendsListActivity;
 import com.ysy15350.redpacket_fc.mine.share.ShareActivity;
+import com.ysy15350.redpacket_fc.mine.share.invitation.InvitationActivity;
 import com.ysy15350.redpacket_fc.redpackage.open_treasurebox.OpenTreasureBoxActivity;
 import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.api.model.ResponseHead;
@@ -64,6 +65,7 @@ import com.ysy15350.ysyutils.common.message.MessageBox;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.TextSwitchView;
 import com.ysy15350.ysyutils.custom_view.dialog.AgreementDialog;
+import com.ysy15350.ysyutils.gaodemap.util.AMapUtils;
 import com.ysy15350.ysyutils.gaodemap.util.Constants;
 import com.ysy15350.ysyutils.model.PageData;
 import com.ysy15350.ysyutils.model.SysUser;
@@ -156,7 +158,6 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         mMapView.onCreate(mSavedInstanceState);
 
 
-
         aMap = mMapView.getMap();
         setUpMap();
 
@@ -188,14 +189,14 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         SysUser sysUser = BaseData.getSysUser();
         if (null != sysUser) {
             String account = "";
-            if(CommFun.notNullOrEmpty(sysUser.getAccount())){
-                account = "¥"+sysUser.getAccount();
-            }else {
+            if (CommFun.notNullOrEmpty(sysUser.getAccount())) {
+                account = "¥" + sysUser.getAccount();
+            } else {
                 account = "未登录";
 
             }
             mHolder.setText(R.id.tv_useraccont, account);
-        }else {
+        } else {
             mHolder.setText(R.id.tv_useraccont, "未登录");
         }
         String cityProper = SystemModels.locationInfo.getDistrict();
@@ -206,7 +207,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     private void setUpMap() {
         //aMap.setLocationSource(this);// 设置定位监听
         aMap.setOnMyLocationChangeListener(this);// 设置定位监听
-        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
+        aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setOnMapTouchListener(this);
 
@@ -276,16 +277,16 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                                 int systemSecond = calendar.get(Calendar.SECOND);
 
                                 // 得到倒计时的分秒
-                                int second = 60-systemSecond;
+                                int second = 60 - systemSecond;
                                 int minute = 0;
-                                if(second>0){
-                                    minute = (60-systemMinute)-1;
-                                }else {
-                                    minute = 60-systemMinute;
+                                if (second > 0) {
+                                    minute = (60 - systemMinute) - 1;
+                                } else {
+                                    minute = 60 - systemMinute;
                                 }
-                                long millisInFuture = ((minute*60)+second)*1000;
+                                long millisInFuture = ((minute * 60) + second) * 1000;
                                 //倒计时器
-                                CountDownTimers countDownTimers = new CountDownTimers(millisInFuture,1000);
+                                CountDownTimers countDownTimers = new CountDownTimers(millisInFuture, 1000);
                                 countDownTimers.start();
                             }
                         }
@@ -297,7 +298,6 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             e.printStackTrace();
         }
     }
-
 
 
     private MarkerOptions newMarkerOptions(LatLng var1) {
@@ -442,7 +442,14 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     @Event(value = R.id.btn_whole1)
     private void btn_whole1Click(View view) {
 
-        Repaint();
+        int range = 1000;
+        Repaint(range);
+//        // 分享页面
+//        if (BaseData.isLogin())//如果需要登录
+//            startActivity(new Intent(getActivity(), InvitationActivity.class));
+//        else
+//            startActivity(new Intent(getActivity(), LoginActivity.class));
+
 
     }
 
@@ -457,19 +464,45 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     }
 
     /**
-     * 生成红包
+     * 生成坐标红包
      */
-    private void createRedPacket(LatLng latLng) {
+    private void createRedPacket(LatLng latLng,int Range) {
 
         try {
 
+            latLngs.clear();
+            double d = AMapUtils.calculateLineDistance(Constants.LATLNG1, Constants.LATLNG2);
+
             if (latLng != null) {
+                // 横坐标
                 double latitude = currentLatlng.latitude;
+                // 纵坐标
                 double longitude = currentLatlng.longitude;
-                for (int i = 0; i < 100; i++) {
+
+                // 生成坐标红包的个数
+                for (int i = 0; i < Math.random() *50; i++) {
+
                     Random ran = new Random(System.currentTimeMillis());
-                    double lat = latitude+(ran.nextInt(2)*0.02);
-                    double lng = longitude+(ran.nextInt(2)*0.02);
+                    // Math.random()*(n-m)+m  从m到n的随机数
+
+                    // 半径
+                    int r = radius + Range;
+
+                    // 点到坐标的横向距离
+                    double ranX =(Math.random() * (r - (-r)) - r);
+                    double lat = latitude + (ranX / Constants.YProportion);
+//                    // 求点到纵坐标的距离 b*b = c*c - a*a
+//                    double tempRanY = Math.sqrt(r*r-ranX*ranX);
+//                    // 得到纵坐标
+//                    double ranY = Math.random() * (tempRanY - (-tempRanY)-tempRanY);
+                    double ranY = (Math.random() * (r - (-r)) - r);
+
+                    // 得到新的坐标到点的横向与纵向距离
+                    double lng = longitude + ranY / Constants.YProportion;
+
+
+//                    double lat = latitude+(ran.nextInt(2)*0.02);
+//                    double lng = longitude+(ran.nextInt(2)*0.02);
 //                    LatLng item = new LatLng(29.646661, 106.566095);
                     LatLng item = new LatLng(lat, lng);
                     latLngs.add(item);
@@ -530,7 +563,6 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             aMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 150));//移动地图中心点
 
 
-
         } catch (Exception ex) {
 
         }
@@ -558,6 +590,9 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                 });
 
                 redPackageDialog.show();
+            } else {
+                // 分享页面
+                startActivity(new Intent(getActivity(), ShareActivity.class));
             }
         }
 
@@ -658,7 +693,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 //
 //                }
 
-                createRedPacket(latLng);//绘制红包
+                createRedPacket(latLng,0);//绘制红包
 
 
             } else {
@@ -683,7 +718,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             String latlngJson = JsonConvertor.toJson(latLng);
             aCache.put("latlngJson", latlngJson);
 
-            createRedPacket(currentLatlng);//生成红包
+            createRedPacket(currentLatlng,0);//生成红包
             addPolylinescircle(currentLatlng, radius); // 绘制圆
         }
 
@@ -769,6 +804,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
     /**
      * 绘制圆
+     *
      * @param centerpoint 中心点坐标
      * @param radius      半径 米
      */
@@ -788,11 +824,14 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
     }
 
-    private void Repaint() {
+    /**
+     * 扩大圆的半径
+     */
+    private void Repaint(int range) {
         aMap.clear();
-        createRedPacket(currentLatlng);//生成红包
+        createRedPacket(currentLatlng,range);//生成红包
         circleOptions = new CircleOptions().center(currentLatlng)
-                .radius(radius += 100)
+                .radius(radius += range)
                 .strokeColor(Color.argb(1, 1, 1, 1))
                 .fillColor(Color.argb(20, 1, 1, 1))
                 .strokeWidth(25);// 像素
@@ -827,10 +866,11 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 //        MessageBox.show("点击成功");
     }
 
+
     /**
      * 倒数计时器
      */
-    class CountDownTimers extends CountDownTimer{
+    class CountDownTimers extends CountDownTimer {
 
         public CountDownTimers(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
@@ -868,7 +908,6 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     }
 
 
-
     /**
      * 邀请好友
      *
@@ -880,7 +919,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
     }
 
-    private String  strprice;
+    private String strprice;
     private String strimgurl;
     private String strcompany;
 
@@ -893,7 +932,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     @Event(value = R.id.llbtn_clock)
     private void llbtn_clockClick(View view) {
 
-        MessageBox.showWaitDialog(getActivity(),"数据加载中...");
+        MessageBox.showWaitDialog(getActivity(), "数据加载中...");
 
         mPresenter.grabRedPacket(2);
 
@@ -919,7 +958,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
                             double price = (double) pageData.get("price");
                             if (CommFun.notNullOrEmpty(price)) {
-                                strprice = "¥"+price;
+                                strprice = "¥" + price;
                             }
 
                             String imgurl = pageData.getString("imgurl");
@@ -936,7 +975,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
                             wholePointDialog.show();
                         }
-                    }else {
+                    } else {
                         showMsg(msg);
                     }
                 }

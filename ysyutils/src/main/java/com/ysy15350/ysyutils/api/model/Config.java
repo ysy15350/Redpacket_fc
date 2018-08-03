@@ -1,5 +1,7 @@
 package com.ysy15350.ysyutils.api.model;
 
+import com.ysy15350.ysyutils.common.CommFun;
+
 public class Config {
 
 //    static {
@@ -39,7 +41,7 @@ public class Config {
 
         if (isDebug) {// 如果是调试
 
-            Config.server_url = "192.168.31.176";
+            Config.server_url = "192.168.31.190";
 
             Config.server_port = 8080;
 
@@ -54,6 +56,25 @@ public class Config {
             Config.projectName = "";
 
         }
+    }
+
+    /**
+     * 获取图片显示路径前部分，最后只需跟fid即可
+     *
+     * @return
+     */
+    public static String getServerImageUrl() {
+        try {
+            String url = getUri();
+            if (!CommFun.isNullOrEmpty(url)) {
+                url += "api/file/imgGet?fid=";
+                return url;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     /**

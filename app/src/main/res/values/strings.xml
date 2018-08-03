@@ -4,7 +4,7 @@
     <!-- 首页选项卡文本 -->
     <string name="tab1name">红包</string>
     <string name="tab2name">广告</string>
-    <string name="tab3name">交易</string>
+    <string name="tab3name">活动</string>
     <string name="tab4name">我的</string>
 
     <string name="main_tab4_menu1">个人主页</string>

@@ -2,18 +2,25 @@ package com.ysy15350.redpacket_fc.mine.userinfo;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jph.takephoto.model.TImage;
+import com.mobsandgeeks.saripaar.ValidationError;
+import com.mobsandgeeks.saripaar.Validator;
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.mine.setalipay.SetAlipayActivity;
+import com.ysy15350.ysyutils.api.model.Config;
 import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.base.data.BaseData;
@@ -23,17 +30,26 @@ import com.ysy15350.ysyutils.citychoice.bean.CityBean;
 import com.ysy15350.ysyutils.citychoice.bean.DistrictBean;
 import com.ysy15350.ysyutils.citychoice.bean.ProvinceBean;
 import com.ysy15350.ysyutils.citychoice.citywheel.CityConfig;
+import com.ysy15350.ysyutils.common.image.ImageUtils;
+import com.ysy15350.ysyutils.custom_view.pop.PhotoSelectPopupWindow;
 import com.ysy15350.ysyutils.citychoice.style.citypickerview.CityPickerView;
 import com.ysy15350.ysyutils.common.CommFun;
+import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.common.SystemModels;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.dialog.DateDialog;
-import com.ysy15350.ysyutils.model.PageData;
+import com.ysy15350.redpacket_fc.image_select.ImgSelectActivity;
+import com.ysy15350.ysyutils.model.FileInfo;
 import com.ysy15350.ysyutils.model.SysUser;
+import com.ysy15350.ysyutils.model.UserInfo;
 
 import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -41,7 +57,7 @@ import org.xutils.view.annotation.Event;
  */
 @ContentView(R.layout.activity_userinfo)
 public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, UserInfoPresenter>
-        implements UserInfoViewInterface {
+        implements UserInfoViewInterface, Validator.ValidationListener {
 
     private static final String TAG = "UserInfoActivity";
 
@@ -170,6 +186,15 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
                 Log.d(TAG, "bindUserInfo: " + sysUser.getMobile());
 
                 // 头像图片
+                String headImgUrl = Config.getUri();
+                if (CommFun.notNullOrEmpty(sysUser.getAvatar())) {
+                    headImgUrl += sysUser.getAvatar();
+                    mHolder.setImageURL(R.id.img_head, headImgUrl, true);
+                } else if (!CommFun.isNullOrEmpty(sysUser.getAvatar())) {
+                    mHolder.setImageURL(R.id.img_head, sysUser.getAvatar(), true);
+                } else if (!CommFun.isNullOrEmpty(sysUser.getAvatar())) {
+                    mHolder.setImageURL(R.id.img_head, sysUser.getAvatar(), true);
+                }
 
                 // 用户名称
                 mHolder.setText(R.id.et_username, sysUser.getNickname());
@@ -251,6 +276,44 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
             }
         });
         mCityPickerView.showCityPicker();
+    }
+
+    /**
+     * 更换头像
+     *
+     * @param view
+     */
+    @Event(value = R.id.llbtn_avatar)
+    private void llbtn_avatarClick(View view) {
+
+        PhotoSelectPopupWindow popupWindow = new PhotoSelectPopupWindow(this);
+        popupWindow.showPopupWindow(mContentView);
+
+        popupWindow.setPopListener(new PhotoSelectPopupWindow.PopListener() {
+            @Override
+            public void onTakePhotoClick() {
+                getPhoto(2);
+            }
+
+            @Override
+            public void onSelectPhotoClick() {
+                getPhoto(1);
+            }
+
+            @Override
+            public void onCancelClick() {
+
+            }
+        });
+
+    }
+
+    private void getPhoto(int type) {
+        Intent intent = new Intent(this, ImgSelectActivity.class);
+        CommFunAndroid.setSharedPreferences("type", type + "");
+        intent.putExtra("width", 300);
+        intent.putExtra("height", 300);
+        startActivityForResult(intent, PHOTO_REQUEST);
     }
 
     /**
@@ -403,6 +466,7 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
         SysUser sysUser = new SysUser();
 
         // 头像图片
+        sysUser.setAvatar((String) mHolder.getView(R.id.img_head).getContentDescription());
 
         // 用户名称
         sysUser.setNickname(mHolder.getViewText(R.id.et_username));
@@ -441,5 +505,115 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
 
     }
 
+    boolean validationSucceeded = false;
 
+    private static final int PHOTO_REQUEST = 100;// 选择照片
+    private static final int PAY_PWD_REQUEST = 101;// 选择照片
+
+    @Override
+    public void onValidationSucceeded() {
+        validationSucceeded = true;
+    }
+
+    @Override
+    public void onValidationFailed(List<ValidationError> errors) {
+        if (errors != null && !errors.isEmpty()) {
+            validationSucceeded = false;
+            for (ValidationError error : errors) {
+                View view = error.getView();
+                String message = error.getCollatedErrorMessage(this);
+                if (view instanceof EditText) {
+                    ((EditText) view).setError(message);
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            if (requestCode == PHOTO_REQUEST) {
+                if (null != data) {//(resultCode == RESULT_OK) {
+                    ArrayList<TImage> images = (ArrayList<TImage>) data.getSerializableExtra("images");
+                    if (images != null && !images.isEmpty()) {
+                        String path = images.get(0).getOriginalPath();
+                        if (CommFunAndroid.isNullOrEmpty(path))
+                            path = images.get(0).getCompressPath();
+
+                        File file = new File(path);
+                        if (file != null && file.exists()) {
+
+                            ImageView img_head = mHolder.getView(R.id.img_head);
+
+                            img_head.setImageURI(Uri.parse(path));
+                        }
+                        uploadImage(file);
+                    }
+                } else {
+                    showMsg("图片获取失败");
+                }
+            } else if (requestCode == PAY_PWD_REQUEST) {
+//                String password = data.getStringExtra("password");
+//                UserInfo userInfo = BaseData.getInstance().getUserInfo();
+//                if (userInfo != null) {
+//                    userInfo.setPay_password(password);
+//                }
+//                save_info(userInfo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    private void uploadImage(File file) {
+        if (file != null && file.exists()) {
+
+            String imgBase64Str = ImageUtils.getImageBase64(file);
+            Log.d(TAG, "uploadImage: " + imgBase64Str);
+
+            showWaitDialog("头像上传中...");
+            String imgName = file.getName();
+//            mPresenter.imgUp(1, file.getName(), imgBase64Str);
+            mPresenter.imgUp(1, file.getName(), file);
+
+        } else {
+            showMsg("文件不存在");
+        }
+
+    }
+
+    @Override
+    public void imgUpCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+                        FileInfo fileInfo = response.getData(FileInfo.class);
+                        if (fileInfo != null) {
+                            int fid = fileInfo.getId();
+                            BaseData.setCache("img_head", response.getBodyJson());
+                            String img_headUrl = Config.getServerImageUrl() + fid;
+                            mHolder.setImageURL(R.id.img_head, img_headUrl, true);
+                        }
+                        showMsg("上传成功");
+                    } else
+                        showMsg(msg);
+
+                }
+            } else {
+                showMsg("系统错误");
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

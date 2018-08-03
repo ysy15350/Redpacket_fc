@@ -71,7 +71,7 @@
                         android:id="@+id/tv_redpackageaccont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18.666"
+                        android:text="0"
                         android:textColor="@color/text_wallet_money1"
                         android:textSize="@dimen/sp28" />
                 </LinearLayout>
@@ -122,15 +122,18 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_adviwe"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:background="@color/white"
         android:layout_marginTop="@dimen/dp20"
         android:layout_height="wrap_content">
 
+
         <TextView
+            android:id="@+id/tv_ad"
             android:layout_width="wrap_content"
-            android:text="广告语"
+            android:text=""
             android:textColor="@color/black"
             android:layout_marginStart="@dimen/dp20"
             android:layout_marginTop="@dimen/dp10"
@@ -141,7 +144,7 @@
             android:id="@+id/img_pictures"
             android:layout_width="match_parent"
             android:layout_margin="@dimen/dp20"
-            android:layout_height="wrap_content" />
+            android:layout_height="@dimen/dp236" />
 
         <LinearLayout
             android:layout_marginBottom="@dimen/dp15"
@@ -155,11 +158,12 @@
 
 
             <TextView
+                android:id="@+id/tv_description"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_marginStart="@dimen/dp15"
                 android:textColor="@color/text_content"
-                android:text="@string/openred_1"
+                android:text=""
                 android:layout_height="wrap_content" />
 
             <ImageView style="@style/imgView_fork" />
@@ -175,6 +179,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:background="@color/white"
+        android:visibility="gone"
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
 

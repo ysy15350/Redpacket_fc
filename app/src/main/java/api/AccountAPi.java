@@ -25,4 +25,10 @@ public interface AccountAPi {
      * @param callBack
      */
     void getInviteList(String mobile,ApiCallBack callBack);
+    /**
+     * 生成城主支付订单
+     * @param callBack
+     */
+    void buildCityOwnerPayOrder(double price, int type,ApiCallBack callBack);
+
 }

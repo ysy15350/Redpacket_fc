@@ -141,12 +141,18 @@ public class BaseData {
      * @return
      */
     public static boolean isLogin() {
+
+        boolean isLogin = false;
+
         try {
-            return !CommFun.isNullOrEmpty(getToken());
+            if(!CommFun.isNullOrEmpty(getToken()) && getSysUser() != null){
+                isLogin = true;
+            }
+            return isLogin;
         } catch (Exception ex) {
         }
 
-        return false;
+        return isLogin;
     }
 
 

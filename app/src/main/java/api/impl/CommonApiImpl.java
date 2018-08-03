@@ -1,5 +1,7 @@
 package api.impl;
 
+import android.content.pm.PackageManager;
+
 import com.ysy15350.ysyutils.Ysy;
 import com.ysy15350.ysyutils.api.ApiCallBack;
 import com.ysy15350.ysyutils.api.model.RequestOptions;
@@ -29,9 +31,9 @@ public class CommonApiImpl implements CommonApi {
     @Override
     public void checkVersion(int versionCode, ApiCallBack callBack) {
         try {
-
             RequestOptions requestOptions = new RequestOptions.Builder()
                     .setRequestMapping(moduleName + "checkVersion")
+                    .addBodyParameter("package","com.ysy15350.readpacket") // 包名
                     .addBodyParameter("versionCode",versionCode) // 当前版本号
                     .addBodyParameter("platform", "1") // 注册平台；0:web;1:Android ;2:IOS;3:wap
                     .build();

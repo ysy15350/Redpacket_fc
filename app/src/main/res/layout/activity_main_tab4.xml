@@ -61,7 +61,7 @@
                     android:id="@+id/tv_nickname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/tab4name"
+                    android:text="未登录"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp20" />
 

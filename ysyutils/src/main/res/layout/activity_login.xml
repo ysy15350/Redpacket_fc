@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
     style="@style/base_form">
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp128"
         android:layout_height="wrap_content"
-
         android:gravity="center">
 
         <ImageView
-            android:layout_width="@dimen/dp93"
-            android:layout_height="@dimen/dp93"
-            android:src="@mipmap/ic_launcher" />
-
+            android:layout_width="@dimen/dp192"
+            android:layout_height="@dimen/dp73"
+            android:src="@mipmap/icon_fchb" />
 
     </LinearLayout>
 
@@ -20,23 +20,25 @@
         android:id="@+id/ll_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp50"
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="@dimen/dp20"
         android:layout_marginStart="@dimen/dp20"
-        android:layout_marginTop="@dimen/dp290"
-
         android:orientation="vertical">
 
 
         <LinearLayout
             style="@style/base_edit_layout"
-
             android:layout_margin="@dimen/dp30">
 
 
             <EditText
                 android:id="@+id/et_mobile"
                 style="@style/base_edit"
+                android:layout_marginTop="@dimen/dp10"
+                android:inputType="number"
+                android:maxLength="11"
+                android:layout_marginBottom="@dimen/dp10"
                 android:hint="@string/hint_login_mobile" />
 
         </LinearLayout>
@@ -50,14 +52,20 @@
             <EditText
                 android:id="@+id/et_code"
                 style="@style/base_edit"
+                android:layout_marginTop="@dimen/dp10"
+                android:inputType="number"
+                android:maxLength="6"
+                android:layout_marginBottom="@dimen/dp10"
                 android:hint="@string/hint_code" />
 
             <Button
                 android:id="@+id/btn_get_code"
+                android:background="@null"
                 android:layout_width="wrap_content"
+                android:layout_marginEnd="@dimen/dp10"
+                android:textColor="@color/main_color_blue2"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_get_code" />
-
 
         </LinearLayout>
 
@@ -65,10 +73,46 @@
         <Button
             android:id="@+id/btn_login"
             style="@style/btn_ok"
+            android:layout_height="@dimen/dp60"
             android:layout_marginBottom="@dimen/dp40"
             android:layout_marginEnd="@dimen/dp30"
+            android:text="登录"
             android:layout_marginStart="@dimen/dp30"
-            android:layout_marginTop="@dimen/dp13" />
+            android:layout_marginTop="@dimen/dp30" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/dp50"
+        android:layout_marginEnd="@dimen/dp50"
+        android:gravity="center_vertical"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="@dimen/dp30"
+            android:layout_height="match_parent">
+            <View style="@style/view_line" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="或"
+            android:textSize="@dimen/sp20"
+            android:textColor="@color/main_color_gray"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp30"
+            android:layout_height="match_parent">
+            <View style="@style/view_line" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -76,15 +120,22 @@
     <LinearLayout
         android:id="@+id/llbtn_WXlogn"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/dp10"
         android:layout_height="@dimen/dp100"
         android:layout_alignParentBottom="true"
         android:gravity="center">
 
+        <ImageView
+            android:layout_width="@dimen/dp40"
+            android:src="@mipmap/icon_wx"
+            android:layout_height="@dimen/dp40" />
+
         <TextView
             android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/dp10"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="微信登录11"
+            android:text="使用微信登录"
             android:textColor="#666666"
             android:textSize="@dimen/sp22" />
 
@@ -92,4 +143,4 @@
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

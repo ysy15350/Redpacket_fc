@@ -56,8 +56,8 @@
     <!-- 收款人、账号 -->
     <LinearLayout
         android:id="@+id/ll_alipay"
-        android:layout_marginBottom="@dimen/dp20"
-        style="@style/bg_content_layout">
+        style="@style/bg_content_layout"
+        android:layout_marginBottom="@dimen/dp20">
 
         <LinearLayout style="@style/menu_layout">
 
@@ -88,8 +88,8 @@
 
             <TextView
                 style="@style/menu_item_grid_text1"
-                android:visibility="invisible"
-                android:text="隐" />
+                android:text="隐"
+                android:visibility="invisible" />
 
             <EditText
                 android:id="@+id/et_alipayAccount1"
@@ -121,8 +121,8 @@
                 android:id="@+id/tv_account"
                 style="@style/menu_item_grid_text1"
                 android:layout_marginEnd="@dimen/dp5"
-                android:textColor="@color/text_money"
-                android:text="0" />
+                android:text="0"
+                android:textColor="@color/text_money" />
 
             <TextView
                 style="@style/menu_item_grid_text1"
@@ -141,12 +141,13 @@
                 android:id="@+id/et_withdrawAccount"
                 style="@style/base_edit_layout1"
                 android:layout_width="0dp"
+                android:layout_marginEnd="@dimen/dp5"
                 android:layout_marginStart="@dimen/dp40"
                 android:layout_weight="1"
                 android:background="@null"
                 android:gravity="right|center_vertical"
                 android:hint="建议提现金额为100的整数倍"
-                android:layout_marginEnd="@dimen/dp5"
+                android:inputType="number"
                 android:text=""
                 android:textSize="12sp" />
 

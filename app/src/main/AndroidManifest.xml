@@ -81,6 +81,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 
+
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+
+
     <!--录音新增权限-->
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -126,6 +130,26 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait" />
+
+        <!-- Must declare it for Adivew SDK -->
+        <activity
+            android:name="com.kyview.AdViewVideoActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:hardwareAccelerated="true" >
+        </activity>
+        <service android:name="com.kyview.DownloadService" />
+        <activity android:name="com.kyview.AdViewLandingPage" />
+        <activity android:name="com.kyview.AdActivity" />
+
+        <!-- AdView SDK for tencent Gdt -->
+        <service
+            android:name="com.qq.e.comm.DownloadService"
+            android:exported="false"></service>
+
+        <activity
+            android:name="com.qq.e.ads.ADActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent"></activity>
 
 
         <!-- 主界面 -->
@@ -256,12 +280,28 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <!-- 拍照 -->
+        <activity
+            android:name=".image_select.ImgSelectActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!-- 支付宝Demo -->
+        <activity
+            android:name="alipay.PayDemoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+
         <!-- 城市选择器demo -->
         <activity
             android:name="com.ysy15350.ysyutils.citychoice.CitypickerWheelActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
 
 
         <!-- 高德地图定位 -->

@@ -22,4 +22,11 @@ public interface UserInfoViewInterface {
      * @param response
      */
     public void saveUserInfoCallback(boolean isCache, Response response);
+
+    /**
+     * 上传头像回调
+     * @param isCache
+     * @param response
+     */
+    void imgUpCallback(boolean isCache, Response response);
 }

@@ -87,6 +87,7 @@ public class ShareDialog extends Dialog {
                     mPopListener.weixinShare();
                 }
 
+
                 // UMImage image = new UMImage(mActivity,
                 // "http://www.umeng.com/images/pic/social/integrated_3.png");
                 // UMusic music = new

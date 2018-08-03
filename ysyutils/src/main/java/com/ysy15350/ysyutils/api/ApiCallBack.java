@@ -8,6 +8,7 @@ import com.ysy15350.ysyutils.common.message.MessageBox;
 
 import org.xutils.ex.HttpException;
 
+import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
 import static com.ysy15350.ysyutils.common.message.MessageBox.hideWaitDialog;
@@ -61,7 +62,11 @@ public abstract class ApiCallBack {
 
                 msg = socketException.getMessage();
                 msg = "服务连接超时";
-            } else { // 其他错误
+            }
+            else if(ex instanceof ConnectException){
+                msg = "服务器未响应";
+            }
+            else { // 其他错误
                 // ...
                 msg = ex.getMessage();
                 if (msg == null || "".equals(msg)) {

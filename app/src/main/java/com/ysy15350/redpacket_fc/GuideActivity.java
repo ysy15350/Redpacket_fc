@@ -8,16 +8,24 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.webkit.WebView;
 import android.widget.TextView;
 
+import com.kuaiyou.loader.AdViewNativeManager;
+import com.kuaiyou.loader.loaderInterface.AdViewNativeListener;
 import com.ysy15350.ysyutils.YSYApplication;
 import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.api.model.ResponseHead;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseActivity;
 import com.ysy15350.ysyutils.common.AppStatusManager;
+import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
+import com.ysy15350.ysyutils.model.AdViewConfig;
 import com.ysy15350.ysyutils.model.SysUser;
+
+import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -25,11 +33,16 @@ import com.ysy15350.ysyutils.model.SysUser;
  */
 //@ContentView(R.layout.activity_guide)
 public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePresenter>
-        implements GuideViewInterface {
+        implements GuideViewInterface, AdViewNativeListener {
 
     private static final String TAG = "GuideActivity";
 
     private TextView tv_time;
+
+    public static String HTML = "<meta charset='utf-8'><style type='text/css'>* { padding: 0px; margin: 0px;}a:link { text-decoration: none;}</style><div  style='width: 100%; height: 100%;'><img src=\"image_path\" width=\"100%\" height=\"100%\" ></div>";
+
+    private AdViewNativeManager adViewNative;
+    private HashMap<String, Object> nativeAd;
 
     @Override
     protected GuidePresenter createPresenter() {
@@ -78,6 +91,9 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
         }, 4 * 1000);//4秒后执行
 
         tv_time = this.findViewById(R.id.tv_time);
+
+        adViewNative = new AdViewNativeManager(this, AdViewConfig.AD_APP_ID, AdViewConfig.AD_POS_TD, this);
+        adViewNative.requestAd();
 
 
         YSYApplication.getContext();//初始化上下文
@@ -155,5 +171,42 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
     protected void onDestroy() {
         super.onDestroy();
         handler.removeCallbacks(runnable);
+    }
+
+    @Override
+    public void onNativeAdReceived(List nativeAdList) {
+        if (null != nativeAdList && !nativeAdList.isEmpty()) {
+            nativeAd = (HashMap) nativeAdList.get(0);
+            if (!nativeAdList.toString().contains("videoUrl")) {
+
+                WebView webimg = mHolder.getView(R.id.webimg);
+                // 广告图片
+                mHolder.setImageURL(R.id.img, (String) nativeAd.get("adIcon"), 300, 300);
+
+            }
+
+            // 汇报展示
+            adViewNative.reportImpression((String) nativeAd.get("adId"));
+
+            mHolder.setOnClickListener(R.id.img, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    adViewNative.reportClick(
+                            (String) nativeAd.get("adId"),
+                            100,
+                            100);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onNativeAdReceiveFailed(String s) {
+
+    }
+
+    @Override
+    public void onDownloadStatusChange(int i) {
+
     }
 }
