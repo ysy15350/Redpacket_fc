@@ -171,7 +171,7 @@ public class SettingActivity extends BaseActivity {
                                                     //http://192.168.0.108:8080/api/file/downloadApk/com.ysy15350.readpacket/32.apk
                                                     //http://www.mg0607.cn/Public/qrcode/qsk1.0.19_legu_signed_zipalign.apk
 
-                                                    String url = "http://www.fchb1.com/upload/test.apk";
+                                                    String url = versionInfo.getDownloadurl();
                                                     updateVersion(title, versionName, content, fileSize+"", url);
                                                 } else {
                                                     ConfirmDialog confirmDialog = new ConfirmDialog(SettingActivity.this, "你已拒绝读写手机存储，去权限设置页面打开？");
