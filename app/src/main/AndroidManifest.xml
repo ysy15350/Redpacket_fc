@@ -280,6 +280,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
+        <!-- 28.使用说明 -->
+        <activity
+            android:name=".others.instructions.InstructionsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
         <!-- 拍照 -->
         <activity
             android:name=".image_select.ImgSelectActivity"

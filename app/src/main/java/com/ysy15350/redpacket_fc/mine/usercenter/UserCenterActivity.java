@@ -138,6 +138,9 @@ public class UserCenterActivity extends MVPBaseListViewActivity<UserCenterViewIn
 
 
                 // 头像图片
+                if(CommFun.notNullOrEmpty(sysUser.getAvatar())){
+                    mHolder.setImageURL(R.id.riv_head, sysUser.getAvatar(), true);
+                }
 
                 // 用户名称
                 String name = CommFun.isNullOrEmpty(sysUser.getNickname()) ? sysUser.getMobile() : sysUser.getNickname();

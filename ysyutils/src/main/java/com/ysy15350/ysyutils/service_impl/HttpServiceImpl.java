@@ -11,6 +11,7 @@ import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;
 
+import org.xutils.HttpManager;
 import org.xutils.common.Callback;
 import org.xutils.ex.HttpException;
 import org.xutils.http.RequestParams;
@@ -101,7 +102,6 @@ public class HttpServiceImpl implements HttpService {
 
         this.mApiCallBack = apiCallBack;
 
-
         x.http().post(mRequestParams, cacheCallback);
 
 
@@ -113,7 +113,13 @@ public class HttpServiceImpl implements HttpService {
         mRequestParams = new RequestParams(url.toString());
 
         this.mApiCallBack = apiCallBack;
-        x.http().post(mRequestParams, cacheCallback);
+
+        try {
+            x.http().post(mRequestParams, cacheCallback);
+        }catch (Exception e){
+            e.getMessage();
+        }
+
     }
 
 

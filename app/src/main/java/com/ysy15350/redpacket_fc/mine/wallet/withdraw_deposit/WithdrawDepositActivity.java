@@ -110,7 +110,7 @@ public class WithdrawDepositActivity extends MVPBaseActivity<WithdrawDepositView
 
         int price_value = CommFun.toInt32(price, 0);
         if (price_value < 25) {
-            showMsg("提现金额必须大于25元");
+            showMsg("提现金额不能低于25元");
             return;
         }
 

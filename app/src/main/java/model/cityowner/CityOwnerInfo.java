@@ -26,6 +26,7 @@ public class CityOwnerInfo {
     private String district;
     //当前城主购买所需金额
     private double price;
+    private double price1;
 
     //当前购买城主的用户id
     private int uid;
@@ -123,5 +124,13 @@ public class CityOwnerInfo {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public double getPrice1() {
+        return price1;
+    }
+
+    public void setPrice1(double price1) {
+        this.price1 = price1;
     }
 }

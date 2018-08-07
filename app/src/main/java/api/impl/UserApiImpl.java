@@ -7,6 +7,7 @@ import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.model.SysUser;
+import com.ysy15350.ysyutils.service_impl.HttpServiceImpl;
 
 import api.UserApi;
 
@@ -29,7 +30,7 @@ public class UserApiImpl implements UserApi {
                     .build();
 
 
-            Ysy.http().requestPost(requestOptions, callBack);
+            new HttpServiceImpl().requestPost(requestOptions, callBack);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -51,7 +52,7 @@ public class UserApiImpl implements UserApi {
                     .build();
 
 
-            Ysy.http().requestPost(requestOptions, callBack);
+            new HttpServiceImpl().requestPost(requestOptions, callBack);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -74,7 +75,7 @@ public class UserApiImpl implements UserApi {
                 .build();
 
 
-        Ysy.http().requestPost(requestOptions, callBack);
+        new HttpServiceImpl().requestPost(requestOptions, callBack);
 
     }
 
@@ -89,7 +90,7 @@ public class UserApiImpl implements UserApi {
                 .addBodyParameter("deviceId", CommFunAndroid.getSharedPreferences("device_id"))//设备唯一编码
                 .build();
 
-        Ysy.http().requestPost(requestOptions, callBack);
+        new HttpServiceImpl().requestPost(requestOptions, callBack);
     }
 
     @Override
@@ -109,7 +110,7 @@ public class UserApiImpl implements UserApi {
                 .build();
 
 
-        Ysy.http().requestPost(requestOptions, callBack);
+        new HttpServiceImpl().requestPost(requestOptions, callBack);
 
     }
 
@@ -120,7 +121,7 @@ public class UserApiImpl implements UserApi {
                 .build();
 
 
-        Ysy.http().requestPost(requestOptions, callBack);
+        new HttpServiceImpl().requestPost(requestOptions, callBack);
     }
 
 
@@ -160,7 +161,7 @@ public class UserApiImpl implements UserApi {
 
             RequestOptions requestOptions = builder.build();
 
-            Ysy.http().requestPost(requestOptions, callBack);
+            new HttpServiceImpl().requestPost(requestOptions, callBack);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -177,6 +178,6 @@ public class UserApiImpl implements UserApi {
                 .addBodyParameter("code", code)
                 .build();
 
-        Ysy.http().requestPost(requestOptions, callBack);
+        new HttpServiceImpl().requestPost(requestOptions, callBack);
     }
 }

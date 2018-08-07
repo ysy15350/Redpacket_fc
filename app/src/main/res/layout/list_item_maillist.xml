@@ -56,7 +56,7 @@
             android:background="@drawable/shape_btn_hollow_red"
             android:gravity="center"
             android:padding="@dimen/dp10"
-            android:layout_height="@dimen/dp40">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/tv_invita"

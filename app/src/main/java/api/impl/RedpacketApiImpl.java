@@ -3,6 +3,7 @@ package api.impl;
 import com.ysy15350.ysyutils.Ysy;
 import com.ysy15350.ysyutils.api.ApiCallBack;
 import com.ysy15350.ysyutils.api.model.RequestOptions;
+import com.ysy15350.ysyutils.service_impl.HttpServiceImpl;
 
 import api.RedpacketApi;
 
@@ -17,6 +18,6 @@ public class RedpacketApiImpl implements RedpacketApi {
                 .addBodyParameter("type", type)
                 .build();
 
-        Ysy.http().requestPost(requestOptions, callBack);
+        new HttpServiceImpl().requestPost(requestOptions, callBack);
     }
 }

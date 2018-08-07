@@ -181,5 +181,31 @@
         <item name="android:textColor">@color/white</item>
     </style>
 
+    <!-- ################ 使用说明 ################ -->
+
+    <!-- 图片大小 -->
+    <style name="iconSize">
+        <item name="android:layout_width">@dimen/dp40</item>
+        <item name="android:layout_height">@dimen/dp40</item>
+    </style>
+
+    <!-- 标题文本样式 -->
+    <style name="instructions_title_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp20</item>
+        <item name="android:textColor">@color/main_color_black</item>
+        <item name="android:textSize">@dimen/sp24</item>
+    </style>
+
+    <!-- 使用说明内容文本样式 -->
+    <style name="instructions_content_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/dp60</item>
+        <item name="android:textColor">@color/main_color_gray02</item>
+        <item name="android:textSize">@dimen/sp20</item>
+    </style>
+
 
 </resources>

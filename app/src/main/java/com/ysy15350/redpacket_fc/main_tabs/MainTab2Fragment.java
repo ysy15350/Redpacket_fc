@@ -6,13 +6,18 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.githang.statusbar.StatusBarCompat;
+import com.google.gson.reflect.TypeToken;
 import com.ysy15350.redpacket_fc.MainActivity;
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.active_area.activearea.ActiveAreaActivity;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.mine.share.ShareActivity;
+import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
+import com.ysy15350.ysyutils.common.message.MessageBox;
+import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.viewpager.MyViewPager;
 
 import org.xutils.view.annotation.ContentView;
@@ -22,6 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.active_area.ActiveAreaInfo;
+import model.adInfo.AdInfo;
+import model.order.OrderListInfo;
 
 
 @ContentView(R.layout.activity_main_tab2)
@@ -41,7 +48,7 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
     /**
      * 是否有广告
      */
-    private boolean isAdvertisement = false;
+    private boolean isAdvertisement = true;
 
 
     public MainTab2Fragment() {
@@ -64,25 +71,53 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
             mHolder.setVisibility_GONE(R.id.ll_activearea);
             mHolder.setVisibility_VISIBLE(R.id.ll_noadvertisement);
         }
-        getPictures();
     }
 
-    private void getPictures(){
-        List<ActiveAreaInfo> activeAreaInfos = new ArrayList<>();
+    @Override
+    public void loadData() {
+        super.loadData();
 
-        String[] img = new String[3];
+        MessageBox.showWaitDialog(getActivity(),"数据加载中...");
+        mPresenter.getAdInfoList();
+    }
 
-        img[0] = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532109279512&di=465c4b8fb671b221651f07de982f1bcd&imgtype=0&src=http%3A%2F%2Fpic48.nipic.com%2Ffile%2F20140919%2F18645249_112722210805_2.jpg";
-        img[1] = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532109279512&di=fe02918f705605113d2337a7b6379a57&imgtype=0&src=http%3A%2F%2Fpic21.photophoto.cn%2F20111217%2F0008020202694178_b.jpg";
-        img[2] = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532113113575&di=68a5eb419b46d301045292ff9af966c0&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D3424208319%2C497009274%26fm%3D214%26gp%3D0.jpg";
+    @Override
+    public void getAdInfoListCallback(boolean isCache, Response response) {
+        try {
+            MessageBox.hideWaitDialog();
 
-        for (int y = 0;y<img.length;y++){
-            ActiveAreaInfo areaInfo = new ActiveAreaInfo();
-            areaInfo.setImgurl(img[y]);
-            activeAreaInfos.add(areaInfo);
+            String jsonStr = JsonConvertor.toJson(response);
+            List<ActiveAreaInfo> list = null;
+            if (response != null) {
+                Object responseBod = response.getBody();
+                if (responseBod != null) {
+                    String body = JsonConvertor.toJson(responseBod);
+                    list = JsonConvertor.fromJson(body, new TypeToken<List<ActiveAreaInfo>>() {
+                    }.getType());
+                    getPictures(list);
+                }
+            }
+        } catch (Exception ex) {
         }
 
-        if(img.length<9){
+    }
+
+    private void getPictures(List<ActiveAreaInfo> activeAreaInfos){
+//        List<ActiveAreaInfo> activeAreaInfos = new ArrayList<>();
+
+//        String[] img = new String[3];
+//
+//        img[0] = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532109279512&di=465c4b8fb671b221651f07de982f1bcd&imgtype=0&src=http%3A%2F%2Fpic48.nipic.com%2Ffile%2F20140919%2F18645249_112722210805_2.jpg";
+//        img[1] = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532109279512&di=fe02918f705605113d2337a7b6379a57&imgtype=0&src=http%3A%2F%2Fpic21.photophoto.cn%2F20111217%2F0008020202694178_b.jpg";
+//        img[2] = "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1532113113575&di=68a5eb419b46d301045292ff9af966c0&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D3424208319%2C497009274%26fm%3D214%26gp%3D0.jpg";
+//
+//        for (int y = 0;y<img.length;y++){
+//            ActiveAreaInfo areaInfo = new ActiveAreaInfo();
+//            areaInfo.setImgurl(img[y]);
+//            activeAreaInfos.add(areaInfo);
+//        }
+
+        if(activeAreaInfos.size()<9){
             mHolder.setBackground(R.id.btn_fcb,R.drawable.shape_btn_gray);
             mHolder.getView(R.id.btn_fcb).setEnabled(false);
         }else {

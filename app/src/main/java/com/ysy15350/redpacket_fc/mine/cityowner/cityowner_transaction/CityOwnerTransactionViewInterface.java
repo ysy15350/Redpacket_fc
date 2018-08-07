@@ -16,13 +16,6 @@ public interface CityOwnerTransactionViewInterface {
     public void bindProtocolCallback(boolean isCache, Response response);
 
     /**
-     * 城主信息
-     * @param isCache
-     * @param response
-     */
-    void getCityOwnerCallback(boolean isCache, Response response);
-
-    /**
      * 购买城主
      * @param isCache
      * @param response
@@ -30,7 +23,6 @@ public interface CityOwnerTransactionViewInterface {
     void buyCityOwnerCallback(boolean isCache, Response response);
     /**
      * 生成城主支付订单
-     * @param isCache
      * @param response
      */
     void buildCityOwnerPayOrderCallback(boolean isCache, Response response);

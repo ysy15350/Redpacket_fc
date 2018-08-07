@@ -37,6 +37,7 @@ import com.ysy15350.ysyutils.common.RequestPermissionType;
 import com.ysy15350.ysyutils.common.SystemModels;
 import com.ysy15350.ysyutils.common.ViewHolder;
 import com.ysy15350.ysyutils.common.message.MessageBox;
+import com.ysy15350.ysyutils.common.string.JsonConvertor;
 import com.ysy15350.ysyutils.custom_view.dialog.ConfirmDialog;
 import com.ysy15350.ysyutils.custom_view.dialog.DownloadDialog;
 import com.ysy15350.ysyutils.gaodemap.GaodeMapUtils;
@@ -51,6 +52,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.ysy15350.ysyutils.common.cache.ACache.aCache;
 
 
 /**
@@ -899,6 +902,10 @@ public class BaseActivity extends AppCompatActivity implements IView, GestureDet
         mLocationInfo = locationInfo;
         if (locationInfo != null) {
             SystemModels.locationInfo = locationInfo;
+            if(aCache != null){
+                String locationInfoJson = JsonConvertor.toJson(locationInfo);
+                aCache.put("locationInfoJson",locationInfoJson);
+            }
             Log.d(TAG, "onLocationChanged: " + locationInfo.getAddress());
         }
     }

@@ -2,6 +2,7 @@ package com.ysy15350.redpacket_fc.dailytasks;
 
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
@@ -15,6 +16,7 @@ import com.ysy15350.ysyutils.base.mvp.MVPBaseListViewActivity;
 import com.ysy15350.ysyutils.common.message.MessageBox;
 
 import org.xutils.view.annotation.ContentView;
+import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -226,6 +228,18 @@ public class DailyTasksListActivity extends MVPBaseListViewActivity<DailyTasksLi
     @Override
     protected void bindListView(BaseAdapter mAdapter) {
         super.bindListView(mAdapter);
+    }
+
+
+    /**
+     * 返回
+     * @param view
+     */
+    @Event(value = R.id.img_wallet_back)
+    private void img_wallet_backClick(View view) {
+
+        finish();
+
     }
 
 }

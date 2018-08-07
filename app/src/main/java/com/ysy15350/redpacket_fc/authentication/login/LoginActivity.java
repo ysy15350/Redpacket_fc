@@ -62,6 +62,11 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
         if (!CommFun.isNullOrEmpty(mobile)) {
             mHolder.setText(R.id.et_mobile, mobile);
         }
+
+        // 如果已经登录  退出页面
+        if(BaseData.isLogin())
+            finish();
+
     }
 
     /**

@@ -186,13 +186,16 @@ public class UserInfoActivity extends MVPBaseActivity<UserInfoViewInterface, Use
                 Log.d(TAG, "bindUserInfo: " + sysUser.getMobile());
 
                 // 头像图片
-                String headImgUrl = Config.getUri();
-                if (CommFun.notNullOrEmpty(sysUser.getAvatar())) {
-                    headImgUrl += sysUser.getAvatar();
-                    mHolder.setImageURL(R.id.img_head, headImgUrl, true);
-                } else if (!CommFun.isNullOrEmpty(sysUser.getAvatar())) {
-                    mHolder.setImageURL(R.id.img_head, sysUser.getAvatar(), true);
-                } else if (!CommFun.isNullOrEmpty(sysUser.getAvatar())) {
+//                String headImgUrl = Config.getUri();
+//                if (CommFun.notNullOrEmpty(sysUser.getAvatar())) {
+//                    headImgUrl += sysUser.getAvatar();
+//                    mHolder.setImageURL(R.id.img_head, headImgUrl, true);
+//                } else if (!CommFun.isNullOrEmpty(sysUser.getAvatar())) {
+//                    mHolder.setImageURL(R.id.img_head, sysUser.getAvatar(), true);
+//                } else if (!CommFun.isNullOrEmpty(sysUser.getAvatar())) {
+//                    mHolder.setImageURL(R.id.img_head, sysUser.getAvatar(), true);
+//                }
+                if(CommFun.notNullOrEmpty(sysUser.getAvatar())){
                     mHolder.setImageURL(R.id.img_head, sysUser.getAvatar(), true);
                 }
 

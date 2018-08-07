@@ -14,7 +14,7 @@ public interface City_OwnerApi {
      * @param code 地区编号
      * @param callBack
      */
-    void getCityOwner(int code, ApiCallBack callBack);
+//    void getCityOwner(int code, ApiCallBack callBack);
 
     /**
      * 购买城主

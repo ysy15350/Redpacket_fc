@@ -118,6 +118,7 @@
 
     <!--使用说明-->
     <LinearLayout
+        android:id="@+id/llbtn_instructions"
         style="@style/menu_item_list_layout_horizon">
 
         <TextView

@@ -9,16 +9,16 @@
 
     <string name="main_tab4_menu1">个人主页</string>
     <string name="main_tab4_menu2">钱包</string>
-    <string name="main_tab4_menu3">城主</string>
+    <string name="main_tab4_menu3">盟主</string>
     <string name="main_tab4_menu4">关注</string>
     <string name="main_tab4_menu5">分享</string>
     <string name="main_tab4_menu6">设置</string>
     <string name="main_tab4_menu7">每日任务</string>
 
-    <!-- 城主特权 -->
+    <!-- 盟主特权 -->
     <string name="privilege1">即时享有主城内用户收红包金额的5%</string>
     <string name="privilege2">即时享有城内用户兑换红包股金额0.1%</string>
-    <string name="privilege3">主城被下一个城主购买后，获得该主城价格涨幅金额的25%</string>
+    <string name="privilege3">主城被下一个盟主购买后，获得该主城价格涨幅金额的25%</string>
     <string name="privilege4">享有"城市格子"广告位买入金额的50%</string>
 
     <!-- 邀请 -->
@@ -28,4 +28,16 @@
     <!-- 打开红包 -->
     <string name="openred">打开宝箱</string>
     <string name="openred_1">6月旅游好去处，你绝不想错过</string>
+
+    <!-- 使用说明 -->
+    <string name="instructions1">1、玩赚方寸：收红包</string>
+    <string name="instructions1_1">如何收取更多的红包？如何查看自己全部收入？赶紧点这里了解一下吧！</string>
+    <string name="instructions2">2、玩赚方寸：发红包</string>
+    <string name="instructions2_1">如何指定城市区域范围发红包？发红包有什么用处？</string>
+    <string name="instructions3">3、玩赚方寸：抢红包</string>
+    <string name="instructions3_1">如何抢到更大的红包？</string>
+    <string name="instructions4">4、玩赚方寸：盟主</string>
+    <string name="instructions4_1">什么是盟主？如果购买？盟主特权有什么？如果成为盟主？</string>
+    <string name="instructions5">5、玩赚方寸：FCB</string>
+    <string name="instructions5_1">什么是FCB？怎么获取FCB？</string>
 </resources>

@@ -19,7 +19,7 @@ import org.xutils.view.annotation.ContentView;
 import org.xutils.view.annotation.Event;
 
 /**
- * 城主
+ * 盟主
  */
 @ContentView(R.layout.activity_city_owner)
 public class City_OwnerActivity extends MVPBaseActivity<City_OwnerViewInterface, City_OwnerPresenter>
@@ -37,13 +37,13 @@ public class City_OwnerActivity extends MVPBaseActivity<City_OwnerViewInterface,
     public void initView() {
         super.initView();
 
-        setFormHead("城主");
+        setFormHead("盟主");
         setMenuText("规则");
 
     }
 
     /**
-     * 我要成为城主
+     * 我要成为盟主
      * @param view
      */
     @Event(value = R.id.btn_city)

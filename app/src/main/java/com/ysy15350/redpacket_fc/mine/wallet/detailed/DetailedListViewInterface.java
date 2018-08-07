@@ -8,6 +8,6 @@ import com.ysy15350.ysyutils.api.model.Response;
 
 public interface DetailedListViewInterface {
 
-    public void bindAdsCardListCallback(boolean isCache, Response response);
+    public void orderListCallback(boolean isCache, Response response);
 
 }

@@ -104,6 +104,8 @@ public class GuideActivity extends MVPBaseActivity<GuideViewInterface, GuidePres
     protected void onResume() {
         super.onResume();
 
+        getLocation();
+
         mPresenter.activate();
 
         handler.postDelayed(runnable, 1000);//每两秒执行一次runnable.

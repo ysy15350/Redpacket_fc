@@ -35,7 +35,7 @@ import model.cityowner.CityOwnerInfo;
 import model.protocol.ProtoclInfo;
 
 /**
- * 城主交易界面
+ * 盟主交易界面
  */
 @ContentView(R.layout.activity_cityowner_transaction)
 public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTransactionViewInterface, CityOwnerTransactionPresenter>
@@ -51,6 +51,7 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
      * 地区编号
      */
     private int code = 0;
+
 
     /**
      * 城市选择器
@@ -80,10 +81,10 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
 
         MessageBox.showWaitDialog(this, "数据加载中...");
 
-        // 城主协议
+        // 盟主协议
         mPresenter.getProtocol();
-        // 城主信息
-        mPresenter.getCityOwner(code);
+        // 盟主信息
+        mPresenter.buyCityOwner(code);
     }
 
     @Override
@@ -100,8 +101,6 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
                     int status = responseHead.getResponse_status();
                     String msg = responseHead.getResponse_msg();
                     if (status == 100) {
-
-
                         ProtoclInfo protoclInfo = response.getData(ProtoclInfo.class);
                         if (protoclInfo != null) {
                             if (!protoclInfo.getProtocol().equals("")) {
@@ -119,54 +118,48 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
         }
     }
 
-    @Override
-    public void getCityOwnerCallback(boolean isCache, Response response) {
-        try {
-
-            hideWaitDialog();
-
-            if (response != null) {
-                String jsonStr = JsonConvertor.toJson(response);
-                ResponseHead responseHead = response.getHead();
-                if (responseHead != null) {
-                    int status = responseHead.getResponse_status();
-                    String msg = responseHead.getResponse_msg();
-                    if (status == 100) {
-                        CityOwnerInfo cityOwnerInfo = response.getData(CityOwnerInfo.class);
-                        if (cityOwnerInfo != null) {
-                            bindCityOwener(cityOwnerInfo);
-                        }
-                    } else {
-                        showMsg(msg);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     /**
-     * 绑定城主信息
+     * 绑定盟主信息
      */
     private void bindCityOwener(CityOwnerInfo cityOwnerInfo) {
 
         String region = "";// 地区
-        String cityUserneme = ""; // 城主姓名
+        String cityUserneme = ""; // 盟主姓名
         String strprice = "";
+        String citybtn = "";
+        SysUser sysUser;
 
         if (cityOwnerInfo != null) {
+            sysUser = cityOwnerInfo.getSysUser();
             if (CommFun.notNullOrEmpty(cityOwnerInfo.getProvence())
                     && CommFun.notNullOrEmpty(cityOwnerInfo.getCity())
                     && CommFun.notNullOrEmpty(cityOwnerInfo.getDistrict())
                     ) {
-                region = cityOwnerInfo.getProvence() + cityOwnerInfo.getCity() + cityOwnerInfo.getDistrict();
+                String ctiy = cityOwnerInfo.getCity();
+                ctiy = ctiy.replace("市辖区","");
+                region = cityOwnerInfo.getProvence() + ctiy + cityOwnerInfo.getDistrict();
             }
 
-            if (cityOwnerInfo.getSysUser() != null) {
-                cityUserneme = cityOwnerInfo.getSysUser().getNickname();
+            if (sysUser != null) {
+                cityUserneme = CommFun.isNullOrEmpty(sysUser.getNickname()) ? CommFun.getPhone(sysUser.getMobile()) : sysUser.getNickname();
+            }else {
+                cityUserneme = "没有盟主";
             }
-            strprice = "¥" + cityOwnerInfo.getPrice();
+
+            strprice = "¥" + cityOwnerInfo.getPrice1();
+
+            // 当前用户id
+            int userId = BaseData.getSysUser().getId();
+            // 盟主id
+            int cityId = cityOwnerInfo.getId();
+            if(userId == cityId){
+                mHolder.getView(R.id.btn_cityowner).setEnabled(false);
+                mHolder.setText(R.id.btn_cityowner,"我是当前区域盟主");
+            }else {
+                mHolder.getView(R.id.btn_cityowner).setEnabled(true);
+                mHolder.setText(R.id.btn_cityowner,"我要成为盟主");
+            }
         }
 
         // 头像
@@ -174,22 +167,25 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
         // 地区
         mHolder.setText(R.id.tv_region, region);
 
-        // 城主姓名
+        // 盟主姓名
         mHolder.setText(R.id.tv_cityowneruser, cityUserneme);
 
-        // 城主价格
+        // 盟主价格
         mHolder.setText(R.id.tv_cityowneraccount, strprice);
+
+        // 我要成为盟主按钮
+
     }
 
 
     /**
-     * 我要成为城主
+     * 我要成为盟主
      *
      * @param view
      */
     @Event(value = R.id.btn_cityowner)
     private void btn_cityownerClick(View view) {
-        String title = "方寸红包城主协议";
+        String title = "方寸红包盟主协议";
         String content = userProtocl;
         AgreementDialog agreementDialog = new AgreementDialog(this, title, content, "同意", "拒绝", 0);
         agreementDialog.setDialogListener(new AgreementDialog.DialogListener() {
@@ -200,8 +196,7 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
 
             @Override
             public void onOkClick() {
-//                startActivity(new Intent(CityOwnerTransactionActivity.this, PayDemoActivity.class));
-                mPresenter.buyCityOwner(code);
+                mPresenter.buildCityOwnerPayOrder(code, 1);
             }
         });
 
@@ -222,8 +217,8 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
                     String msg = responseHead.getResponse_msg();
                     CityOwnerInfo cityOwnerInfo = response.getData(CityOwnerInfo.class);
                     if (cityOwnerInfo != null) {
+                        bindCityOwener(cityOwnerInfo);
                         double price = cityOwnerInfo.getPrice();
-                        mPresenter.buildCityOwnerPayOrder(price, 1);
                     }
                     if (status == 100) {
 //                        CityOwnerInfo cityOwnerInfo = response.getData(CityOwnerInfo.class);
@@ -307,10 +302,20 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
 
         mCityPickerView.init(this);
 
+        String province = "重庆市";
+        String city = "重庆市";
+        String district = "渝中区";
+
+        if(CommFun.notNullOrEmpty(SystemModels.locationInfo.getDistrict())){
+            province = SystemModels.locationInfo.getProvince();
+            city = SystemModels.locationInfo.getCity();
+            district = SystemModels.locationInfo.getDistrict();
+        }
+
         CityConfig cityConfig = new CityConfig.Builder().title("")//标题
-                .province(SystemModels.locationInfo.getProvince())
-                .city(SystemModels.locationInfo.getCity())
-                .district(SystemModels.locationInfo.getDistrict())
+                .province(province)
+                .city(city)
+                .district(district)
                 .build();
 
         mCityPickerView.setConfig(cityConfig);
@@ -331,7 +336,7 @@ public class CityOwnerTransactionActivity extends MVPBaseActivity<CityOwnerTrans
                     sb.append(district.getName() + " " + district.getId() + ("\n"));
                 }
 
-                mPresenter.getCityOwner(CommFun.toInt32(district.getId(), 0));
+                mPresenter.buyCityOwner(CommFun.toInt32(district.getId(), 0));
 
             }
 

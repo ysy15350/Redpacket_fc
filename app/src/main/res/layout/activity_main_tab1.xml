@@ -58,14 +58,23 @@
                 android:textColor="@color/text_money"
                 android:textSize="@dimen/sp20" />
 
-            <ImageView
+            <LinearLayout
                 android:id="@+id/img_invitation"
-                android:layout_width="@dimen/dp30"
-                android:layout_height="@dimen/dp30"
+                android:layout_width="wrap_content"
                 android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
                 android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/dp10"
-                android:src="@mipmap/icon_invitation" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:visibility="visible"
+                    android:layout_marginEnd="@dimen/dp10"
+                    android:src="@mipmap/icon_invitation" />
+            </LinearLayout>
+
+
 
         </RelativeLayout>
 
@@ -210,14 +219,15 @@
                     android:id="@+id/tv_cityProper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="江北区"
+                    android:text="-"
                     android:textColor="@color/main_color_gray"
                     android:textSize="@dimen/dp18" />
 
                 <TextView
+                    android:id="@+id/tv_ctiyname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="用户名字"
+                    android:text="-"
                     android:textColor="@color/main_color_red1"
                     android:textSize="@dimen/dp18" />
             </LinearLayout>

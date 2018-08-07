@@ -58,20 +58,6 @@ public class CityOwnerTransactionPresenter extends BasePresenter<CityOwnerTransa
     }
 
     /**
-     * 城主信息
-     */
-    public void getCityOwner(int code){
-
-        city_ownerApi.getCityOwner(code, new ApiCallBack() {
-            @Override
-            public void onSuccess(boolean isCache, Response response) {
-                super.onSuccess(isCache, response);
-                mView.getCityOwnerCallback(isCache,response);
-            }
-        });
-    }
-
-    /**
      * 购买城主
      */
     public void buyCityOwner(int code){
@@ -88,9 +74,9 @@ public class CityOwnerTransactionPresenter extends BasePresenter<CityOwnerTransa
     /**
      * 生成城主支付订单
      */
-    public void buildCityOwnerPayOrder(double price, int type){
+    public void buildCityOwnerPayOrder(int code, int type){
 
-        accountAPi.buildCityOwnerPayOrder(price, type, new ApiCallBack() {
+        accountAPi.buildCityOwnerPayOrder(code, type, new ApiCallBack() {
             @Override
             public void onSuccess(boolean isCache, Response response) {
                 super.onSuccess(isCache, response);

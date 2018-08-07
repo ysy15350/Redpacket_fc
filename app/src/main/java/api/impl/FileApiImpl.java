@@ -3,6 +3,7 @@ package api.impl;
 import com.ysy15350.ysyutils.Ysy;
 import com.ysy15350.ysyutils.api.ApiCallBack;
 import com.ysy15350.ysyutils.api.model.RequestOptions;
+import com.ysy15350.ysyutils.service_impl.HttpServiceImpl;
 
 import java.io.File;
 
@@ -23,7 +24,7 @@ public class FileApiImpl implements FileApi {
                     .build();
 
 
-            Ysy.http().requestPost(requestOptions, callBack);
+            new HttpServiceImpl().requestPost(requestOptions, callBack);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +47,7 @@ public class FileApiImpl implements FileApi {
                     .build();
 
 
-            Ysy.http().requestPost(requestOptions, callBack);
+            new HttpServiceImpl().requestPost(requestOptions, callBack);
 
         } catch (Exception e) {
             e.printStackTrace();

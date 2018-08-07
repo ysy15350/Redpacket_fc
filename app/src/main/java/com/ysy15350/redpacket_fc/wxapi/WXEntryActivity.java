@@ -26,14 +26,20 @@ import com.ysy15350.redpacket_fc.MyApplication;
 import com.ysy15350.ysyutils.Ysy;
 import com.ysy15350.ysyutils.api.ApiCallBack;
 import com.ysy15350.ysyutils.api.model.Response;
+import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.message.MessageBox;
+import com.ysy15350.ysyutils.model.SysUser;
+import com.ysy15350.ysyutils.service_impl.HttpServiceImpl;
 import com.ysy15350.ysyutils.wxAuth.Constants;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
-public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHandler {
+public class WXEntryActivity extends Activity implements IWXAPIEventHandler {
 
     public static IWXAPI iwxapi;
 
@@ -182,13 +188,50 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                 .append(code)
                 .append("&grant_type=authorization_code");
 
-        String loginUrl1 = "https://api.weixin.qq.com/sns/oauth2/access_token"+
-                "?appid="+Constants.WEIXIN_APP_ID +
-                "&secret="+Constants.WEIXIN_APP_Secret +
-                "&code="+code+
-                "&grant_type=authorization_code";
+//        String loginUrl1 = "https://api.weixin.qq.com/sns/oauth2/access_token"+
+//                "?appid="+Constants.WEIXIN_APP_ID +
+//                "&secret="+Constants.WEIXIN_APP_Secret +
+//                "&code="+code+
+//                "&grant_type=authorization_code";
 
-        Ysy.http().requestWXPost(loginUrl, new ApiCallBack() {
+//        x.http().post(new RequestParams(loginUrl.toString()), new Callback.CacheCallback<String>() {
+//
+//            @Override
+//            public boolean onCache(String result) {
+//                MessageBox.show(result);
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSuccess(String result) {
+//                String access = null;
+//                String openId = null;
+//                try {
+//                    JSONObject jsonObject = new JSONObject(result);
+//                    access = jsonObject.getString("access_token");
+//                    openId = jsonObject.getString("openid");
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onError(Throwable ex, boolean isOnCallback) {
+//                MessageBox.show(ex.toString());
+//            }
+//
+//            @Override
+//            public void onCancelled(CancelledException cex) {
+//                MessageBox.show(cex.toString());
+//            }
+//
+//            @Override
+//            public void onFinished() {
+//                MessageBox.show("请求完成");
+//            }
+//        });
+
+        new HttpServiceImpl().requestWXPost(loginUrl, new ApiCallBack() {
             @Override
             public void onSuccess(boolean isCache, String data) {
                 super.onSuccess(isCache, data);
@@ -198,6 +241,9 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                     JSONObject jsonObject = new JSONObject(data);
                     access = jsonObject.getString("access_token");
                     openId = jsonObject.getString("openid");
+
+                    //获取个人信息
+                    getUserInfo(access,openId);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -222,12 +268,48 @@ public class WXEntryActivity extends AppCompatActivity implements IWXAPIEventHan
                 .append("&openid==")
                 .append(openId);
 
-//        Ysy.http().requestWXPost(userUrl, new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, String data) {
-//                super.onSuccess(isCache, data);
-//                String datas = data;
-//            }
-//        });
+        Ysy.http().requestWXPost(userUrl, new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, String data) {
+                super.onSuccess(isCache, data);
+                String datas = data;
+
+                String openid = null;
+                // 姓名
+                String nickName = null;
+                // 性别
+                String sex = null;
+                String city = null;
+                String province = null;
+                String country = null;
+                // 头像
+                String headimgurl = null;
+                String unionid = null;
+
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+
+                    openid = jsonObject.getString("openid");
+                    nickName = jsonObject.getString("nickname");
+                    sex = jsonObject.getString("sex");
+                    city = jsonObject.getString("city");
+                    province = jsonObject.getString("province");
+                    country = jsonObject.getString("country");
+                    headimgurl = jsonObject.getString("headimgurl");
+                    unionid = jsonObject.getString("unionid");
+                }catch (Exception e){
+
+                }
+                BaseData.setToken(openid);
+
+                SysUser sysUser = new SysUser();
+                sysUser.setNickname(nickName);
+                sysUser.setSex(CommFun.toInt32(sex,0));
+                sysUser.setAvatar(headimgurl);
+
+                BaseData.setSysUser(sysUser);
+
+            }
+        });
     }
 }

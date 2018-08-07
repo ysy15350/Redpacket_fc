@@ -161,6 +161,8 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
                         List<SysUser> sysUserList = JsonConvertor.fromJson(body,new TypeToken<List<SysUser>>(){}.getType());
                         if (sysUserList != null && sysUserList.size()>0){
                             bindInviteList(sysUserList);
+                        }else {
+                            bindListView(mList);
                         }
                     }
                     showMsg(msg);
@@ -177,14 +179,20 @@ public class InvitationFriendsListActivity extends MVPBaseListViewActivity<Invit
      */
     private void bindInviteList(List<SysUser> sysUserList) {
 
-        for (long i = 0;i<sysUserList.size();i++){
-            String mobile = sysUserList.get((int) i).getMobile();
-            for (long y = 0; y<mList.size();y++){
-                String phone = mList.get((int) y).getPhone();
-                if(phone.equals(mobile)){
-                    mList.get((int) y).setSelect(true);
+        try {
+            for (int i = 0;i<sysUserList.size();i++){
+                String mobile = sysUserList.get(i).getMobile();
+                if(CommFun.notNullOrEmpty(mobile)){
+                    for (int y = 0; y<mList.size();y++){
+                        String phone = mList.get(y).getPhone();
+                        if(phone.equals(mobile)){
+                            mList.get(y).setSelect(true);
+                        }
+                    }
                 }
             }
+        }catch (Exception e){
+            e.getMessage();
         }
 
         bindListView(mList);

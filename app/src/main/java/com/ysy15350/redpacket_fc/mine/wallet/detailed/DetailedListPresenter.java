@@ -2,7 +2,12 @@ package com.ysy15350.redpacket_fc.mine.wallet.detailed;
 
 import android.content.Context;
 
+import com.ysy15350.ysyutils.api.ApiCallBack;
+import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.base.mvp.BasePresenter;
+
+import api.OrderApi;
+import api.impl.OrderApiImpl;
 
 
 public class DetailedListPresenter extends BasePresenter<DetailedListViewInterface> {
@@ -12,29 +17,22 @@ public class DetailedListPresenter extends BasePresenter<DetailedListViewInterfa
 
     }
 
-    public void getAdsCardList(int page,int pageSize){
-        mView.bindAdsCardListCallback(false,null);
-    }
+    private OrderApi orderApi = new OrderApiImpl();
 
-//    private UserApi userApi=new UserApiImpl();
-//
-//    public void login(){
-//        userApi.login("test", "test", new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, Response response) {
-//                super.onSuccess(isCache, response);
-//            }
-//        });
-//    }
-//
-//    public void activate() {
-//        userApi.activate(new ApiCallBack() {
-//            @Override
-//            public void onSuccess(boolean isCache, Response response) {
-//                super.onSuccess(isCache, response);
-//                mView.activateCallback(isCache, response);
-//            }
-//        });
-//    }
+
+    /**
+     * 交易明细列表
+     * @param page
+     * @param pageSize
+     */
+    public void orderList(int page,int pageSize){
+        orderApi.orderList(page, pageSize, new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, Response response) {
+                super.onSuccess(isCache, response);
+                mView.orderListCallback(isCache,response);
+            }
+        });
+    }
 
 }

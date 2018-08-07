@@ -1,5 +1,7 @@
 package com.ysy15350.ysyutils.model;
 
+import android.location.Location;
+
 import com.amap.api.location.AMapLocation;
 import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.string.JsonConvertor;

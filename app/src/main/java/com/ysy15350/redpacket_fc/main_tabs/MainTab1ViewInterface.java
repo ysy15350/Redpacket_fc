@@ -18,4 +18,11 @@ public interface MainTab1ViewInterface {
      */
     void grabRedPacketCallback(boolean isCache, Response response);
 
+    /**
+     * 城主信息
+     * @param isCache
+     * @param response
+     */
+    void buyCityOwnerCallback(boolean isCache, Response response);
+
 }

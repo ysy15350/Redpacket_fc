@@ -70,6 +70,10 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
             if (CommFun.notNullOrEmpty(sysUser.getId() + "")) {
                 mHolder.setText(R.id.tv_nameid, "ID:"+sysUser.getId());
             }
+
+            // 头像
+            String headImgUrl = sysUser.getAvatar();
+            mHolder.setImageURL(R.id.img_head, headImgUrl, true);
         }
 
     }
@@ -182,7 +186,7 @@ public class MainTab4Fragment extends MVPBaseFragment<MainTab4ViewInterface, Mai
     }
 
     /**
-     * 城主
+     * 盟主
      *
      * @param view
      */

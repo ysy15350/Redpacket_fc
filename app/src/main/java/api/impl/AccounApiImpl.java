@@ -7,6 +7,7 @@ import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.common.CommFun;
 import com.ysy15350.ysyutils.common.CommFunAndroid;
 import com.ysy15350.ysyutils.model.SysUser;
+import com.ysy15350.ysyutils.service_impl.HttpServiceImpl;
 
 import api.AccountAPi;
 import api.UserApi;
@@ -45,7 +46,7 @@ public class AccounApiImpl implements AccountAPi {
 
             RequestOptions requestOptions = builder.build();
 
-            Ysy.http().requestPost(requestOptions, callBack);
+            new HttpServiceImpl().requestPost(requestOptions, callBack);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,7 +61,7 @@ public class AccounApiImpl implements AccountAPi {
                 .addBodyParameter("mobile", mobile)
                 .build();
 
-        Ysy.http().requestPost(requestOptions, callBack);
+        new HttpServiceImpl().requestPost(requestOptions, callBack);
     }
 
     @Override
@@ -70,23 +71,24 @@ public class AccounApiImpl implements AccountAPi {
                 .addBodyParameter("mobile", mobile)
                 .build();
 
-        Ysy.http().requestPost(requestOptions, callBack);
+        new HttpServiceImpl().requestPost(requestOptions, callBack);
     }
 
     @Override
-    public void buildCityOwnerPayOrder(double price, int type, ApiCallBack callBack) {
+    public void buildCityOwnerPayOrder(int code, int type, ApiCallBack callBack) {
         try {
             RequestOptions requestOptions = new RequestOptions.Builder()
                     .setRequestMapping(moduleName + "buildCityOwnerPayOrder")
-                    .addBodyParameter("price",price) // 金额
+                    .addBodyParameter("code",code) // 地区编码
                     .addBodyParameter("type",type) // 支付类型
                     .build();
 
 
-            Ysy.http().requestPost(requestOptions, callBack);
+            new HttpServiceImpl().requestPost(requestOptions, callBack);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 }

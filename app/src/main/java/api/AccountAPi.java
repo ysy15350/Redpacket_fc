@@ -29,6 +29,6 @@ public interface AccountAPi {
      * 生成城主支付订单
      * @param callBack
      */
-    void buildCityOwnerPayOrder(double price, int type,ApiCallBack callBack);
+    void buildCityOwnerPayOrder(int code, int type,ApiCallBack callBack);
 
 }

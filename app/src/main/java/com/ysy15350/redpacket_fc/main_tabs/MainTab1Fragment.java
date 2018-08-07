@@ -44,6 +44,7 @@ import com.amap.api.maps.model.PolylineOptions;
 import com.amap.api.maps.model.Text;
 import com.amap.api.maps.model.TextOptions;
 import com.google.gson.reflect.TypeToken;
+import com.ysy15350.redpacket_fc.MainActivity;
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
 import com.ysy15350.redpacket_fc.dailytasks.DailyTasksListActivity;
@@ -56,6 +57,7 @@ import com.ysy15350.redpacket_fc.mine.share.invitation.InvitationActivity;
 import com.ysy15350.redpacket_fc.redpackage.open_treasurebox.OpenTreasureBoxActivity;
 import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.api.model.ResponseHead;
+import com.ysy15350.ysyutils.base.BaseActivity;
 import com.ysy15350.ysyutils.base.data.BaseData;
 import com.ysy15350.ysyutils.base.mvp.MVPBaseFragment;
 import com.ysy15350.ysyutils.common.CommFun;
@@ -67,6 +69,7 @@ import com.ysy15350.ysyutils.custom_view.TextSwitchView;
 import com.ysy15350.ysyutils.custom_view.dialog.AgreementDialog;
 import com.ysy15350.ysyutils.gaodemap.util.AMapUtils;
 import com.ysy15350.ysyutils.gaodemap.util.Constants;
+import com.ysy15350.ysyutils.model.LocationInfo;
 import com.ysy15350.ysyutils.model.PageData;
 import com.ysy15350.ysyutils.model.SysUser;
 
@@ -81,6 +84,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import model.cityowner.CityOwnerInfo;
 import model.invitation.MailList;
 
 import static com.ysy15350.ysyutils.common.cache.ACache.aCache;
@@ -112,6 +116,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     private MarkerOptions markerOption;
     private RadioGroup radioOption;
     private Marker marker;// 从地上生长的marker对象
+
     /**
      * 当前坐标
      */
@@ -140,6 +145,11 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
      * 0：初始化；1：界面已看不见；2：界面再次可见
      */
     private int status = 0;
+
+    /**
+     * 是否整点红包时间
+     */
+    private boolean isWhole = false;
 
 
     public MainTab1Fragment() {
@@ -180,6 +190,13 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         super.loadData();
 
         mPresenter.getSystemTime();
+        int code = CommFun.toInt32(SystemModels.locationInfo.getAdCode(), 0);
+        if (code != 0) {
+            mPresenter.buyCityOwner(code);
+        } else {
+//            BaseActivity mainActivity = new MainActivity();
+//            mainActivity.getLocation();
+        }
     }
 
     @Override
@@ -199,15 +216,15 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         } else {
             mHolder.setText(R.id.tv_useraccont, "未登录");
         }
-        String cityProper = SystemModels.locationInfo.getDistrict();
-        mHolder.setText(R.id.tv_cityProper, cityProper);
 
     }
 
     private void setUpMap() {
-        //aMap.setLocationSource(this);// 设置定位监听
-        aMap.setOnMyLocationChangeListener(this);// 设置定位监听
-        aMap.getUiSettings().setMyLocationButtonEnabled(false);// 设置默认定位按钮是否显示
+//        aMap.setLocationSource(this);// 设置定位监听
+
+        setMyLocation();
+
+        aMap.getUiSettings().setMyLocationButtonEnabled(true);// 设置默认定位按钮是否显示
         aMap.setMyLocationEnabled(true);// 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
         aMap.setOnMapTouchListener(this);
 
@@ -216,6 +233,13 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         aMap.setOnMarkerClickListener(this);// 设置点击marker事件监听器
         aMap.setOnInfoWindowClickListener(this);// 设置点击infoWindow事件监听器
 
+    }
+
+    /**
+     * 原始定位
+     */
+    private void setMyLocation() {
+        aMap.setOnMyLocationChangeListener(this);// 设置定位监听
 
         //---------------------------------------------
         myLocationStyle = new MyLocationStyle();
@@ -239,6 +263,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                 String latlngJson = aCache.getAsString("latlngJson");
                 if (CommFun.notNullOrEmpty(latlngJson)) {
                     LatLng cachelatLng = JsonConvertor.fromJson(latlngJson, LatLng.class);
+
                     currentLatlng = cachelatLng;
                     aMap.moveCamera(CameraUpdateFactory.newLatLngZoom(cachelatLng, 15));
                 }
@@ -246,6 +271,79 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         } catch (Exception e) {
 
         }
+    }
+
+    @Override
+    public void buyCityOwnerCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+            if (response != null) {
+                String jsonStr = JsonConvertor.toJson(response);
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+                        CityOwnerInfo cityOwnerInfo = response.getData(CityOwnerInfo.class);
+                        if (cityOwnerInfo != null) {
+                            bindCityOwener(cityOwnerInfo);
+                        }
+                    } else {
+                        showMsg(msg);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 绑定城主信息
+     */
+    private void bindCityOwener(CityOwnerInfo cityOwnerInfo) {
+
+        String region = "";// 地区
+        String cityUserneme = ""; // 城主姓名
+        String strprice = "";
+        SysUser sysUser;
+
+        if (cityOwnerInfo != null) {
+            sysUser = cityOwnerInfo.getSysUser();
+            if (CommFun.notNullOrEmpty(cityOwnerInfo.getProvence())
+                    && CommFun.notNullOrEmpty(cityOwnerInfo.getCity())
+                    && CommFun.notNullOrEmpty(cityOwnerInfo.getDistrict())
+                    ) {
+                String ctiy = cityOwnerInfo.getCity();
+                ctiy = ctiy.replace("市辖区", "");
+                region = cityOwnerInfo.getProvence() + ctiy + cityOwnerInfo.getDistrict();
+            }
+
+            if (sysUser != null) {
+                cityUserneme = CommFun.isNullOrEmpty(sysUser.getNickname()) ? CommFun.getPhone(sysUser.getMobile()) : sysUser.getNickname();
+            } else {
+                cityUserneme = "购买盟主";
+            }
+            strprice = "¥" + cityOwnerInfo.getPrice1();
+        }
+
+        // 头像
+
+        // 地区
+        if (CommFun.notNullOrEmpty(region)) {
+            mHolder.setText(R.id.tv_cityProper, region);
+        } else {
+            String cityProper = SystemModels.locationInfo.getDistrict();
+            if (CommFun.notNullOrEmpty(cityProper)) {
+                mHolder.setText(R.id.tv_cityProper, cityProper);
+            } else {
+                mHolder.setText(R.id.tv_cityProper, "当前区域");
+            }
+        }
+        // 城主姓名
+        mHolder.setText(R.id.tv_ctiyname, cityUserneme);
     }
 
     @Override
@@ -290,8 +388,9 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                                 countDownTimers.start();
                             }
                         }
+                    }else {
+                        showMsg(msg);
                     }
-                    showMsg(msg);
                 }
             }
         } catch (Exception e) {
@@ -460,13 +559,12 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     @Override
     public void onMapLoaded() {
 
-
     }
 
     /**
      * 生成坐标红包
      */
-    private void createRedPacket(LatLng latLng,int Range) {
+    private void createRedPacket(LatLng latLng, int Range) {
 
         try {
 
@@ -480,7 +578,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                 double longitude = currentLatlng.longitude;
 
                 // 生成坐标红包的个数
-                for (int i = 0; i < Math.random() *50; i++) {
+                for (int i = 0; i < Math.random() * (50 - 10) + 10; i++) {
 
                     Random ran = new Random(System.currentTimeMillis());
                     // Math.random()*(n-m)+m  从m到n的随机数
@@ -489,7 +587,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                     int r = radius + Range;
 
                     // 点到坐标的横向距离
-                    double ranX =(Math.random() * (r - (-r)) - r);
+                    double ranX = (Math.random() * (r - (-r)) - r);
                     double lat = latitude + (ranX / Constants.YProportion);
 //                    // 求点到纵坐标的距离 b*b = c*c - a*a
 //                    double tempRanY = Math.sqrt(r*r-ranX*ranX);
@@ -578,22 +676,26 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
             boolean b = circle.contains(marker.getPosition());
 
-            if (b) {
-                String title = "给你发了一个广告红包";
-                RedPackageDialog redPackageDialog = new RedPackageDialog(getActivity(), title, "同意", "拒绝", "");
-                redPackageDialog.setDialogListener(new RedPackageDialog.DialogListener() {
-                    @Override
-                    public void onOkClick() {
-                        // 打开宝箱
-                        startActivity(new Intent(getActivity(), OpenTreasureBoxActivity.class));
-                    }
-                });
+            // 跳转城主交易界面
+            if (BaseData.isLogin()) {
+                if (b) {
+                    String title = "给你发了一个广告红包";
+                    RedPackageDialog redPackageDialog = new RedPackageDialog(getActivity(), title, "同意", "拒绝", "");
+                    redPackageDialog.setDialogListener(new RedPackageDialog.DialogListener() {
+                        @Override
+                        public void onOkClick() {
+                            // 打开宝箱
+                            startActivity(new Intent(getActivity(), OpenTreasureBoxActivity.class));
+                        }
+                    });
 
-                redPackageDialog.show();
-            } else {
-                // 分享页面
-                startActivity(new Intent(getActivity(), ShareActivity.class));
-            }
+                    redPackageDialog.show();
+                } else {
+                    // 分享页面
+                    startActivity(new Intent(getActivity(), ShareActivity.class));
+                }
+            } else
+                startActivity(new Intent(getActivity(), LoginActivity.class));
         }
 
 
@@ -624,6 +726,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         MessageBox.show(marker.getTitle() + "停止拖动");
     }
 
+
     @Override
     public void activate(OnLocationChangedListener onLocationChangedListener) {
         mListener = onLocationChangedListener;
@@ -635,14 +738,14 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             //设置为高精度定位模式
             mLocationOption.setLocationMode(AMapLocationClientOption.AMapLocationMode.Hight_Accuracy);
             //设置每5秒定位一次
-            //mLocationOption.setInterval(2000);
+            mLocationOption.setInterval(2000);
             //设置定位参数
             mlocationClient.setLocationOption(mLocationOption);
             // 此方法为每隔固定时间会发起一次定位请求，为了减少电量消耗或网络流量消耗，
             // 注意设置合适的定位时间的间隔（最小间隔支持为2000ms），并且在合适时间调用stopLocation()方法来取消定位请求
             // 在定位结束后，在合适的生命周期调用onDestroy()方法
             // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
-            //mlocationClient.startLocation();
+            mlocationClient.startLocation();
         }
     }
 
@@ -667,6 +770,8 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                     String latlngJson = JsonConvertor.toJson(latLng);
                     aCache.put("latlngJson", latlngJson);
                 }
+
+                String adCode = amapLocation.getAdCode();
                 currentLatlng = latLng;
                 addPolylinescircle(currentLatlng, radius);
                 //展示自定义定位小蓝点
@@ -693,7 +798,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 //
 //                }
 
-                createRedPacket(latLng,0);//绘制红包
+//                createRedPacket(latLng,0);//绘制红包
 
 
             } else {
@@ -704,9 +809,14 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     }
 
 
+    /**
+     * 定位成功
+     *
+     * @param location
+     */
     @Override
     public void onMyLocationChange(Location location) {
-
+        aMap.clear();
 
         // 缓存定位坐标
         if (aCache != null) {
@@ -718,8 +828,14 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             String latlngJson = JsonConvertor.toJson(latLng);
             aCache.put("latlngJson", latlngJson);
 
-            createRedPacket(currentLatlng,0);//生成红包
+            AMapLocation aMapLocation = new AMapLocation(location);
+            String adCode = aMapLocation.getAdCode();
+            int code = CommFun.toInt32(adCode, 0);
+            mPresenter.buyCityOwner(code);
+
             addPolylinescircle(currentLatlng, radius); // 绘制圆
+            createRedPacket(currentLatlng, 0);//生成红包
+
         }
 
     }
@@ -811,16 +927,13 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     public void addPolylinescircle(LatLng centerpoint, int radius) {
 
         // 绘制一个圆形
-        if (circle == null || status == 2) {
-            circleOptions = new CircleOptions().center(centerpoint)
-                    .radius(radius)
-                    .strokeColor(Color.argb(1, 1, 1, 1))
-                    .fillColor(Color.argb(20, 1, 1, 1))
-                    .strokeWidth(25);// 像素
-            circle = aMap.addCircle(circleOptions);
-            status = 0;
+        circleOptions = new CircleOptions().center(centerpoint)
+                .radius(radius)
+                .strokeColor(Color.argb(1, 1, 1, 1))
+                .fillColor(Color.argb(20, 1, 1, 1))
+                .strokeWidth(25);// 像素
+        circle = aMap.addCircle(circleOptions);
 
-        }
 
     }
 
@@ -829,7 +942,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
      */
     private void Repaint(int range) {
         aMap.clear();
-        createRedPacket(currentLatlng,range);//生成红包
+        createRedPacket(currentLatlng, range);//生成红包
         circleOptions = new CircleOptions().center(currentLatlng)
                 .radius(radius += range)
                 .strokeColor(Color.argb(1, 1, 1, 1))
@@ -872,6 +985,8 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
      */
     class CountDownTimers extends CountDownTimer {
 
+        private CountDownTimers countDownTimers;
+
         public CountDownTimers(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
         }
@@ -895,7 +1010,16 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
          */
         @Override
         public void onTick(long millisUntilFinished) {
-            mHolder.setText(R.id.tv_countdown, CommFun.formatTime(millisUntilFinished));
+            int minute;//分钟
+            int second;//秒数
+            minute = (int) ((millisUntilFinished / 1000) / 60);
+            if (minute > 54) {
+                mHolder.setText(R.id.tv_countdown, "抢红包");
+                isWhole = true;
+            } else {
+                mHolder.setText(R.id.tv_countdown, CommFun.formatTime(millisUntilFinished));
+                isWhole = false;
+            }
         }
 
         /**
@@ -903,7 +1027,9 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
          */
         @Override
         public void onFinish() {
-
+            //倒计时器
+            CountDownTimers countDownTimers = new CountDownTimers(60 * 60 * 1000, 1000);
+            countDownTimers.start();
         }
     }
 
@@ -915,7 +1041,13 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
      */
     @Event(value = R.id.img_invitation)
     private void img_invitationClick(View view) {
-        startActivity(new Intent(getActivity(), InvitationFriendsListActivity.class));
+        // 跳转邀请好友界面
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getActivity(), InvitationFriendsListActivity.class));
+        else
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+
+//        startActivity(new Intent(getActivity(), InvitationFriendsListActivity.class));
 
     }
 
@@ -932,12 +1064,15 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     @Event(value = R.id.llbtn_clock)
     private void llbtn_clockClick(View view) {
 
-        MessageBox.showWaitDialog(getActivity(), "数据加载中...");
+        if (isWhole) {
+            MessageBox.showWaitDialog(getActivity(), "数据加载中...");
 
-        mPresenter.grabRedPacket(2);
+            mPresenter.grabRedPacket(2);
+        } else {
+            // 每日任务
+            startActivity(new Intent(getActivity(), DailyTasksListActivity.class));
+        }
 
-//        // 每日任务
-//        startActivity(new Intent(getActivity(), DailyTasksListActivity.class));
     }
 
     @Override
@@ -994,6 +1129,10 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     private void ll_cityownerClick(View view) {
 
         // 跳转城主交易界面
-        startActivity(new Intent(getActivity(), CityOwnerTransactionActivity.class));
+        if (BaseData.isLogin())//如果需要登录
+            startActivity(new Intent(getActivity(), CityOwnerTransactionActivity.class));
+        else
+            startActivity(new Intent(getActivity(), LoginActivity.class));
+
     }
 }

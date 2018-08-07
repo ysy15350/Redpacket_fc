@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.ysy15350.redpacket_fc.R;
 import com.ysy15350.redpacket_fc.authentication.login.LoginActivity;
+import com.ysy15350.redpacket_fc.others.instructions.InstructionsActivity;
 import com.ysy15350.ysyutils.api.ApiCallBack;
 import com.ysy15350.ysyutils.api.model.Response;
 import com.ysy15350.ysyutils.api.model.ResponseHead;
@@ -52,12 +53,20 @@ public class SettingActivity extends BaseActivity {
         super.initView();
         setFormHead("设置");
 
+    }
+
+    @Override
+    public void bindData() {
+        super.bindData();
+
         if (BaseData.isLogin())//如果需要登录
             mHolder.setText(R.id.tv_Exitaccount,"注销账号");
         else
             mHolder.setText(R.id.tv_Exitaccount,"未登录");
 
-
+        // 当前版本号
+        String versionName=CommFunAndroid.getAppVersionName(this);
+        mHolder.setText(R.id.tv_version,versionName);
     }
 
     @Event(value = R.id.ll_menu_2)
@@ -211,6 +220,17 @@ public class SettingActivity extends BaseActivity {
             }
         });
 
+
+    }
+
+    /**
+     * 使用说明
+     * @param view
+     */
+    @Event(value = R.id.llbtn_instructions)
+    private void llbtn_instructionsClick(View view) {
+
+        startActivity(new Intent(this, InstructionsActivity.class));
 
     }
 
